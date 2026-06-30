@@ -1,0 +1,21 @@
+doc/testing-strategy.md
+  s_cceaaef18fc9de::t_ac73b0051495fc 164,166
+build.gradle.kts
+  s_cceaaef18fc9de::t_b68108d529d78a 55-75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "dfa7ece25f798db5eb5a4a4936a3ba2e6a801f7d",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
