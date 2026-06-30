@@ -1,0 +1,19 @@
+gradle.properties
+  s_cceaaef18fc9de::t_a2e65cedfdbc25 4-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "3cb18dff8360fbd91fff287b1e829c32a70a13d7",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
