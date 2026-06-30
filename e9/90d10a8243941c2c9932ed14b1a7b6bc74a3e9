@@ -1,0 +1,19 @@
+src/main/java/com/fraudfinder/FraudFinderApplication.java
+  s_cceaaef18fc9de::t_13876d7938bbfa 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "e990d10a8243941c2c9932ed14b1a7b6bc74a3e9",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
