@@ -1,0 +1,127 @@
+src/main/java/com/fraudfinder/detection/rule/GeoUtils.java
+  s_cceaaef18fc9de::t_f78af1def9e78c 1-2,4-49,53-57
+  s_cceaaef18fc9de::t_13541be5fbee6c 3,50-52
+src/main/java/com/fraudfinder/detection/DetectionResultRepository.java
+  s_cceaaef18fc9de::t_da79a1b4f460c3 10,12
+  s_cceaaef18fc9de::t_e0df7556223729 1-9,11,13
+src/main/java/com/fraudfinder/detection/rule/AccountBehaviorRule.java
+  s_cceaaef18fc9de::t_36cc646926019c 10
+  s_cceaaef18fc9de::t_3589b10c854e6f 1-9,11-27,29-33,35-48
+  s_cceaaef18fc9de::t_13541be5fbee6c 28,34
+src/main/java/com/fraudfinder/detection/rule/AmountThresholdRule.java
+  s_cceaaef18fc9de::t_13541be5fbee6c 22
+  s_cceaaef18fc9de::t_68d74d5f851d93 1-8,10-21,23-40
+  s_cceaaef18fc9de::t_36cc646926019c 9
+src/main/java/com/fraudfinder/alert/AlertRepository.java
+  s_cceaaef18fc9de::t_c76e96e372dc45 1-8,10,12,14
+  s_cceaaef18fc9de::t_da79a1b4f460c3 9,11,13
+src/main/java/com/fraudfinder/risk/PayeeRisk.java
+  s_cceaaef18fc9de::t_0f0e16432d758b 1-9,54
+  s_cceaaef18fc9de::t_da79a1b4f460c3 10-53
+src/main/java/com/fraudfinder/detection/rule/Rule.java
+  s_cceaaef18fc9de::t_e48bdc9bd5db37 1-4,6-15
+  s_cceaaef18fc9de::t_ea41df2a8225b3 5
+src/main/java/com/fraudfinder/detection/rule/SuspiciousAccountRule.java
+  s_cceaaef18fc9de::t_13541be5fbee6c 19
+  s_cceaaef18fc9de::t_9c7c16698556f1 1-7,9-18,20-33
+  s_cceaaef18fc9de::t_36cc646926019c 8
+src/main/java/com/fraudfinder/detection/FraudDetectionResult.java
+  s_cceaaef18fc9de::t_b5fd9b9c1e1d65 1-6,10-11,65
+  s_cceaaef18fc9de::t_da79a1b4f460c3 7-9,12-64
+src/main/java/com/fraudfinder/risk/PayeeRiskRepository.java
+  s_cceaaef18fc9de::t_2a0db16fa55503 1-7,9
+  s_cceaaef18fc9de::t_da79a1b4f460c3 8
+src/main/java/com/fraudfinder/detection/rule/HighFrequencyRule.java
+  s_cceaaef18fc9de::t_36cc646926019c 9
+  s_cceaaef18fc9de::t_13541be5fbee6c 30-32
+  s_cceaaef18fc9de::t_31cbc7065ec623 1-8,10-29,33-46
+src/main/java/com/fraudfinder/risk/SuspiciousAccount.java
+  s_cceaaef18fc9de::t_d575b7b0d5405e 1-9,46
+  s_cceaaef18fc9de::t_da79a1b4f460c3 10-45
+src/test/java/com/fraudfinder/detection/rule/GeoUtilsTest.java
+  s_cceaaef18fc9de::t_6e3773e9d9898b 1-39
+src/test/java/com/fraudfinder/detection/rule/LocationAnomalyRuleTest.java
+  s_cceaaef18fc9de::t_e555a8dc38e1b2 12,22-28
+  s_cceaaef18fc9de::t_895fae94bfafaa 1-11,13-21,29-130
+src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker
+  s_cceaaef18fc9de::t_7e545a111b8374 1
+src/main/java/com/fraudfinder/risk/SuspiciousAccountRepository.java
+  s_cceaaef18fc9de::t_84d15dbf5b5ab6 1-7,9
+  s_cceaaef18fc9de::t_da79a1b4f460c3 8
+src/main/java/com/fraudfinder/detection/rule/RuleResult.java
+  s_cceaaef18fc9de::t_d06c791566d784 1-2,4-12
+  s_cceaaef18fc9de::t_13541be5fbee6c 3
+src/test/java/com/fraudfinder/detection/rule/AccountBehaviorRuleTest.java
+  s_cceaaef18fc9de::t_1ebffc3a8bb631 1-91
+src/test/java/com/fraudfinder/TransactionFixtures.java
+  s_cceaaef18fc9de::t_fb237d6e2af6bb 1-35,37-121
+  s_cceaaef18fc9de::t_947cf52526620e 36
+src/main/java/com/fraudfinder/transaction/Transaction.java
+  s_cceaaef18fc9de::t_da79a1b4f460c3 8-14,17-153
+  s_cceaaef18fc9de::t_9915b221bdee8b 1-7,15-16,154
+src/test/java/com/fraudfinder/detection/rule/SlidingWindowCounterTest.java
+  s_cceaaef18fc9de::t_987af1d41d8e26 1-84
+src/test/java/com/fraudfinder/alert/AlertTest.java
+  s_cceaaef18fc9de::t_4161eb46b2f0be 1-28
+src/main/java/com/fraudfinder/detection/RuleResultRepository.java
+  s_cceaaef18fc9de::t_da79a1b4f460c3 8
+  s_cceaaef18fc9de::t_ca4651dae3a3b2 1-7,9
+src/main/java/com/fraudfinder/transaction/TransactionRepository.java
+  s_cceaaef18fc9de::t_7504861d7efac2 1-10,12,16,18
+  s_cceaaef18fc9de::t_da79a1b4f460c3 11,13-15,17
+src/main/resources/db/migration/V1__create_tables.sql
+  s_cceaaef18fc9de::t_d156d5eb84a22d 1-78
+src/main/java/com/fraudfinder/risk/RiskCacheService.java
+  s_cceaaef18fc9de::t_eecbcad67af357 1-85
+src/main/java/com/fraudfinder/detection/FraudDetectionService.java
+  s_cceaaef18fc9de::t_63a878909744f1 1-46,48-59,71-79,91-99
+  s_cceaaef18fc9de::t_13541be5fbee6c 47,60-70,80-90
+src/main/java/com/fraudfinder/detection/rule/SlidingWindowCounter.java
+  s_cceaaef18fc9de::t_b4f05ea68bba7d 1-9,14-21,24-47
+  s_cceaaef18fc9de::t_13541be5fbee6c 10-13,22-23
+src/main/java/com/fraudfinder/detection/rule/HighRiskPayeeRule.java
+  s_cceaaef18fc9de::t_2027c73c495e7a 1-8,10-36
+  s_cceaaef18fc9de::t_36cc646926019c 9
+src/main/java/com/fraudfinder/detection/rule/LocationAnomalyRule.java
+  s_cceaaef18fc9de::t_13541be5fbee6c 49
+  s_cceaaef18fc9de::t_c10f387d616620 1-11,13-48,50-63
+  s_cceaaef18fc9de::t_36cc646926019c 12
+src/main/java/com/fraudfinder/alert/Alert.java
+  s_cceaaef18fc9de::t_e16d41d1d36262 1-6,13-14,78
+  s_cceaaef18fc9de::t_da79a1b4f460c3 7-12,15-77
+src/main/java/com/fraudfinder/detection/FraudDetectionRuleResult.java
+  s_cceaaef18fc9de::t_da79a1b4f460c3 9-61
+  s_cceaaef18fc9de::t_70b56df67ef059 1-8,62
+src/test/java/com/fraudfinder/detection/rule/SuspiciousAccountRuleTest.java
+  s_cceaaef18fc9de::t_135cbe25f95b4d 1-52
+src/test/java/com/fraudfinder/detection/FraudDetectionServiceTest.java
+  s_cceaaef18fc9de::t_e7383b88b57382 140-141
+  s_cceaaef18fc9de::t_a73eedc8f7bbc6 1-21,24-25,27-139,142-143
+  s_cceaaef18fc9de::t_9314b569a641e4 22-23,26
+src/test/java/com/fraudfinder/detection/rule/HighRiskPayeeRuleTest.java
+  s_cceaaef18fc9de::t_a92f6afb406c18 1-65
+src/test/java/com/fraudfinder/detection/rule/RuleResultTest.java
+  s_cceaaef18fc9de::t_705a2362186313 1-26
+src/test/java/com/fraudfinder/detection/rule/HighFrequencyRuleTest.java
+  s_cceaaef18fc9de::t_1e6c6d306bd709 1-78
+build.gradle.kts
+  s_cceaaef18fc9de::t_cc27643ecaa3d3 45-46
+src/test/java/com/fraudfinder/detection/rule/AmountThresholdRuleTest.java
+  s_cceaaef18fc9de::t_542df41df9ded9 1-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "21f532bd5abdf8cf4552777fbe2ad98ebc69022c",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
