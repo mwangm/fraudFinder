@@ -1,0 +1,30 @@
+infra/terraform/rds.tf
+  s_588cc1fed2532b::t_bf4edaaebe03cf 24-25,31,33,37
+src/main/java/com/fraudfinder/detection/service/FraudEvaluator.java
+  s_588cc1fed2532b::t_b984b33c01fbd3 63
+  s_588cc1fed2532b::t_5cf0568da2b503 37
+src/main/java/com/fraudfinder/detection/messaging/SnsAlertPublisher.java
+  s_588cc1fed2532b::t_3fedc4fa504e74 18
+  s_588cc1fed2532b::t_b00bc009ef4fec 8
+infra/terraform/variables.tf
+  s_588cc1fed2532b::t_fb31b2205d3b6d 86
+src/main/java/com/fraudfinder/transaction/TransactionConsumer.java
+  s_588cc1fed2532b::t_4a0e51af77c638 7
+  s_588cc1fed2532b::t_fe46498cdd61ce 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "51afcc2f767047f161120f31398206ad65159610",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
