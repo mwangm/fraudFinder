@@ -1,0 +1,23 @@
+.github/workflows/ci.yml
+  s_cceaaef18fc9de::t_09f27f8bc23517 36,51,53,65,67,87-90
+  s_cceaaef18fc9de::t_89a533e81c5465 22
+  s_cceaaef18fc9de::t_a128d96c5ba5bf 8-13
+  s_cceaaef18fc9de::t_7e658cf2faca7d 91-93
+  s_cceaaef18fc9de::t_6ddf7ce49c1438 94-108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "9a251fb33c6fee75dc2e758cb36d1812ea9ea771",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
