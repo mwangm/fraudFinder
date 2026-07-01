@@ -11,7 +11,6 @@ import com.fraudfinder.message.EvaluationResult;
 import com.fraudfinder.message.RuleEvaluationResult;
 import com.fraudfinder.message.TransactionMessage;
 import com.fraudfinder.model.FraudRecord;
-import com.fraudfinder.repository.FraudRecordRepository;
 import com.fraudfinder.rule.RuleEngine;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -28,7 +27,6 @@ class FraudDetectionServiceTest {
 
   @Mock ObjectMapper objectMapper;
   @Mock RuleEngine ruleEngine;
-  @Mock FraudRecordRepository resultRepo;
   @Mock FraudRecorderService fraudRecorder;
   @Mock AlertService alertService;
 
@@ -36,9 +34,7 @@ class FraudDetectionServiceTest {
 
   @BeforeEach
   void setUp() {
-    service =
-        new FraudDetectionService(
-            objectMapper, ruleEngine, resultRepo, fraudRecorder, alertService);
+    service = new FraudDetectionService(objectMapper, ruleEngine, fraudRecorder, alertService);
   }
 
   @Test
@@ -51,7 +47,7 @@ class FraudDetectionServiceTest {
             80,
             70);
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
-    when(resultRepo.findByTransactionId(any())).thenReturn(Optional.empty());
+    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
     when(fraudRecorder.save(any(), any()))
         .thenReturn(new FraudRecord("TXN-1", true, 80, 70, Instant.now()));
 
@@ -66,7 +62,7 @@ class FraudDetectionServiceTest {
   @Test
   void shouldNotDetectFraudWhenScoreBelowThreshold() {
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
-    when(resultRepo.findByTransactionId(any())).thenReturn(Optional.empty());
+    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
 
     FraudRecord result = service.detect(msg(500));
 
@@ -78,7 +74,7 @@ class FraudDetectionServiceTest {
   @Test
   void shouldSkipDuplicateTransaction() {
     FraudRecord existing = new FraudRecord("TXN-1", false, 30, 70, Instant.now());
-    when(resultRepo.findByTransactionId("TXN-1")).thenReturn(Optional.of(existing));
+    when(fraudRecorder.findExisting("TXN-1")).thenReturn(Optional.of(existing));
 
     FraudRecord result = service.detect(msg(5000));
 
@@ -91,7 +87,7 @@ class FraudDetectionServiceTest {
     var evaluation =
         new EvaluationResult(List.of(RuleEvaluationResult.triggered("a", 120, "")), 120, 70);
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
-    when(resultRepo.findByTransactionId(any())).thenReturn(Optional.empty());
+    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
     when(fraudRecorder.save(any(), any()))
         .thenReturn(new FraudRecord("TXN-1", true, 120, 70, Instant.now()));
 

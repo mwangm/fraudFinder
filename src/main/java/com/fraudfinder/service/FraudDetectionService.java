@@ -3,7 +3,6 @@ package com.fraudfinder.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fraudfinder.message.TransactionMessage;
 import com.fraudfinder.model.FraudRecord;
-import com.fraudfinder.repository.FraudRecordRepository;
 import com.fraudfinder.rule.RuleEngine;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import java.time.Instant;
@@ -15,24 +14,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FraudDetectionService {
-
   private static final Logger log = LoggerFactory.getLogger(FraudDetectionService.class);
 
   private final ObjectMapper objectMapper;
   private final RuleEngine ruleEngine;
-  private final FraudRecordRepository resultRepo;
   private final FraudRecorderService fraudRecorder;
   private final AlertService alertService;
 
   public FraudDetectionService(
       ObjectMapper objectMapper,
       RuleEngine ruleEngine,
-      FraudRecordRepository resultRepo,
       FraudRecorderService fraudRecorder,
       AlertService alertService) {
     this.objectMapper = objectMapper;
     this.ruleEngine = ruleEngine;
-    this.resultRepo = resultRepo;
     this.fraudRecorder = fraudRecorder;
     this.alertService = alertService;
   }
@@ -58,9 +53,9 @@ public class FraudDetectionService {
 
   @Transactional
   public FraudRecord detect(TransactionMessage message) {
-    Optional<FraudRecord> existing = resultRepo.findByTransactionId(message.transactionId());
+    Optional<FraudRecord> existing = fraudRecorder.findExisting(message.transactionId());
     if (existing.isPresent()) {
-      log.info("Idempotent skip: txnId={}", message.transactionId());
+      log.info("have been processed，skip: txnId={}", message.transactionId());
       return existing.get();
     }
 
