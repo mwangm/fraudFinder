@@ -1,0 +1,39 @@
+src/main/resources/logback-spring.xml
+  s_cceaaef18fc9de::t_e15977a9e1e3ec 1-40
+src/test/java/com/fraudfinder/detection/rule/AccountBehaviorRuleTest.java
+  s_cceaaef18fc9de::t_836be65767745e 7
+src/test/java/com/fraudfinder/detection/rule/HighRiskPayeeRuleTest.java
+  s_cceaaef18fc9de::t_836be65767745e 8,23
+src/test/java/com/fraudfinder/detection/rule/HighFrequencyRuleTest.java
+  s_cceaaef18fc9de::t_836be65767745e 7,9-10
+src/main/java/com/fraudfinder/detection/service/FraudEvaluator.java
+  s_cceaaef18fc9de::t_836be65767745e 5
+src/test/java/com/fraudfinder/detection/rule/SuspiciousAccountRuleTest.java
+  s_cceaaef18fc9de::t_836be65767745e 21
+src/test/java/com/fraudfinder/detection/rule/LocationAnomalyRuleTest.java
+  s_cceaaef18fc9de::t_836be65767745e 8
+src/test/java/com/fraudfinder/detection/rule/SlidingWindowCounterTest.java
+  s_cceaaef18fc9de::t_836be65767745e 5
+src/test/java/com/fraudfinder/detection/rule/AmountThresholdRuleTest.java
+  s_cceaaef18fc9de::t_836be65767745e 7
+src/main/java/com/fraudfinder/shared/web/TraceFilter.java
+  s_cceaaef18fc9de::t_b82c0f35cc08f2 1-37
+src/test/java/com/fraudfinder/detection/engine/FraudEvaluatorTest.java
+  s_cceaaef18fc9de::t_836be65767745e 12,18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "19ff619f4fef39a33e5c55110e486b285516183e",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
