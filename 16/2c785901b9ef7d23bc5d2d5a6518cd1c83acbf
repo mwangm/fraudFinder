@@ -1,0 +1,35 @@
+src/main/java/com/frauddetection/service/AlertService.java
+  s_588cc1fed2532b::t_b0a765cdba184e 4,30-35,37-39,45
+  s_588cc1fed2532b::t_3db259e5909e7f 19,41-44,46-48
+src/main/java/com/frauddetection/service/FraudRecorderService.java
+  s_588cc1fed2532b::t_a87444aeee823c 41
+  s_588cc1fed2532b::t_65e07c4776e6f0 42
+src/main/java/com/frauddetection/rule/RuleEngine.java
+  s_588cc1fed2532b::t_9849a9a897a475 50
+src/main/java/com/frauddetection/message/RuleEvaluationResult.java
+  s_588cc1fed2532b::t_4f22378b77cbd3 6
+  s_588cc1fed2532b::t_8bf3437f72c64e 5
+src/main/resources/application.yml
+  s_588cc1fed2532b::t_b9c99d0ba6f180 35,40
+src/main/java/com/frauddetection/rule/FraudDetectionRule.java
+  s_588cc1fed2532b::t_f15d22144d1c51 5
+src/test/java/com/frauddetection/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_09ba2231b3cfd7 22,36,46,55,66,78,90,99,106-107
+  s_588cc1fed2532b::t_c328ee2875e636 108-109
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "162c785901b9ef7d23bc5d2d5a6518cd1c83acbf",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
