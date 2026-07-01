@@ -1,0 +1,188 @@
+src/test/java/com/fraudfinder/detection/engine/FraudEvaluatorTest.java
+  s_588cc1fed2532b::t_fe586c5cd3e459 21-29
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/test/java/com/fraudfinder/transaction/TransactionServiceTest.java
+  s_588cc1fed2532b::t_fe586c5cd3e459 18-20
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/dto/ApiError.java
+  s_588cc1fed2532b::t_5ffcff366c1303 3-4
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/test/java/com/fraudfinder/detection/rule/RuleResultTest.java
+  s_588cc1fed2532b::t_fe586c5cd3e459 13
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/test/java/com/fraudfinder/detection/service/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+  s_588cc1fed2532b::t_fe586c5cd3e459 14-17
+src/test/java/com/fraudfinder/transaction/TransactionControllerTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/repository/RuleResultRepository.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-4,6-11
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_87b6f4e7512dbb 5
+src/main/java/com/fraudfinder/rule/FraudRulesProperties.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_5ffcff366c1303 1,3-20
+src/test/java/com/fraudfinder/integration/TransactionIntegrationTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/messaging/TransactionConsumer.java
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+  s_588cc1fed2532b::t_5ffcff366c1303 5-55
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-4
+src/test/java/com/fraudfinder/integration/IdempotencyIntegrationTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/config/GlobalExceptionHandler.java
+  s_588cc1fed2532b::t_5ffcff366c1303 4-53
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/config/MdcTraceId.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+  s_588cc1fed2532b::t_5ffcff366c1303 4-11
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/config/ApiKeyFilter.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+  s_588cc1fed2532b::t_5ffcff366c1303 4-46
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/test/java/com/fraudfinder/transaction/TransactionConsumerTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/config/TraceFilter.java
+  s_588cc1fed2532b::t_5ffcff366c1303 4-39
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+src/main/java/com/fraudfinder/repository/PayeeRiskRepository.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-3,5-10
+  s_588cc1fed2532b::t_87b6f4e7512dbb 4
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/config/AuthProperties.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 4-8
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+src/main/java/com/fraudfinder/dto/TransactionResponse.java
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_5ffcff366c1303 3-14
+src/main/java/com/fraudfinder/service/DetectionService.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-6
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 7-56
+src/test/java/com/fraudfinder/detection/service/DetectionServiceTest.java
+  s_588cc1fed2532b::t_fe586c5cd3e459 16-18
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/test/java/com/fraudfinder/risk/RiskCacheServiceTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/controller/TransactionController.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+  s_588cc1fed2532b::t_5ffcff366c1303 4-39
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+src/main/java/com/fraudfinder/model/FraudDetectionResult.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-65
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/service/RiskCacheService.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-6
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 7-91
+src/main/java/com/fraudfinder/messaging/SnsAlertPublisher.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-4
+  s_588cc1fed2532b::t_5ffcff366c1303 5-70
+src/main/java/com/fraudfinder/dto/ApiResponse.java
+  s_588cc1fed2532b::t_5ffcff366c1303 3-17
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+src/main/java/com/fraudfinder/rule/RuleConfig.java
+  s_588cc1fed2532b::t_5ffcff366c1303 1,3-19
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+src/test/java/com/fraudfinder/detection/api/DetectionControllerTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+  s_588cc1fed2532b::t_fe586c5cd3e459 18-19
+src/main/java/com/fraudfinder/dto/TransactionRequest.java
+  s_588cc1fed2532b::t_5ffcff366c1303 3-23
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+src/main/java/com/fraudfinder/model/PayeeRisk.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 2-54
+src/main/java/com/fraudfinder/repository/TransactionRepository.java
+  s_588cc1fed2532b::t_87b6f4e7512dbb 4
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+  s_588cc1fed2532b::t_5ffcff366c1303 2-3,5-10
+src/main/java/com/fraudfinder/service/AsyncDetectionRunner.java
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-6
+  s_588cc1fed2532b::t_5ffcff366c1303 7-40
+src/test/java/com/fraudfinder/transaction/TransactionRepositoryTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/test/java/com/fraudfinder/config/TraceFilterTest.java
+  s_588cc1fed2532b::t_7e1ce270c031ab 1-9
+src/main/java/com/fraudfinder/model/FraudDetectionRuleResult.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-62
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/test/java/com/fraudfinder/TransactionFixtures.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+  s_588cc1fed2532b::t_fe586c5cd3e459 11
+src/main/java/com/fraudfinder/dto/DetectionResultResponse.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 3-13
+src/main/java/com/fraudfinder/controller/DetectionController.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-3
+  s_588cc1fed2532b::t_5ffcff366c1303 4-32
+src/main/java/com/fraudfinder/repository/SuspiciousAccountRepository.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-3,5-10
+  s_588cc1fed2532b::t_87b6f4e7512dbb 4
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/dto/PageMeta.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_5ffcff366c1303 3-4
+src/main/java/com/fraudfinder/model/SuspiciousAccount.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 2-46
+src/main/java/com/fraudfinder/model/Transaction.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-154
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+src/main/java/com/fraudfinder/repository/DetectionResultRepository.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-4,6,8,10-17
+  s_588cc1fed2532b::t_87b6f4e7512dbb 5,7,9
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/test/java/com/fraudfinder/shared/web/GlobalExceptionHandlerTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+  s_588cc1fed2532b::t_fe586c5cd3e459 13
+src/main/java/com/fraudfinder/service/TransactionService.java
+  s_588cc1fed2532b::t_5ffcff366c1303 7-124
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-6
+  s_588cc1fed2532b::t_07d879a7535dbe 1
+src/test/java/com/fraudfinder/detection/repository/DetectionResultRepositoryTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+  s_588cc1fed2532b::t_fe586c5cd3e459 13
+src/main/java/com/fraudfinder/dto/RuleResult.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_5ffcff366c1303 3-13
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/rule/RuleEngine.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2
+  s_588cc1fed2532b::t_5ffcff366c1303 1,3-71
+src/test/java/com/fraudfinder/integration/RuleEndToEndTest.java
+  s_588cc1fed2532b::t_3e593368fc6793 2-9
+src/main/java/com/fraudfinder/service/FraudEvaluator.java
+  s_588cc1fed2532b::t_b3f2e7865c8fa1 2-6
+  s_588cc1fed2532b::t_5ffcff366c1303 7-93
+  s_588cc1fed2532b::t_b1458c4586b182 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "12960a1691c90a035a5f02b108188575f850b68b",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
