@@ -1,0 +1,21 @@
+.github/workflows/deploy.yml
+  s_588cc1fed2532b::t_f4a4590dbdb57f 49
+scripts/local-deploy.sh
+  s_588cc1fed2532b::t_879cc3e679e285 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "b0ed26cd2778542d95da7944815f3bcbada807c8",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
