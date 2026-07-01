@@ -3,6 +3,7 @@ plugins {
     id("org.springframework.boot") version "3.4.1"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.diffplug.spotless") version "6.25.0"
+    jacoco
 }
 
 group = "com.frauddetection"
@@ -40,6 +41,15 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    executionData.setFrom(fileTree(buildDir).include("jacoco/*.exec"))
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
 spotless {
