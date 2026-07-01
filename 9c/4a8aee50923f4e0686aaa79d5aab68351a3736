@@ -1,0 +1,332 @@
+infra/terraform/terraform.tfvars.example
+  s_588cc1fed2532b::t_d107f27aca32d0 14-17,21-23
+  s_588cc1fed2532b::t_11dbbb0f35737f 1-13,18-20,24-26
+infra/terraform/sqs.tf
+  s_588cc1fed2532b::t_716121fac95d2c 1-32
+infra/terraform/rds.tf
+  s_588cc1fed2532b::t_d8c3579d4ed9cc 30
+  s_588cc1fed2532b::t_bf4edaaebe03cf 24-25,31,33,37
+  s_588cc1fed2532b::t_c7335fecda94e3 59-63
+  s_588cc1fed2532b::t_9083823c1df162 1-2,4-6,8-11,13-23,26-29,32,34-36,38-39,41-53,55-58,64-78
+  s_588cc1fed2532b::t_be7594e57032eb 3,7,12,40,54
+.github/workflows/deploy.yml
+  s_588cc1fed2532b::t_154715cb0ca450 16
+  s_588cc1fed2532b::t_c5c725ef59008e 51,53
+  s_588cc1fed2532b::t_5aade8d42a5626 17,48,59
+  s_588cc1fed2532b::t_f4a4590dbdb57f 49
+  s_588cc1fed2532b::t_90b09c6b4eab41 54
+  s_588cc1fed2532b::t_de50323b882836 55
+  s_588cc1fed2532b::t_85c8ca3d9ee38e 46
+  s_588cc1fed2532b::t_718ae5c70b21b4 1-15,18-45,47,50,52,56-58
+src/main/java/com/fraudfinder/service/RiskCacheService.java
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 2,7,9-10,14-15,17-18,20-23,26-28,30-35,52-61
+  s_588cc1fed2532b::t_b9c7a835385ad0 19
+  s_588cc1fed2532b::t_1823d10b33bb2a 3-6,8,13,16,24-25,29,36-40
+  s_588cc1fed2532b::t_be1e7b5eac8987 11-12,41-51
+infra/terraform/outputs.tf
+  s_588cc1fed2532b::t_577f4b7bd65dd5 1-12,17-35
+  s_588cc1fed2532b::t_b3bbaffb7eca77 13-16
+src/main/java/com/fraudfinder/rule/RulesConfig.java
+  s_588cc1fed2532b::t_c554019b2b84f0 1,3-4,7-10,12,14,16-18,20-22
+  s_588cc1fed2532b::t_d79ffeb446dc1f 13,15,19
+  s_588cc1fed2532b::t_e5c3abc870907a 2,11
+  s_588cc1fed2532b::t_be1e7b5eac8987 5-6
+src/main/java/com/fraudfinder/rule/RuleEngine.java
+  s_588cc1fed2532b::t_4630b0bef6927f 44-46,50-52,57,61
+  s_588cc1fed2532b::t_5ffcff366c1303 1-2,6-7,9-10,12-21,23,25,31,33-34,41,43,47-48,62-63
+  s_588cc1fed2532b::t_c6077baaa55a15 4,42,49,55-56,60
+  s_588cc1fed2532b::t_7bb73c980588a6 32
+  s_588cc1fed2532b::t_be1e7b5eac8987 3,26-29,36-40,54,58-59
+  s_588cc1fed2532b::t_e121639aaa9e54 8,11,35
+  s_588cc1fed2532b::t_3897114810892b 22,30
+  s_588cc1fed2532b::t_4b7971055c1bdf 24
+  s_588cc1fed2532b::t_422126f1656293 53
+  s_588cc1fed2532b::t_cf444a432b5d10 5
+src/main/java/com/fraudfinder/rule/FraudDetectionRule.java
+  s_588cc1fed2532b::t_d79ffeb446dc1f 1,3-7,9-14
+  s_588cc1fed2532b::t_be1e7b5eac8987 2,8
+charts/fraud-detection/values-prod.yaml
+  s_588cc1fed2532b::t_e5b24a17029a84 13-15
+  s_588cc1fed2532b::t_072a2bb205ebdb 43-48
+  s_588cc1fed2532b::t_e15a13da24de09 35
+  s_588cc1fed2532b::t_b6fbb708bb16f6 49-53
+  s_588cc1fed2532b::t_3e9079be37d694 24-31
+  s_588cc1fed2532b::t_197a7551b63903 36-37
+  s_588cc1fed2532b::t_4bcd780f4c1dfe 1-12
+  s_588cc1fed2532b::t_eca6f1e4bd341a 16-19
+  s_588cc1fed2532b::t_e4e5ba0686f25d 38
+  s_588cc1fed2532b::t_08f504e3fbd6ab 21-23,32-34
+  s_588cc1fed2532b::t_63d1786477edbf 42
+  s_588cc1fed2532b::t_dd1367d396fd48 39-41
+  s_588cc1fed2532b::t_cab75d660d125c 54-55
+  s_588cc1fed2532b::t_4236d6c491e012 20
+gradle.properties
+  s_cceaaef18fc9de::t_a2e65cedfdbc25 4-6
+src/main/java/com/fraudfinder/FraudFinderApplication.java
+  s_cceaaef18fc9de::t_300e62a09aef33 6,10
+src/test/java/com/fraudfinder/detection/service/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_289aa2bf76a134 34
+  s_588cc1fed2532b::t_cf444a432b5d10 7
+  s_588cc1fed2532b::t_6b692393637022 1-5,13-15,17-27,35,37-38,46,48-49,56,58-59,66-70,75,81-86,95,101-106,115,121-122,124,128,132
+  s_588cc1fed2532b::t_fa980a2106a5a9 10,12,131
+  s_588cc1fed2532b::t_c5c49b7fcf48b7 16,41,43,53,55,62-64,76-78,96-98,116-118,125,127
+  s_588cc1fed2532b::t_fe586c5cd3e459 8
+  s_588cc1fed2532b::t_c554019b2b84f0 28-33
+  s_588cc1fed2532b::t_8226fb6e0311c0 130,134-136,138-139
+  s_588cc1fed2532b::t_be1e7b5eac8987 6,11,39,50-51,60,71-74,87-94,107-114,123
+  s_588cc1fed2532b::t_a357a3f1868c1c 44-45,79,99
+  s_588cc1fed2532b::t_d79ffeb446dc1f 9
+doc/rule-engine.md
+  s_588cc1fed2532b::t_acf76b7c5a0433 1,3,5,7,12,14-53,55,57-63,66,68,70-72
+src/main/java/com/fraudfinder/repository/SuspiciousAccountRepository.java
+  s_588cc1fed2532b::t_87b6f4e7512dbb 3
+  s_588cc1fed2532b::t_be1e7b5eac8987 6
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_5ffcff366c1303 2,4-5
+src/main/java/com/fraudfinder/message/EvaluationResult.java
+  s_588cc1fed2532b::t_9705c6dd71d98b 1-5
+  s_588cc1fed2532b::t_be1e7b5eac8987 6
+src/test/java/com/fraudfinder/detection/rule/RuleResultTest.java
+  s_588cc1fed2532b::t_be1e7b5eac8987 5,7-9
+  s_cceaaef18fc9de::t_705a2362186313 1-4,10-11,13-15,17-24,26-31
+  s_588cc1fed2532b::t_c6077baaa55a15 6,12,16,25
+infra/terraform/variables.tf
+  s_588cc1fed2532b::t_154715cb0ca450 4
+  s_588cc1fed2532b::t_fb31b2205d3b6d 86
+  s_588cc1fed2532b::t_47186e5b17d20c 17,80
+  s_588cc1fed2532b::t_0daff41f0d2d71 1-3,5-16,18-79,81-85,87-117
+doc/task-plan.md
+  s_cceaaef18fc9de::t_940663038a3d2b 37
+src/test/java/com/fraudfinder/message/AlertPayloadTest.java
+  s_588cc1fed2532b::t_4edde8ae39017e 1-14,16-25,28-42
+  s_588cc1fed2532b::t_d0c09b75d9d23b 15,26-27
+.gitignore
+  s_588cc1fed2532b::t_efb7b95a2261db 30
+.github/workflows/ci.yml
+  s_cceaaef18fc9de::t_11f96c87933793 1-8,10-39,41-49
+  s_588cc1fed2532b::t_5aade8d42a5626 9
+  s_588cc1fed2532b::t_33407977a4f9aa 51-52,56-59
+  s_588cc1fed2532b::t_208a2114eee7a9 40
+  s_cceaaef18fc9de::t_6ddf7ce49c1438 55
+  s_588cc1fed2532b::t_9723e0cf059228 50,53-54
+src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker
+  s_cceaaef18fc9de::t_7e545a111b8374 1
+charts/fraud-detection/templates/configmap.yaml
+  s_588cc1fed2532b::t_47272b2f180022 6-8
+  s_588cc1fed2532b::t_f827374724bc39 10-12
+  s_588cc1fed2532b::t_1a2daa09444578 9
+  s_588cc1fed2532b::t_0670709dddcec6 1-5,13-15
+src/main/java/com/fraudfinder/model/SuspiciousAccount.java
+  s_588cc1fed2532b::t_7e12075fad67c8 6
+  s_588cc1fed2532b::t_5ffcff366c1303 2-5,7-47
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/model/FraudRecord.java
+  s_588cc1fed2532b::t_406240fd299912 9
+  s_588cc1fed2532b::t_be1e7b5eac8987 36-37,45-71
+  s_588cc1fed2532b::t_3148a25128a563 1-8,10-35,38-44,72-76
+infra/terraform/cloudwatch.tf
+  s_588cc1fed2532b::t_446ca1861ee286 3,7,14
+  s_588cc1fed2532b::t_fc931ab2e06a0f 1-2,4-6,8-13,15-30
+Dockerfile
+  s_cceaaef18fc9de::t_6e11fa6aaeca05 1-2,4-9
+  s_588cc1fed2532b::t_3edc8b85ac6078 3
+  s_588cc1fed2532b::t_6f62dfc6fe9e7d 10
+src/main/java/com/fraudfinder/message/RuleEvaluationResult.java
+  s_588cc1fed2532b::t_c6077baaa55a15 1-12
+charts/fraud-detection/templates/deployment.yaml
+  s_588cc1fed2532b::t_94585e06713699 30
+  s_588cc1fed2532b::t_0386df5421497e 1-29,31-60
+.sdkmanrc
+  s_cceaaef18fc9de::t_e8aa92077e4ef0 1
+scripts/local-deploy.sh.example
+  s_588cc1fed2532b::t_919131d526221b 1-14
+charts/fraud-detection/templates/_helpers.tpl
+  s_588cc1fed2532b::t_03f1d40863827a 4-11
+  s_588cc1fed2532b::t_2b915698392109 1-3,12-17
+src/test/java/com/fraudfinder/detection/repository/DetectionResultRepositoryTest.java
+  s_cceaaef18fc9de::t_b89c379ae506a5 1-4,10-16,18,20-22,24-25,27-28,30-34,36-38
+  s_588cc1fed2532b::t_77014ed55e2545 29
+  s_588cc1fed2532b::t_be1e7b5eac8987 5-6,8-9
+  s_588cc1fed2532b::t_3148a25128a563 7,17,19,23,26,35
+charts/fraud-detection/templates/secret.yaml
+  s_588cc1fed2532b::t_c11f7f443605f9 1-10
+src/test/java/com/fraudfinder/service/FraudDetectionServiceTest.java
+  s_588cc1fed2532b::t_35222cb6592643 16-17,19,30,79,86
+  s_588cc1fed2532b::t_77014ed55e2545 60,73,85
+  s_588cc1fed2532b::t_cf444a432b5d10 12
+  s_588cc1fed2532b::t_9705c6dd71d98b 9,29
+  s_588cc1fed2532b::t_9175382cfa681f 11
+  s_588cc1fed2532b::t_432092b45bd299 54,69,81,94
+  s_588cc1fed2532b::t_d2117af1fa9c5a 1-8,15,18,20-28,34-38,42-45,61,64-67,76-78,82,84,87-90,97,99,101-102,105-106
+  s_588cc1fed2532b::t_96ac3aa9d83af6 55,62-63,74-75,95,100
+  s_588cc1fed2532b::t_bbdf016a6d1c35 70,72
+  s_588cc1fed2532b::t_4f6a004cd5e883 98,103-104
+  s_588cc1fed2532b::t_be1e7b5eac8987 10,39-41,46-52,91-92
+  s_588cc1fed2532b::t_15e7fd1c1606fe 33
+  s_588cc1fed2532b::t_05db49ab385f68 59
+  s_588cc1fed2532b::t_a6a614a9051b24 53,93
+  s_588cc1fed2532b::t_3148a25128a563 13-14,31,56-58,71,80,83,96
+  s_588cc1fed2532b::t_a2c581afdbdbfd 32
+  s_588cc1fed2532b::t_1d4b5023351ac0 68
+infra/terraform/iam.tf
+  s_588cc1fed2532b::t_e11b0377e378e5 11,37,75,124,137
+  s_588cc1fed2532b::t_521acaecaa10e4 86
+  s_588cc1fed2532b::t_e5f3d95a02c06a 73
+  s_588cc1fed2532b::t_538d560d708f77 94-96
+  s_588cc1fed2532b::t_4e1e16197be3cf 97-102
+  s_588cc1fed2532b::t_4d7abb6e5da749 1-10,12-36,38-72,74,76-85,87-93,103-123,125-136,138-154
+doc/tech-decisions.md
+  s_588cc1fed2532b::t_8284c419087471 3-18
+charts/fraud-detection/Chart.yaml
+  s_588cc1fed2532b::t_5dd823e100d009 2
+  s_588cc1fed2532b::t_5816684a41357f 1,3-6
+src/test/java/com/fraudfinder/service/RiskCacheServiceTest.java
+  s_588cc1fed2532b::t_5b1a4d58634c16 84-85
+  s_588cc1fed2532b::t_df374eb357ffcb 1-83
+doc/architecture.md
+  s_588cc1fed2532b::t_83694983c24db6 3-63,67-71,74,76,78-81,83,85-88,90,92-94
+infra/terraform/eks.tf
+  s_588cc1fed2532b::t_db2636d77fd956 1-14,30-52
+  s_588cc1fed2532b::t_70612051ee7e3b 15-29
+src/main/java/com/fraudfinder/model/FraudRecordDetail.java
+  s_588cc1fed2532b::t_f1998f76b20d6f 6
+  s_588cc1fed2532b::t_202e4193ba849f 14
+  s_588cc1fed2532b::t_3148a25128a563 1-5,7-13,15-30,33-39,55
+  s_588cc1fed2532b::t_be1e7b5eac8987 31-32,40-54
+src/main/java/com/fraudfinder/service/AlertService.java
+  s_588cc1fed2532b::t_cf444a432b5d10 5
+  s_588cc1fed2532b::t_be1e7b5eac8987 17-20,29,41-54,58-63
+  s_588cc1fed2532b::t_15e7fd1c1606fe 1-3,7-14,21,24-28,30-32,36,55-57,65
+  s_588cc1fed2532b::t_3148a25128a563 6,35
+  s_588cc1fed2532b::t_3d655f84bcde81 4,15-16,23,33-34,38-40,67-69
+  s_588cc1fed2532b::t_e6a358ff43b91d 37,66
+  s_588cc1fed2532b::t_49835e44cfda82 64
+  s_588cc1fed2532b::t_b9c7a835385ad0 22
+src/main/resources/db/migration/V1__create_tables.sql
+  s_cceaaef18fc9de::t_d156d5eb84a22d 2,4-8,12,14,16-18,22,24-27,29,31,33-37,39
+  s_cceaaef18fc9de::t_1f4c4f389fc473 9,11,19-20,28,30,38,40
+  s_588cc1fed2532b::t_739bc4bd5c3aed 1,3,10,13,15,21,23,32
+src/main/resources/logback-spring.xml
+  s_cceaaef18fc9de::t_e15977a9e1e3ec 1-40
+.github/workflows/nightly.yml
+  s_588cc1fed2532b::t_5aade8d42a5626 25
+  s_588cc1fed2532b::t_014d2b7319419f 11,21,29
+  s_cceaaef18fc9de::t_dc103c91441977 1-10,12-20,22-24,26-28,30-33
+charts/fraud-detection/templates/pdb.yaml
+  s_588cc1fed2532b::t_e554d22b8f0294 1-11
+gradlew
+  s_cceaaef18fc9de::t_009b4a66f54864 4-18,21-70,72-83,85-92,105-114,119-133,135-200,203-222,225-249,251
+src/main/resources/application.yml
+  s_588cc1fed2532b::t_2933da75611906 30
+  s_588cc1fed2532b::t_e54c79f5e36dc3 37
+  s_588cc1fed2532b::t_44c03c973336fa 64-67
+  s_588cc1fed2532b::t_b7296c9ffc4ba9 44-59
+  s_588cc1fed2532b::t_3d09b226b6f88a 31-36
+  s_588cc1fed2532b::t_d27fbd476a8d03 62
+  s_588cc1fed2532b::t_154715cb0ca450 27
+  s_588cc1fed2532b::t_5aade8d42a5626 6
+  s_588cc1fed2532b::t_c21b0c7c5d5bfd 24-26,28-29
+src/main/java/com/fraudfinder/repository/PayeeRiskRepository.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2,4-5
+  s_588cc1fed2532b::t_b1458c4586b182 1
+  s_588cc1fed2532b::t_be1e7b5eac8987 6
+  s_588cc1fed2532b::t_87b6f4e7512dbb 3
+infra/terraform/main.tf
+  s_588cc1fed2532b::t_f515cf5b420a04 9,11-13
+  s_588cc1fed2532b::t_58b8638a150fca 10
+  s_588cc1fed2532b::t_61f8a556073b93 1-8,14-21
+src/main/java/com/fraudfinder/service/FraudRecorderService.java
+  s_588cc1fed2532b::t_cf444a432b5d10 4
+  s_588cc1fed2532b::t_e5c3abc870907a 10
+  s_588cc1fed2532b::t_be1e7b5eac8987 3,9,26-40
+  s_588cc1fed2532b::t_0e128577bb76f3 42
+  s_588cc1fed2532b::t_3148a25128a563 5-7,18,20,25
+  s_588cc1fed2532b::t_0533ff49a65675 43
+  s_588cc1fed2532b::t_b9c7a835385ad0 16-17
+  s_588cc1fed2532b::t_15cd16fb3df9b9 1-2,8,11-15,19,21-24,41,44-45
+src/main/java/com/fraudfinder/service/FraudDetectionService.java
+  s_588cc1fed2532b::t_cf444a432b5d10 4
+  s_588cc1fed2532b::t_4225d476a21dbc 32
+  s_588cc1fed2532b::t_5415d5a0f41013 57,59,62,64
+  s_588cc1fed2532b::t_b6f6819c2fb21e 35
+  s_588cc1fed2532b::t_c8cd8064725641 24,31,36
+  s_588cc1fed2532b::t_15e7fd1c1606fe 25,37
+  s_588cc1fed2532b::t_eca06c7ddf5ede 10,14,45-46
+  s_588cc1fed2532b::t_98f69075f0defe 63
+  s_588cc1fed2532b::t_3148a25128a563 5-6,23,30,60-61
+  s_588cc1fed2532b::t_6e6e626e464361 66
+  s_588cc1fed2532b::t_be1e7b5eac8987 51-52,67-75
+  s_588cc1fed2532b::t_acd8d3f54270c5 1-2,7,9,11-13,15-20,22,26-27,29,34,38-39,56,58,65,76-77
+  s_588cc1fed2532b::t_f8b488575c3e0a 3,8,21,28,33,40-44,47-50,53-55
+build.gradle.kts
+  s_588cc1fed2532b::t_1c0923b5b7d8d7 30-31
+  s_cceaaef18fc9de::t_ac59cb19374ac8 44
+  s_588cc1fed2532b::t_c05988305f7c3d 55,64
+  s_cceaaef18fc9de::t_cc27643ecaa3d3 45-46
+  s_588cc1fed2532b::t_3c737759989500 29,32
+  s_cceaaef18fc9de::t_9427e9d073b5e0 60-63,65-67
+infra/terraform/sns.tf
+  s_588cc1fed2532b::t_c88dd6d151c5fd 3,6
+  s_588cc1fed2532b::t_206a4c62bd8b07 1-2,4-5,7-39
+charts/fraud-detection/templates/hpa.yaml
+  s_588cc1fed2532b::t_e2ab8caf98c653 1-26
+src/test/resources/application-test.yml
+  s_588cc1fed2532b::t_f9278f0bb1679d 17-19
+  s_cceaaef18fc9de::t_f120ce041cd60e 29-32
+  s_588cc1fed2532b::t_fba340d825e690 21-22
+  s_588cc1fed2532b::t_ad55be89781f36 20
+  s_cceaaef18fc9de::t_ae964fd736be4d 1-16,24-28
+  s_cceaaef18fc9de::t_f25c5997f3c8d3 23
+src/main/java/com/fraudfinder/message/AlertPayload.java
+  s_588cc1fed2532b::t_be1e7b5eac8987 22
+  s_588cc1fed2532b::t_76ea4475e5fcf2 5-10,49
+  s_588cc1fed2532b::t_cf444a432b5d10 1-4,11-21,47-48,50-52
+  s_588cc1fed2532b::t_d0c09b75d9d23b 23-46
+src/main/java/com/fraudfinder/model/PayeeRisk.java
+  s_588cc1fed2532b::t_5ffcff366c1303 2-5,7-55
+  s_588cc1fed2532b::t_85c3f1448b5c6b 6
+  s_588cc1fed2532b::t_b1458c4586b182 1
+src/main/java/com/fraudfinder/repository/FraudRecordRepository.java
+  s_588cc1fed2532b::t_d87ad47ba88a88 1-2,5-6,10
+  s_588cc1fed2532b::t_3148a25128a563 3,7-9
+  s_588cc1fed2532b::t_7a408d3f76a128 4
+infra/terraform/.gitignore
+  s_588cc1fed2532b::t_7c0b9a6d7e5056 1-5
+charts/fraud-detection/templates/service.yaml
+  s_588cc1fed2532b::t_82c77708b77076 1-15
+CLAUDE.md
+  s_588cc1fed2532b::t_5aade8d42a5626 34-35
+  s_588cc1fed2532b::t_adf9d23a294d88 7,15,23,28,30-33,36-47
+charts/fraud-detection/values.yaml
+  s_588cc1fed2532b::t_8ae861d4c96089 3
+  s_588cc1fed2532b::t_a9637924a1bef7 1-2,4-77
+scripts/send-test-transaction.sh
+  s_588cc1fed2532b::t_dc0f040cf5e3a2 1-29
+src/main/java/com/fraudfinder/message/TransactionMessage.java
+  s_588cc1fed2532b::t_cf444a432b5d10 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "9c4a8aee50923f4e0686aaa79d5aab68351a3736",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    },
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
