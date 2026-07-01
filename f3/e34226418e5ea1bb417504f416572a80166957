@@ -1,0 +1,19 @@
+gradlew
+  s_cceaaef18fc9de::t_009b4a66f54864 4-18,21-70,72-83,85-92,105-114,119-133,135-200,203-222,225-249,251
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "f3e34226418e5ea1bb417504f416572a80166957",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
