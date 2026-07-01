@@ -1,0 +1,92 @@
+infra/terraform/terraform.tfvars.example
+  s_588cc1fed2532b::t_d107f27aca32d0 14-17,21-23
+  s_588cc1fed2532b::t_11dbbb0f35737f 1-13,18-20,24-26
+infra/terraform/outputs.tf
+  s_588cc1fed2532b::t_577f4b7bd65dd5 1-35
+charts/fraud-finder/values-prod.yaml
+  s_588cc1fed2532b::t_d64f15dcdffffe 1-26,28-34,36-53
+  s_588cc1fed2532b::t_154715cb0ca450 27,35
+infra/terraform/ecr.tf
+  s_588cc1fed2532b::t_0ae52a82cfd9e9 1-36
+infra/terraform/rds.tf
+  s_588cc1fed2532b::t_9083823c1df162 1-78
+infra/terraform/iam.tf
+  s_588cc1fed2532b::t_4d7abb6e5da749 1-154
+infra/terraform/sqs.tf
+  s_588cc1fed2532b::t_716121fac95d2c 1-32
+.github/workflows/ci.yml
+  s_588cc1fed2532b::t_ff58370fe5c733 17
+  s_588cc1fed2532b::t_33407977a4f9aa 102-103,107-110
+  s_588cc1fed2532b::t_4385042d2612df 79-80,84-87
+  s_588cc1fed2532b::t_9723e0cf059228 78,81-82,101,104-105
+infra/terraform/variables.tf
+  s_588cc1fed2532b::t_0daff41f0d2d71 1-3,5-117
+  s_588cc1fed2532b::t_154715cb0ca450 4
+charts/fraud-finder/templates/deployment.yaml
+  s_588cc1fed2532b::t_05f879114319fd 4,6,8,11,15,18-21,23,25,28,31-32,34,36-40,42,46-49,53-56
+infra/terraform/eks.tf
+  s_588cc1fed2532b::t_db2636d77fd956 1-37
+charts/fraud-finder/Chart.yaml
+  s_588cc1fed2532b::t_7a324af0979707 1-6
+src/main/java/com/fraudfinder/transaction/TransactionConsumer.java
+  s_588cc1fed2532b::t_11ce45a200b98b 25
+  s_588cc1fed2532b::t_84ae6e7718217e 5,13,32,39-41,43-44
+src/main/resources/application.yml
+  s_588cc1fed2532b::t_44c03c973336fa 65-68
+  s_588cc1fed2532b::t_e54c79f5e36dc3 30
+  s_588cc1fed2532b::t_c21b0c7c5d5bfd 24-26,28-29
+  s_588cc1fed2532b::t_154715cb0ca450 27
+charts/fraud-finder/values.yaml
+  s_588cc1fed2532b::t_ec63daff4c5cc9 1-2,4-7,9-47,49-59,61-75
+  s_588cc1fed2532b::t_154715cb0ca450 48
+  s_588cc1fed2532b::t_8990ecb44e0216 60
+  s_588cc1fed2532b::t_fd4d6a722c3b5d 3,8
+src/test/java/com/fraudfinder/transaction/TransactionConsumerTest.java
+  s_588cc1fed2532b::t_85cda0b773806d 75
+  s_588cc1fed2532b::t_cc898960f2dec5 57
+charts/fraud-finder/templates/hpa.yaml
+  s_588cc1fed2532b::t_df41af1bba267a 1,5,10-12,19,25-26
+charts/fraud-finder/templates/configmap.yaml
+  s_588cc1fed2532b::t_245934a380c15e 1-13
+charts/fraud-finder/templates/_helpers.tpl
+  s_588cc1fed2532b::t_63e80af9cea959 1-17
+.github/workflows/deploy.yml
+  s_588cc1fed2532b::t_154715cb0ca450 16
+  s_588cc1fed2532b::t_718ae5c70b21b4 1-15,18-49,51,53-57
+  s_588cc1fed2532b::t_c5c725ef59008e 17,50,52
+infra/terraform/main.tf
+  s_588cc1fed2532b::t_61f8a556073b93 1-8,14-21
+  s_588cc1fed2532b::t_f515cf5b420a04 9-13
+infra/terraform/.gitignore
+  s_588cc1fed2532b::t_7c0b9a6d7e5056 1-5
+infra/terraform/cloudwatch.tf
+  s_588cc1fed2532b::t_fc931ab2e06a0f 1-30
+src/test/resources/application-test.yml
+  s_588cc1fed2532b::t_ad55be89781f36 20
+  s_588cc1fed2532b::t_f9278f0bb1679d 17-19
+build.gradle.kts
+  s_588cc1fed2532b::t_1c0923b5b7d8d7 29-31
+  s_588cc1fed2532b::t_cdd0b6f711eb56 52
+charts/fraud-finder/templates/secret.yaml
+  s_588cc1fed2532b::t_f1b1899dc2f138 1-11
+charts/fraud-finder/templates/pdb.yaml
+  s_588cc1fed2532b::t_1b54056e433f05 1,5,7,10-11
+charts/fraud-finder/templates/service.yaml
+  s_588cc1fed2532b::t_e7c2afbd957b5f 4,6,8,10,12-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "4c9ba8ad08fb2dd6dab0a8aa70e127671d81047d",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
