@@ -6,9 +6,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.frauddetection.message.DetectionResult;
-import com.frauddetection.message.DetectionResultDetail;
-import com.frauddetection.message.TransactionMessage;
+import com.frauddetection.model.DetectionResult;
+import com.frauddetection.model.DetectionResultDetail;
+import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.rule.RuleEngine;
 import java.math.BigDecimal;
 import java.util.List;

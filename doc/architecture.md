@@ -3,38 +3,19 @@
 ## 架构图
 
 ```
-┌──────────────────────────────────────────────────┐
-│                  AWS EKS                          │
-│                                                   │
-│   SQS Queue ──▶ FraudDetectionService             │
-│                   │                               │
-│                   ├──▶ RuleEngine (SpEL)           │
-│                   │      ├─ 大额交易 (40pts)       │
-│                   │      ├─ 付款方黑名单 (80pts)    │
-│                   │      └─ 收款方高风险 (60pts)    │
-│                   │                               │
-│                   ├──▶ FraudRecorderService        │
-│                   │      └─ fraud_records (DB)     │
-│                   │                               │
-│                   └──▶ AlertService                │
-│                          └─ SNS Topic ──▶ Email    │
-│                                                   │
-│   RiskCacheService (@Scheduled 60s)                │
-│     ├─ suspicious_accounts ── 本地缓存              │
-│     └─ payee_risks ── 本地缓存                     │
-│                                                   │
-└──────────────┬────────────────────────────────────┘
-               │
-               ▼
-    ┌─────────────────────┐
-    │    RDS MySQL         │
-    │  ├─ fraud_records    │
-    │  ├─ fraud_record_    │
-    │  │  details          │
-    │  ├─ suspicious_      │
-    │  │  accounts         │
-    │  └─ payee_risks      │
-    └─────────────────────┘
+┌──────────────────────────────────────────────┐
+│                 AWS EKS                       │
+│                                               │
+│  SQS Queue ──▶ FraudDetectionService          │
+│                  │                            │
+│                  ├──▶ RuleEngine (SpEL YAML)   │
+│                  │      ├─ amount-threshold    │
+│                  │      ├─ suspicious-account  │
+│                  │      └─ high-risk-payee     │
+│                  │                            │
+│                  └──▶ AlertService             │
+│                         └─ SNS ──▶ Email       │
+└──────────────────────────────────────────────┘
 ```
 
 ## 数据流向
@@ -44,46 +25,53 @@ SQS Message { transactionId, accountId, payeeId, amount }
   │
   ▼
 FraudDetectionService.onMessage()
-  │  JSON 反序列化 → TransactionMessage
+  │ JSON → TransactionMessage
   │
   ▼
-FraudDetectionService.detect()
-  │  ├─ 幂等查: fraud_records.transaction_id
-  │  ├─ RuleEngine.evaluate() → Optional<EvaluationResult>
-  │  │    ├─ 总分 ≥ 70 → 欺诈
-  │  │    └─ < 70 → 正常，不存 DB
-  │  │
-  │  ├─ [欺诈] FraudRecorderService.save()
-  │  │    └─ fraud_records + fraud_record_details (级联)
-  │  │
-  │  └─ [欺诈] AlertService.publish()
-  │       └─ SNS Topic → 邮件通知
+RuleEngine.evaluate()
+  │ SpEL 表达式评估 3 条规则
+  │ 总分 ≥ 70 → DetectionResult
+  │ 总分 < 70 → 丢弃
+  │
+  ▼
+AlertService.publish()
+  │ 格式化告警文本
+  │ SNS Topic → 邮件通知
 ```
 
 ## 包结构
 
 ```
-com.fraudfinder/
-├── model/       FraudRecord, FraudRecordDetail, SuspiciousAccount, PayeeRisk
-├── repository/  FraudRecordRepository, SuspiciousAccountRepo, PayeeRiskRepo
-├── message/     TransactionMessage, RuleEvaluationResult, EvaluationResult, AlertPayload
-├── service/     FraudDetectionService, FraudRecorderService, AlertService, RiskCacheService
-└── rule/        RuleEngine, FraudDetectionRule, RulesConfig
+com.frauddetection/
+├── model/       TransactionMessage, DetectionResult, DetectionResultDetail
+├── rule/        RuleEngine, FraudDetectionRule, RulesConfig
+└── service/     FraudDetectionService, AlertService
 ```
 
-## 数据库
+## 规则引擎
 
-| 表 | 说明 |
-|------|------|
-| `fraud_records` | 欺诈记录（仅存 isFraud=true） |
-| `fraud_record_details` | 每条规则明细（FK: fraud_record_id） |
-| `suspicious_accounts` | 付款方黑名单 |
-| `payee_risks` | 收款方风险等级 |
+3 条 SpEL 规则，YAML 可配置，无需数据库：
+
+```yaml
+fraud:
+  rules:
+    threshold: 70
+    list:
+      - name: "amount-threshold"
+        condition: "amount > 100000"
+        score: 40
+      - name: "suspicious-account"
+        condition: "{'ACC-BAD','ACC-FRAUD','ACC-SCAM'}.contains(accountId)"
+        score: 80
+      - name: "high-risk-payee"
+        condition: "{'PE-HIGH','PE-RISK'}.contains(payeeId)"
+        score: 60
+```
 
 ## 可靠性设计
 
-- **幂等**: `fraud_records.transaction_id` 唯一约束，重复消息直接跳过
 - **SQS 重试**: 可见性超时 + maxReceiveCount=3 → DLQ
+- **错误处理**: JSON 解析失败直接 ACK，业务异常传播触发重试
 - **优雅下线**: Spring Boot graceful shutdown + preStop sleep 15s
 - **高可用**: 2 副本 + HPA + PDB + topologySpread
 

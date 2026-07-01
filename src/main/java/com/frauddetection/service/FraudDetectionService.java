@@ -2,7 +2,7 @@ package com.frauddetection.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.frauddetection.message.TransactionMessage;
+import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.rule.RuleEngine;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import org.slf4j.Logger;

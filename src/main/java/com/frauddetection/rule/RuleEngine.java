@@ -1,8 +1,8 @@
 package com.frauddetection.rule;
 
-import com.frauddetection.message.DetectionResult;
-import com.frauddetection.message.DetectionResultDetail;
-import com.frauddetection.message.TransactionMessage;
+import com.frauddetection.model.DetectionResult;
+import com.frauddetection.model.DetectionResultDetail;
+import com.frauddetection.model.TransactionMessage;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;

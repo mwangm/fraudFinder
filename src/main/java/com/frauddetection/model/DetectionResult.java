@@ -1,4 +1,4 @@
-package com.frauddetection.message;
+package com.frauddetection.model;
 
 import java.util.List;
 

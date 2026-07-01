@@ -1,6 +1,6 @@
 package com.frauddetection.service;
 
-import com.frauddetection.message.DetectionResult;
+import com.frauddetection.model.DetectionResult;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

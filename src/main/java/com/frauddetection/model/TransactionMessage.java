@@ -1,4 +1,4 @@
-package com.frauddetection.message;
+package com.frauddetection.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

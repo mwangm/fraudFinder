@@ -1,4 +1,4 @@
-package com.frauddetection.message;
+package com.frauddetection.model;
 
 public record DetectionResultDetail(String ruleName, int score, String reason) {
 

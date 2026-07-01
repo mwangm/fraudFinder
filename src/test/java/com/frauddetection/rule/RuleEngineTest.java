@@ -2,8 +2,8 @@ package com.frauddetection.rule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.frauddetection.message.DetectionResult;
-import com.frauddetection.message.TransactionMessage;
+import com.frauddetection.model.DetectionResult;
+import com.frauddetection.model.TransactionMessage;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
