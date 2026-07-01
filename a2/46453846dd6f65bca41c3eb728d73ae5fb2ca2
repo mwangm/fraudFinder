@@ -1,0 +1,37 @@
+k8s/hpa.yaml
+  s_cceaaef18fc9de::t_fc002d29e4b985 1-24
+k8s/deployment.yaml
+  s_cceaaef18fc9de::t_c667ee1ccd5462 1-26,28-88
+  s_cceaaef18fc9de::t_3cbb262b0a6f04 27
+k8s/service.yaml
+  s_cceaaef18fc9de::t_5a32da0ad0d92b 1-15
+doc/ci-cd.md
+  s_cceaaef18fc9de::t_4716ab9b3943dd 32,115-116,124-125,140,200
+k8s/pdb.yaml
+  s_cceaaef18fc9de::t_8d4b0bac750e36 1-9
+.github/workflows/ci.yml
+  s_cceaaef18fc9de::t_11f96c87933793 1-10,12-69,71,75
+  s_cceaaef18fc9de::t_c4f04f23aa55a3 74,76-78
+  s_cceaaef18fc9de::t_600a43c6ec11d1 11
+  s_cceaaef18fc9de::t_7ac113977f6903 70,72-73
+.github/workflows/nightly.yml
+  s_cceaaef18fc9de::t_dc103c91441977 1-54
+Dockerfile
+  s_cceaaef18fc9de::t_6e11fa6aaeca05 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "a246453846dd6f65bca41c3eb728d73ae5fb2ca2",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
