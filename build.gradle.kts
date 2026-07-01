@@ -6,7 +6,7 @@ plugins {
     jacoco
 }
 
-group = "com.fraudfinder"
+group = "com.frauddetection"
 version = "0.1.0"
 
 java {

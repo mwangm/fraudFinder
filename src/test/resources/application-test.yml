@@ -29,4 +29,4 @@ fraud:
 
 logging:
   level:
-    com.fraudfinder: DEBUG
+    com.frauddetection: DEBUG

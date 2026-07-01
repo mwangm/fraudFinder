@@ -34,7 +34,7 @@
         <root level="WARN">
             <appender-ref ref="CONSOLE_STRUCTURED"/>
         </root>
-        <logger name="com.fraudfinder" level="INFO"/>
+        <logger name="com.frauddetection" level="INFO"/>
     </springProfile>
 
 </configuration>
