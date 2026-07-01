@@ -16,17 +16,12 @@ public class FraudDetectionService {
 
   private final ObjectMapper objectMapper;
   private final RuleEngine ruleEngine;
-  private final FraudRecorderService fraudRecorder;
   private final AlertService alertService;
 
   public FraudDetectionService(
-      ObjectMapper objectMapper,
-      RuleEngine ruleEngine,
-      FraudRecorderService fraudRecorder,
-      AlertService alertService) {
+      ObjectMapper objectMapper, RuleEngine ruleEngine, AlertService alertService) {
     this.objectMapper = objectMapper;
     this.ruleEngine = ruleEngine;
-    this.fraudRecorder = fraudRecorder;
     this.alertService = alertService;
   }
 
@@ -37,7 +32,7 @@ public class FraudDetectionService {
       input = objectMapper.readValue(message, TransactionMessage.class);
     } catch (JsonProcessingException e) {
       log.error("Invalid SQS message, skipping: {}", message, e);
-      return; //will not try invalid format message
+      return;
     }
 
     log.info("SQS message received: txnId={}", input.transactionId());
@@ -46,16 +41,6 @@ public class FraudDetectionService {
   }
 
   void detect(TransactionMessage message) {
-    if (fraudRecorder.findExisting(message.transactionId()).isPresent()) {
-      log.info("Have been processed, skip: txnId={}", message.transactionId());
-      return;
-    }
-
-    ruleEngine
-        .evaluate(message)
-        .ifPresent(
-            evaluation -> {
-              alertService.publish(fraudRecorder.save(message, evaluation));
-            });
+    ruleEngine.evaluate(message).ifPresent(alertService::publish);
   }
 }

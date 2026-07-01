@@ -1,25 +1,16 @@
 package com.frauddetection.rule;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
-import com.frauddetection.message.EvaluationResult;
+import com.frauddetection.message.DetectionResult;
 import com.frauddetection.message.TransactionMessage;
-import com.frauddetection.model.PayeeRisk;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
 class RuleEngineTest {
-
-  @Mock com.frauddetection.service.RiskCacheService riskCache;
 
   RulesConfig properties;
   RuleEngine engine;
@@ -28,14 +19,14 @@ class RuleEngineTest {
   void setUp() {
     properties = new RulesConfig();
     properties.setThreshold(1);
-    engine = new RuleEngine(properties, riskCache);
+    engine = new RuleEngine(properties);
   }
 
   @Test
   void givenAmountAboveThreshold_whenEvaluate_thenReturnsTriggered() {
     properties.setList(List.of(rule("big-amount", "amount > 5000", 40)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txn(10000));
+    Optional<DetectionResult> eval = engine.evaluate(txn(10000));
 
     assertThat(eval).isPresent();
     assertThat(eval.get().ruleResults().get(0).score()).isEqualTo(40);
@@ -45,51 +36,45 @@ class RuleEngineTest {
   void givenAmountBelowThreshold_whenEvaluate_thenReturnsEmpty() {
     properties.setList(List.of(rule("big-amount", "amount > 50000", 40)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txn(100));
+    Optional<DetectionResult> eval = engine.evaluate(txn(100));
 
     assertThat(eval).isEmpty();
   }
 
   @Test
   void givenDisabledRule_whenEvaluate_thenSkipsRule() {
-    properties.setList(List.of(new FraudDetectionRule("big-amount", "amount > 100", 40, "", false)));
+    properties.setList(
+        List.of(new FraudDetectionRule("big-amount", "amount > 100", 40, "", false)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txn(10000));
+    Optional<DetectionResult> eval = engine.evaluate(txn(10000));
 
     assertThat(eval).isEmpty();
   }
 
   @Test
   void givenBlacklistedAccount_whenEvaluate_thenReturnsTriggered() {
-    when(riskCache.isSuspicious("ACC-BAD")).thenReturn(true);
-    properties.setList(List.of(
-        rule("blacklist", "#riskCache.isSuspicious(accountId)", 80)));
+    properties.setList(
+        List.of(rule("blacklist", "{'ACC-BAD','ACC-FRAUD'}.contains(accountId)", 80)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 500));
+    Optional<DetectionResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 500));
 
     assertThat(eval).isPresent();
   }
 
   @Test
   void givenHighRiskPayee_whenEvaluate_thenReturnsTriggered() {
-    when(riskCache.getPayeeRisk("PE-HIGH"))
-        .thenReturn(new PayeeRisk("PE-HIGH", "HIGH", "bad history", Instant.now()));
-    properties.setList(List.of(
-        rule("high-payee", "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'", 60)));
+    properties.setList(List.of(rule("high-payee", "{'PE-HIGH'}.contains(payeeId)", 60)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txnWithPayee("PE-HIGH", 500));
+    Optional<DetectionResult> eval = engine.evaluate(txnWithPayee("PE-HIGH", 500));
 
     assertThat(eval).isPresent();
   }
 
   @Test
   void givenLowRiskPayee_whenEvaluate_thenReturnsEmpty() {
-    when(riskCache.getPayeeRisk("PE-NORMAL"))
-        .thenReturn(new PayeeRisk("PE-NORMAL", "LOW", "clean", Instant.now()));
-    properties.setList(List.of(
-        rule("high-payee", "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'", 60)));
+    properties.setList(List.of(rule("high-payee", "{'PE-HIGH'}.contains(payeeId)", 60)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txnWithPayee("PE-NORMAL", 500));
+    Optional<DetectionResult> eval = engine.evaluate(txnWithPayee("PE-NORMAL", 500));
 
     assertThat(eval).isEmpty();
   }
@@ -98,7 +83,7 @@ class RuleEngineTest {
   void givenBadExpression_whenEvaluate_thenReturnsEmpty() {
     properties.setList(List.of(rule("bad", "nonexistentMethod()", 10)));
 
-    Optional<EvaluationResult> eval = engine.evaluate(txn(100));
+    Optional<DetectionResult> eval = engine.evaluate(txn(100));
 
     assertThat(eval).isEmpty();
   }

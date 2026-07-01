@@ -5,22 +5,6 @@ spring:
   application:
     name: fraud-detection
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/fraud_finder?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    open-in-view: false
-    show-sql: false
-
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
-
   cloud:
     aws:
       region:
@@ -29,20 +13,30 @@ spring:
         enabled: true
         auto-create-queue: false
 
-# ── SNS ──
-      - name: "suspicious-account"
-        condition: "#riskCache.isSuspicious(accountId)"
-        alertMessage: "Payer account is blacklisted"
-        score: 80
+# ── Rule Engine ──
+fraud:
+  rules:
+    threshold: 70
+    list:
+      - name: "大额交易"
+        condition: "amount > 100000"
+        score: 40
+        alertMessage: "Large amount transaction detected"
         enabled: true
-      - name: "high-risk-payee"
-        condition: "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'"
-        alertMessage: "Payee is high risk"
+      - name: "付款方黑名单"
+        condition: "{'ACC-BAD','ACC-FRAUD','ACC-SCAM'}.contains(accountId)"
+        score: 80
+        alertMessage: "Payer account is blacklisted"
+        enabled: true
+      - name: "收款方高风险"
+        condition: "{'PE-HIGH','PE-RISK'}.contains(payeeId)"
         score: 60
+        alertMessage: "Payee is high risk"
         enabled: true
 
-  cache:
-    refresh-interval-seconds: 60
+# ── SNS ──
+sns:
+  topic-arn: ${SNS_TOPIC_ARN:}
 
 # ── AWS SQS ──
 sqs:

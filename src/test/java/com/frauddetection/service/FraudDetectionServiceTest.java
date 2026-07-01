@@ -6,13 +6,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.frauddetection.message.EvaluationResult;
-import com.frauddetection.message.RuleEvaluationResult;
+import com.frauddetection.message.DetectionResult;
+import com.frauddetection.message.DetectionResultDetail;
 import com.frauddetection.message.TransactionMessage;
-import com.frauddetection.model.FraudRecord;
 import com.frauddetection.rule.RuleEngine;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,60 +24,38 @@ class FraudDetectionServiceTest {
 
   @Mock ObjectMapper objectMapper;
   @Mock RuleEngine ruleEngine;
-  @Mock FraudRecorderService fraudRecorder;
   @Mock AlertService alertService;
 
   FraudDetectionService service;
 
   @BeforeEach
   void setUp() {
-    service = new FraudDetectionService(objectMapper, ruleEngine, fraudRecorder, alertService);
+    service = new FraudDetectionService(objectMapper, ruleEngine, alertService);
   }
 
   @Test
-  void givenFraudScore_whenDetect_thenSavesAndPublishes() {
-    var evaluation = new EvaluationResult(
-        List.of(new RuleEvaluationResult("a", 40, ""), new RuleEvaluationResult("b", 40, "")), 80, 70);
+  void givenFraudScore_whenDetect_thenPublishesAlert() {
+    var evaluation =
+        new DetectionResult(
+            "TXN-1",
+            List.of(new DetectionResultDetail("a", 40, "reason")),
+            80,
+            70,
+            "2026-07-01T12:00:00Z");
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
-    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
 
     service.detect(msg(5000));
 
-    verify(fraudRecorder).save(any(), any());
-    verify(alertService).publish(any());
+    verify(alertService).publish(evaluation);
   }
 
   @Test
   void givenNormalScore_whenDetect_thenNoAction() {
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
-    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
 
     service.detect(msg(500));
 
-    verify(fraudRecorder, never()).save(any(), any());
     verify(alertService, never()).publish(any());
-  }
-
-  @Test
-  void givenExistingTransaction_whenDetect_thenSkipsDetection() {
-    FraudRecord existing = new FraudRecord("TXN-1", 30, 70, Instant.now());
-    when(fraudRecorder.findExisting("TXN-1")).thenReturn(Optional.of(existing));
-
-    service.detect(msg(5000));
-
-    verify(ruleEngine, never()).evaluate(any());
-    verify(fraudRecorder, never()).save(any(), any());
-  }
-
-  @Test
-  void givenFraudScore_whenDetect_thenPublishesAlert() {
-    var evaluation = new EvaluationResult(List.of(new RuleEvaluationResult("a", 120, "")), 120, 70);
-    when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
-    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
-
-    service.detect(msg(5000));
-
-    verify(alertService).publish(any());
   }
 
   private static TransactionMessage msg(int amount) {
