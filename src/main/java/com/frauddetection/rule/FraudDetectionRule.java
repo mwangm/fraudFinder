@@ -1,13 +1,9 @@
 package com.frauddetection.rule;
 
-/**
- * A single fraud detection rule defined in YAML configuration. Each rule has a SpEL condition
- * evaluated against a Transaction, a score contributed when triggered, and a priority for ordering.
- */
+/** A single fraud detection rule defined in YAML with a SpEL condition and a score. */
 public record FraudDetectionRule(
-    String name, String condition, int score, int priority, boolean enabled) {
+    String name, String condition, int score, boolean enabled) {
 
-  /** Reason message when the rule triggers. */
   public String reason() {
     return name + " triggered (score=" + score + ")";
   }

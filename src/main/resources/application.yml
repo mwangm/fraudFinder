@@ -43,17 +43,14 @@ fraud:
       - name: "amount-threshold"
         condition: "amount > 100000"
         score: 40
-        priority: 1
         enabled: true
       - name: "suspicious-account"
         condition: "#riskCache.isSuspicious(accountId)"
         score: 80
-        priority: 2
         enabled: true
       - name: "high-risk-payee"
         condition: "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'"
         score: 60
-        priority: 3
         enabled: true
 
   cache:
