@@ -29,7 +29,6 @@ aws:
 
 sqs:
   queueName: fraud-transactions
-  dlqName: fraud-transactions-dlq
 
 sns:
   topicArn: arn:aws:sns:ap-northeast-1:774075583755:fraud-detection-alerts

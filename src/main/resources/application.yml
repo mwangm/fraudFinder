@@ -41,7 +41,6 @@ sns:
 # ── AWS SQS ──
 sqs:
   queue-name: ${SQS_QUEUE_NAME:fraud-transactions}
-  dlq-name: ${SQS_DLQ_NAME:fraud-transactions-dlq}
 
 # ── Actuator ──
 management:

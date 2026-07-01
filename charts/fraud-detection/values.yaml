@@ -49,7 +49,6 @@ aws:
 
 sqs:
   queueName: fraud-transactions
-  dlqName: fraud-transactions-dlq
 
 sns:
   topicArn: ""
