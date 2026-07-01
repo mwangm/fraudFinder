@@ -1,0 +1,20 @@
+src/main/resources/db/migration/V1__create_tables.sql
+  s_588cc1fed2532b::t_8f98314f044340 45
+  s_588cc1fed2532b::t_561e71df4b67a8 54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "e2f349728ad4b7c68c76996db487f33e3e927eb6",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
