@@ -1,0 +1,23 @@
+src/test/java/com/fraudfinder/service/FraudDetectionServiceTest.java
+  s_588cc1fed2532b::t_d2117af1fa9c5a 1-134
+src/main/java/com/fraudfinder/service/FraudDetectionService.java
+  s_588cc1fed2532b::t_acd8d3f54270c5 1-93
+src/main/java/com/fraudfinder/service/TransactionService.java
+  s_588cc1fed2532b::t_acd8d3f54270c5 23,28,31,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "fdbfce2dab13b86a6bae789ad75582d5ce68ca12",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
