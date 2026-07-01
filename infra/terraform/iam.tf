@@ -103,10 +103,12 @@ resource "aws_iam_policy" "eks_node_pod" {
       {
         Effect = "Allow"
         Action = [
+          "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
+          "logs:DescribeLogStreams",
         ]
-        Resource = "${aws_cloudwatch_log_group.app.arn}:*"
+        Resource = "*"
       },
       {
         Effect = "Allow"
