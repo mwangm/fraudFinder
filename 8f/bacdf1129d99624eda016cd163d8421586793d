@@ -1,0 +1,19 @@
+src/main/java/com/fraudfinder/messaging/TransactionConsumer.java
+  s_588cc1fed2532b::t_561d246703b7b4 4-5,9,28-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "8fbacdf1129d99624eda016cd163d8421586793d",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
