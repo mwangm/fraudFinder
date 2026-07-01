@@ -1,0 +1,106 @@
+package com.fraudfinder.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fraudfinder.message.EvaluationResult;
+import com.fraudfinder.message.RuleEvaluationResult;
+import com.fraudfinder.message.TransactionMessage;
+import com.fraudfinder.model.FraudRecord;
+import com.fraudfinder.repository.FraudRecordRepository;
+import com.fraudfinder.rule.RuleEngine;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+class FraudDetectionServiceTest {
+
+  @Mock ObjectMapper objectMapper;
+  @Mock RuleEngine ruleEngine;
+  @Mock FraudRecordRepository resultRepo;
+  @Mock FraudRecorderService fraudRecorder;
+  @Mock AlertService alertService;
+
+  FraudDetectionService service;
+
+  @BeforeEach
+  void setUp() {
+    service =
+        new FraudDetectionService(
+            objectMapper, ruleEngine, resultRepo, fraudRecorder, alertService);
+  }
+
+  @Test
+  void shouldDetectFraudWhenScoreExceedsThreshold() {
+    var evaluation =
+        new EvaluationResult(
+            List.of(
+                RuleEvaluationResult.triggered("a", 40, ""),
+                RuleEvaluationResult.triggered("b", 40, "")),
+            80,
+            70);
+    when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
+    when(resultRepo.findByTransactionId(any())).thenReturn(Optional.empty());
+    when(fraudRecorder.save(any(), any()))
+        .thenReturn(new FraudRecord("TXN-1", true, 80, 70, Instant.now()));
+
+    FraudRecord result = service.detect(msg(5000));
+
+    assertThat(result.isFraud()).isTrue();
+    assertThat(result.getTotalScore()).isEqualTo(80);
+    verify(fraudRecorder).save(any(), any());
+    verify(alertService).publish(any());
+  }
+
+  @Test
+  void shouldNotDetectFraudWhenScoreBelowThreshold() {
+    when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
+    when(resultRepo.findByTransactionId(any())).thenReturn(Optional.empty());
+
+    FraudRecord result = service.detect(msg(500));
+
+    assertThat(result.isFraud()).isFalse();
+    verify(fraudRecorder, never()).save(any(), any());
+    verify(alertService, never()).publish(any());
+  }
+
+  @Test
+  void shouldSkipDuplicateTransaction() {
+    FraudRecord existing = new FraudRecord("TXN-1", false, 30, 70, Instant.now());
+    when(resultRepo.findByTransactionId("TXN-1")).thenReturn(Optional.of(existing));
+
+    FraudRecord result = service.detect(msg(5000));
+
+    assertThat(result.isFraud()).isFalse();
+    verify(ruleEngine, never()).evaluate(any());
+  }
+
+  @Test
+  void shouldPublishAlertWithCriticalLevel() {
+    var evaluation =
+        new EvaluationResult(List.of(RuleEvaluationResult.triggered("a", 120, "")), 120, 70);
+    when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
+    when(resultRepo.findByTransactionId(any())).thenReturn(Optional.empty());
+    when(fraudRecorder.save(any(), any()))
+        .thenReturn(new FraudRecord("TXN-1", true, 120, 70, Instant.now()));
+
+    service.detect(msg(5000));
+
+    verify(alertService).publish(any());
+  }
+
+  private static TransactionMessage msg(int amount) {
+    return new TransactionMessage("TXN-1", "ACC-1", "PE-1", BigDecimal.valueOf(amount));
+  }
+}

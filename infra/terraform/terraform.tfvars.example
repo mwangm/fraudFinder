@@ -1,0 +1,26 @@
+# Copy this file to terraform.tfvars and fill in your values
+
+aws_region = "us-east-1"
+environment = "prod"
+
+# ── GitHub OIDC ──
+github_org  = "your-github-username-or-org"
+github_repo = "fraudFinder"
+
+# ── Database ──
+db_password       = "your-secure-password-here"
+db_instance_class = "db.t4g.micro"
+
+# ── Network ──
+# Use the default VPC to get started quickly:
+#   aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId"
+#   aws ec2 describe-subnets --filters "Name=vpc-id,Values=<vpc-id>" --query "Subnets[*].SubnetId"
+vpc_id           = "vpc-xxxxxxxx"
+vpc_subnet_ids   = ["subnet-xxxxxxxx", "subnet-yyyyyyyy"]
+database_subnet_ids = ["subnet-xxxxxxxx", "subnet-yyyyyyyy"]
+
+# ── EKS (set to empty string if cluster already exists) ──
+eks_cluster_name = "fraud-finder"
+
+# ── IRSA (set after EKS creation, if using existing EKS cluster) ──
+eks_oidc_provider_arn = ""

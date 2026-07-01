@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+DB_PASSWORD="${DB_PASSWORD:-changeme}"
+IMAGE_TAG="${IMAGE_TAG:-latest}"
+
+helm upgrade fraud-detection ./charts/fraud-detection \
+  -f ./charts/fraud-detection/values-prod.yaml \
+  --set database.password="$DB_PASSWORD" \
+  --set image.tag="$IMAGE_TAG" \
+  --namespace fraud-detection \
+  --wait --timeout 10m
+
+kubectl rollout status deploy/fraud-detection -n fraud-detection --timeout=3m

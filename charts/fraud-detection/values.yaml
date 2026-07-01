@@ -1,0 +1,77 @@
+# ── Image ──
+image:
+  repository: menyu168/fraud-detection
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: dockerhub-secret
+
+# ── Replicas ──
+replicaCount: 2
+
+# ── Resources ──
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+
+# ── Autoscaling ──
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# ── Pod Disruption Budget ──
+pdb:
+  enabled: true
+  minAvailable: 1
+
+# ── Probes ──
+probes:
+  readiness:
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    failureThreshold: 3
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 20
+    failureThreshold: 3
+
+# ── AWS / SQS ──
+aws:
+  region: ap-northeast-1
+
+sqs:
+  queueName: fraud-transactions
+  dlqName: fraud-transactions-dlq
+
+sns:
+  topicArn: ""
+
+# ── Database (RDS MySQL) ──
+database:
+  host: localhost
+  port: 3306
+  name: fraud_finder
+  username: fraudFinder
+  password: changeme
+
+# ── API Auth ──
+fraud:
+  detectionThreshold: 70
+
+# ── Service ──
+service:
+  type: ClusterIP
+  port: 8080
+
+# ── Topology ──
+topologySpread:
+  maxSkew: 1
+  whenUnsatisfiable: ScheduleAnyway

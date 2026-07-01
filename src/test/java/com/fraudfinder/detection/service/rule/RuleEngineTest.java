@@ -1,0 +1,141 @@
+package com.fraudfinder.detection.service.rule;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
+import com.fraudfinder.message.EvaluationResult;
+import com.fraudfinder.message.TransactionMessage;
+import com.fraudfinder.model.PayeeRisk;
+import com.fraudfinder.rule.FraudDetectionRule;
+import com.fraudfinder.rule.RuleEngine;
+import com.fraudfinder.rule.RulesConfig;
+import com.fraudfinder.service.RiskCacheService;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+class RuleEngineTest {
+
+  @Mock RiskCacheService riskCache;
+
+  RulesConfig properties;
+  RuleEngine engine;
+
+  @BeforeEach
+  void setUp() {
+    properties = new RulesConfig();
+    engine = new RuleEngine(properties, riskCache, 1);
+  }
+
+  @Test
+  void shouldTriggerOnAmountCondition() {
+    properties.setList(List.of(new FraudDetectionRule("big-amount", "amount > 5000", 40, 1, true)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txn(10000));
+
+    assertThat(eval).isPresent();
+    assertThat(eval.get().ruleResults().get(0).triggered()).isTrue();
+    assertThat(eval.get().ruleResults().get(0).score()).isEqualTo(40);
+  }
+
+  @Test
+  void shouldNotTriggerWhenConditionFalse() {
+    properties.setList(
+        List.of(new FraudDetectionRule("big-amount", "amount > 50000", 40, 1, true)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txn(100));
+
+    assertThat(eval).isEmpty();
+  }
+
+  @Test
+  void shouldSkipDisabledRules() {
+    properties.setList(List.of(new FraudDetectionRule("big-amount", "amount > 100", 40, 1, false)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txn(10000));
+
+    assertThat(eval).isEmpty();
+  }
+
+  @Test
+  void shouldEvaluateSuspiciousAccount() {
+    when(riskCache.isSuspicious("ACC-BAD")).thenReturn(true);
+
+    properties.setList(
+        List.of(
+            new FraudDetectionRule(
+                "blacklist", "#riskCache.isSuspicious(accountId)", 80, 1, true)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 500));
+
+    assertThat(eval).isPresent();
+    assertThat(eval.get().ruleResults().get(0).triggered()).isTrue();
+  }
+
+  @Test
+  void shouldEvaluateHighRiskPayee() {
+    when(riskCache.getPayeeRisk("PE-HIGH"))
+        .thenReturn(new PayeeRisk("PE-HIGH", "HIGH", "bad history", Instant.now()));
+
+    properties.setList(
+        List.of(
+            new FraudDetectionRule(
+                "high-payee",
+                "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'",
+                60,
+                1,
+                true)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txnWithPayee("PE-HIGH", 500));
+
+    assertThat(eval).isPresent();
+    assertThat(eval.get().ruleResults().get(0).triggered()).isTrue();
+  }
+
+  @Test
+  void shouldNotTriggerWhenPayeeNotHighRisk() {
+    when(riskCache.getPayeeRisk("PE-NORMAL"))
+        .thenReturn(new PayeeRisk("PE-NORMAL", "LOW", "clean", Instant.now()));
+
+    properties.setList(
+        List.of(
+            new FraudDetectionRule(
+                "high-payee",
+                "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'",
+                60,
+                1,
+                true)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txnWithPayee("PE-NORMAL", 500));
+
+    assertThat(eval).isEmpty();
+  }
+
+  @Test
+  void shouldCatchExceptionOnBadExpression() {
+    properties.setList(List.of(new FraudDetectionRule("bad", "nonexistentMethod()", 10, 1, true)));
+
+    Optional<EvaluationResult> eval = engine.evaluate(txn(100));
+
+    assertThat(eval).isEmpty();
+  }
+
+  private static TransactionMessage txn(int amount) {
+    return txnWithAccount("ACC-1", amount);
+  }
+
+  private static TransactionMessage txnWithAccount(String accountId, int amount) {
+    return new TransactionMessage("TXN-1", accountId, "PE-1", BigDecimal.valueOf(amount));
+  }
+
+  private static TransactionMessage txnWithPayee(String payeeId, int amount) {
+    return new TransactionMessage("TXN-1", "ACC-1", payeeId, BigDecimal.valueOf(amount));
+  }
+}

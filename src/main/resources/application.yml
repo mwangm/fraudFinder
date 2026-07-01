@@ -1,0 +1,79 @@
+server:
+  shutdown: graceful
+
+spring:
+  application:
+    name: fraud-detection
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/fraud_finder?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  cloud:
+    aws:
+      region:
+        static: ${AWS_REGION:ap-northeast-1}
+      sqs:
+        enabled: true
+        auto-create-queue: false
+      sns:
+        enabled: true
+
+# ── SNS ──
+sns:
+  topic-arn: ${SNS_TOPIC_ARN:}
+
+# ── Fraud Detection ──
+fraud:
+  detection:
+    threshold: 70
+
+  rules:
+    list:
+      - name: "amount-threshold"
+        condition: "amount > 100000"
+        score: 40
+        priority: 1
+        enabled: true
+      - name: "suspicious-account"
+        condition: "#riskCache.isSuspicious(accountId)"
+        score: 80
+        priority: 2
+        enabled: true
+      - name: "high-risk-payee"
+        condition: "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'"
+        score: 60
+        priority: 3
+        enabled: true
+
+  cache:
+    refresh-interval-seconds: 60
+
+# ── AWS SQS ──
+sqs:
+  queue-name: ${SQS_QUEUE_NAME:fraud-transactions}
+  dlq-name: ${SQS_DLQ_NAME:fraud-transactions-dlq}
+
+# ── Actuator ──
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when-authorized

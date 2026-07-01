@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+  labels:
+    app: {{ .Release.Name }}
+data:
+  AWS_REGION: "{{ .Values.aws.region }}"
+  SPRING_CLOUD_AWS_SQS_AUTO_CREATE_QUEUE: "false"
+  SQS_QUEUE_NAME: "{{ .Values.sqs.queueName }}"
+  SQS_DLQ_NAME: "{{ .Values.sqs.dlqName }}"
+  SNS_TOPIC_ARN: "{{ .Values.sns.topicArn }}"
+  SPRING_DATASOURCE_URL: "jdbc:mysql://{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+  SPRING_PROFILES_ACTIVE: "prod"
+  FRAUD_DETECTION_THRESHOLD: "{{ .Values.fraud.detectionThreshold }}"
