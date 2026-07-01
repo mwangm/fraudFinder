@@ -1,0 +1,67 @@
+src/test/java/com/fraudfinder/integration/TransactionIntegrationTest.java
+  s_cceaaef18fc9de::t_42a81fa7dbb878 1-56
+src/test/java/com/fraudfinder/alert/AlertControllerTest.java
+  s_cceaaef18fc9de::t_a2bc321839afb8 1-49
+src/test/java/com/fraudfinder/integration/IdempotencyIntegrationTest.java
+  s_cceaaef18fc9de::t_bc7ff8f0b550aa 26-27,30,45-48,50-55
+  s_cceaaef18fc9de::t_a0bf69b492144b 1-25,28-29,31-44,49,56-57
+src/test/java/com/fraudfinder/alert/AlertRepositoryTest.java
+  s_cceaaef18fc9de::t_82f1be08300a88 1-57
+  s_cceaaef18fc9de::t_174687f0ef9b19 58
+src/main/resources/db/migration/V1__create_tables.sql
+  s_cceaaef18fc9de::t_1f4c4f389fc473 1,7,17,19-23,31,33,41-43,49,51,58,60,67,69-72
+src/test/java/com/fraudfinder/transaction/TransactionServiceTest.java
+  s_cceaaef18fc9de::t_b05b4e5c926298 28
+src/main/java/com/fraudfinder/transaction/TransactionService.java
+  s_cceaaef18fc9de::t_1dd68ced3adbde 22,27-28,32
+  s_cceaaef18fc9de::t_633f70c5646acf 45
+src/test/resources/application-test.yml
+  s_cceaaef18fc9de::t_f25c5997f3c8d3 17-20
+  s_cceaaef18fc9de::t_ae964fd736be4d 1-16,21-25
+  s_cceaaef18fc9de::t_f120ce041cd60e 26-29
+src/test/java/com/fraudfinder/risk/RiskCacheServiceTest.java
+  s_cceaaef18fc9de::t_9c8cba402a157f 72-73,75-76
+  s_cceaaef18fc9de::t_a301bdcfdaef31 63-71,74,77,79-95,98,100
+  s_cceaaef18fc9de::t_8495d2393b28e4 4-5,78,96-97,99
+src/test/java/com/fraudfinder/transaction/TransactionRepositoryTest.java
+  s_cceaaef18fc9de::t_258a6fe9130cc5 1-77
+  s_cceaaef18fc9de::t_85c104d9db65b4 78-80
+doc/testing-strategy.md
+  s_cceaaef18fc9de::t_da0efabb8a8d79 390-391
+doc/task-plan.md
+  s_cceaaef18fc9de::t_940663038a3d2b 37
+src/test/java/com/fraudfinder/integration/RuleEndToEndTest.java
+  s_cceaaef18fc9de::t_5d467b3ebf5d7a 26,29-30,41,45-50,57,68-74,76,81,87,89-90,95
+  s_cceaaef18fc9de::t_a98b7aee97fd34 1-25,27-28,31-40,42-44,51-56,58-67,75,77-80,82-86,88,91-94,96-97
+src/test/java/com/fraudfinder/detection/api/DetectionControllerTest.java
+  s_cceaaef18fc9de::t_b45c6e44bf49c0 1-2,4-29,32-42,45-51
+  s_cceaaef18fc9de::t_d49b47406230a4 3
+  s_cceaaef18fc9de::t_edaea6cd6b8ab5 30-31
+  s_cceaaef18fc9de::t_310228cc9be66b 43-44
+build.gradle.kts
+  s_cceaaef18fc9de::t_075261fec0f06a 80,82-85
+  s_cceaaef18fc9de::t_ac59cb19374ac8 45
+src/test/java/com/fraudfinder/transaction/TransactionConsumerTest.java
+  s_cceaaef18fc9de::t_ab63c8fb70049f 1-33,36-39,53-77
+  s_cceaaef18fc9de::t_01eaeef4ac1d98 34-35,40-52
+src/main/java/com/fraudfinder/transaction/AsyncDetectionRunner.java
+  s_cceaaef18fc9de::t_86bb051af16bf9 1-35
+src/test/java/com/fraudfinder/detection/repository/DetectionResultRepositoryTest.java
+  s_cceaaef18fc9de::t_b89c379ae506a5 1-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "dd6553165e6537c82c27fa24fefb981d666e3528",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
