@@ -1,0 +1,29 @@
+src/main/java/com/fraudfinder/rule/RuleEngine.java
+  s_588cc1fed2532b::t_8226fb6e0311c0 6,34,60
+src/test/java/com/fraudfinder/service/FraudDetectionServiceTest.java
+  s_588cc1fed2532b::t_8226fb6e0311c0 13,60,75,87,101,118
+src/main/java/com/fraudfinder/messaging/TransactionConsumer.java
+  s_588cc1fed2532b::t_8226fb6e0311c0 4,34
+src/main/java/com/fraudfinder/service/FraudDetectionService.java
+  s_588cc1fed2532b::t_8226fb6e0311c0 4,49
+src/test/java/com/fraudfinder/detection/service/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_8226fb6e0311c0 8,41,54,66,79,94,108,119,126,130-131,134-135
+src/main/java/com/fraudfinder/dto/TransactionMessage.java
+  s_588cc1fed2532b::t_8226fb6e0311c0 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "3c6b77b14f05a5c3a31af1f04443d5f577d67a70",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
