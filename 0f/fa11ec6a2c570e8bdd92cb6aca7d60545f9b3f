@@ -1,0 +1,31 @@
+charts/fraud-detection/values-prod.yaml
+  s_588cc1fed2532b::t_e15a13da24de09 35
+  s_588cc1fed2532b::t_e4e5ba0686f25d 38
+  s_588cc1fed2532b::t_eca6f1e4bd341a 16-17,19
+  s_588cc1fed2532b::t_4236d6c491e012 20
+  s_588cc1fed2532b::t_b6fbb708bb16f6 50,54
+Dockerfile
+  s_588cc1fed2532b::t_6f62dfc6fe9e7d 10
+infra/terraform/iam.tf
+  s_588cc1fed2532b::t_521acaecaa10e4 86
+src/main/resources/application.yml
+  s_588cc1fed2532b::t_2933da75611906 30
+charts/fraud-detection/templates/configmap.yaml
+  s_588cc1fed2532b::t_1a2daa09444578 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "0ffa11ec6a2c570e8bdd92cb6aca7d60545f9b3f",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
