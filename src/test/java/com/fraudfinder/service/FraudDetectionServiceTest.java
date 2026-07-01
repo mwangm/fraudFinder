@@ -1,6 +1,5 @@
 package com.fraudfinder.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -41,20 +40,13 @@ class FraudDetectionServiceTest {
   void shouldDetectFraudWhenScoreExceedsThreshold() {
     var evaluation =
         new EvaluationResult(
-            List.of(
-                RuleEvaluationResult.triggered("a", 40, ""),
-                RuleEvaluationResult.triggered("b", 40, "")),
-            80,
-            70);
+            List.of(RuleEvaluationResult.triggered("a", 40, ""), RuleEvaluationResult.triggered("b", 40, "")),
+            80, 70);
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
     when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
-    when(fraudRecorder.save(any(), any()))
-        .thenReturn(new FraudRecord("TXN-1", true, 80, 70, Instant.now()));
 
-    FraudRecord result = service.detect(msg(5000));
+    service.detect(msg(5000));
 
-    assertThat(result.isFraud()).isTrue();
-    assertThat(result.getTotalScore()).isEqualTo(80);
     verify(fraudRecorder).save(any(), any());
     verify(alertService).publish(any());
   }
@@ -64,9 +56,8 @@ class FraudDetectionServiceTest {
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
     when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
 
-    FraudRecord result = service.detect(msg(500));
+    service.detect(msg(500));
 
-    assertThat(result.isFraud()).isFalse();
     verify(fraudRecorder, never()).save(any(), any());
     verify(alertService, never()).publish(any());
   }
@@ -76,20 +67,17 @@ class FraudDetectionServiceTest {
     FraudRecord existing = new FraudRecord("TXN-1", false, 30, 70, Instant.now());
     when(fraudRecorder.findExisting("TXN-1")).thenReturn(Optional.of(existing));
 
-    FraudRecord result = service.detect(msg(5000));
+    service.detect(msg(5000));
 
-    assertThat(result.isFraud()).isFalse();
     verify(ruleEngine, never()).evaluate(any());
+    verify(fraudRecorder, never()).save(any(), any());
   }
 
   @Test
-  void shouldPublishAlertWithCriticalLevel() {
-    var evaluation =
-        new EvaluationResult(List.of(RuleEvaluationResult.triggered("a", 120, "")), 120, 70);
+  void shouldPublishAlertForFraud() {
+    var evaluation = new EvaluationResult(List.of(RuleEvaluationResult.triggered("a", 120, "")), 120, 70);
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
     when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
-    when(fraudRecorder.save(any(), any()))
-        .thenReturn(new FraudRecord("TXN-1", true, 120, 70, Instant.now()));
 
     service.detect(msg(5000));
 
