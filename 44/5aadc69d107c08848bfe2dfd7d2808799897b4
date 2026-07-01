@@ -1,0 +1,66 @@
+doc/ci-cd.md
+  s_588cc1fed2532b::t_5aade8d42a5626 32,115-116,124-125,139-140,144,200
+.github/workflows/deploy.yml
+  s_588cc1fed2532b::t_5aade8d42a5626 17,48,57
+src/main/resources/application.yml
+  s_588cc1fed2532b::t_b7296c9ffc4ba9 43-58
+  s_588cc1fed2532b::t_5aade8d42a5626 6
+.github/workflows/ci.yml
+  s_588cc1fed2532b::t_5aade8d42a5626 17
+.github/workflows/nightly.yml
+  s_588cc1fed2532b::t_5aade8d42a5626 36,41
+src/main/java/com/fraudfinder/detection/service/rule/SpelRuleEngine.java
+  s_588cc1fed2532b::t_82fae28d7cfa75 1-71
+src/test/java/com/fraudfinder/detection/service/rule/SpelRuleEngineTest.java
+  s_588cc1fed2532b::t_b1087a809cce70 1-183
+src/main/java/com/fraudfinder/detection/service/FraudEvaluator.java
+  s_588cc1fed2532b::t_e9e635f6b55e68 9,15,27,34,37,39,47
+infra/terraform/eks.tf
+  s_588cc1fed2532b::t_70612051ee7e3b 15-29
+CLAUDE.md
+  s_588cc1fed2532b::t_5aade8d42a5626 34-35
+src/main/java/com/fraudfinder/detection/service/rule/FraudRulesProperties.java
+  s_588cc1fed2532b::t_c3eedf2318b47c 1-19
+src/test/java/com/fraudfinder/detection/engine/FraudEvaluatorTest.java
+  s_588cc1fed2532b::t_22c2fbd5b7fc2b 20,36,47,56-59,72-75,88-90,102-104,117-120,122
+src/main/java/com/fraudfinder/detection/service/rule/RuleConfig.java
+  s_588cc1fed2532b::t_5ddf0076d93d5a 1-18
+charts/fraud-detection/Chart.yaml
+  s_588cc1fed2532b::t_5dd823e100d009 2
+charts/fraud-detection/templates/_helpers.tpl
+  s_588cc1fed2532b::t_03f1d40863827a 4,11
+charts/fraud-detection/templates/deployment.yaml
+  s_588cc1fed2532b::t_94585e06713699 30
+charts/fraud-detection/values.yaml
+  s_588cc1fed2532b::t_8ae861d4c96089 3
+charts/fraud-detection/values-prod.yaml
+  s_588cc1fed2532b::t_4bcd780f4c1dfe 1-2,7-8,12,35,38,42,45
+infra/terraform/cloudwatch.tf
+  s_588cc1fed2532b::t_446ca1861ee286 3,7,14
+infra/terraform/iam.tf
+  s_588cc1fed2532b::t_e11b0377e378e5 11,37,75,133,146
+infra/terraform/main.tf
+  s_588cc1fed2532b::t_58b8638a150fca 10
+infra/terraform/rds.tf
+  s_588cc1fed2532b::t_be7594e57032eb 3,7,12,40,54
+infra/terraform/sns.tf
+  s_588cc1fed2532b::t_c88dd6d151c5fd 3,6
+infra/terraform/variables.tf
+  s_588cc1fed2532b::t_47186e5b17d20c 17,80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "445aadc69d107c08848bfe2dfd7d2808799897b4",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
