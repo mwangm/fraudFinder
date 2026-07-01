@@ -1,0 +1,69 @@
+src/main/java/com/frauddetection/repository/PayeeRiskRepository.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-6
+src/main/java/com/frauddetection/rule/FraudDetectionRule.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-14
+src/test/java/com/frauddetection/message/AlertPayloadTest.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1,14,25-26
+src/main/java/com/frauddetection/service/AlertService.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-69
+src/main/java/com/frauddetection/model/FraudRecord.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-50
+src/main/java/com/frauddetection/model/PayeeRisk.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-55
+src/main/java/com/frauddetection/model/FraudRecordDetail.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-39
+src/main/resources/logback-spring.xml
+  s_588cc1fed2532b::t_8c8291ef99f128 37
+src/test/java/com/frauddetection/service/FraudDetectionServiceTest.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1,9-13,40-42,53,64-65,75
+src/main/java/com/frauddetection/message/TransactionMessage.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-12
+build.gradle.kts
+  s_588cc1fed2532b::t_fc20a08d401d39 9
+src/main/java/com/frauddetection/service/FraudDetectionService.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-61
+src/test/java/com/frauddetection/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1,6-12,39,49-50,58,67,69-70,78,81-83,91,94-96,104
+src/test/java/com/frauddetection/service/RiskCacheServiceTest.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1,6-9,32,44,57,67
+src/main/java/com/frauddetection/repository/SuspiciousAccountRepository.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-6
+src/main/java/com/frauddetection/message/RuleEvaluationResult.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-8
+src/main/java/com/frauddetection/service/FraudRecorderService.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-46
+src/main/java/com/frauddetection/message/EvaluationResult.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-6
+src/main/java/com/frauddetection/rule/RuleEngine.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-57
+src/main/java/com/frauddetection/model/SuspiciousAccount.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-47
+src/main/java/com/frauddetection/service/RiskCacheService.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-61
+src/main/java/com/frauddetection/FraudFinderApplication.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-16
+src/main/java/com/frauddetection/repository/FraudRecordRepository.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-10
+src/main/java/com/frauddetection/rule/RulesConfig.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-18
+src/test/resources/application-test.yml
+  s_588cc1fed2532b::t_8c8291ef99f128 32
+src/main/java/com/frauddetection/message/AlertPayload.java
+  s_588cc1fed2532b::t_fc20a08d401d39 1-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "17aad44c1ceac3499120e1b2dda7e222be4871a1",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
