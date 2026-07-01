@@ -1,0 +1,24 @@
+k8s/deployment.yaml
+  s_cceaaef18fc9de::t_c9331cf84f8cf0 27
+.github/workflows/ci.yml
+  s_cceaaef18fc9de::t_469cda2affc5ef 72-73,77-78
+  s_cceaaef18fc9de::t_37db0ae3493bc2 11
+doc/ci-cd.md
+  s_cceaaef18fc9de::t_70a0ae017d0087 32,115-116,124-125,140,200
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "b04513aa4c9edf76a198fd63d459173dbdecb744",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
