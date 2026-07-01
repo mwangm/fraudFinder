@@ -1,0 +1,35 @@
+src/main/java/com/fraudfinder/rule/RuleEngine.java
+  s_588cc1fed2532b::t_9d97265522a4a5 34,60
+  s_588cc1fed2532b::t_3b427052184235 52
+  s_588cc1fed2532b::t_133e9dc55fe093 6
+src/test/java/com/fraudfinder/detection/service/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_1b34394bcc6f1c 8
+  s_588cc1fed2532b::t_976d51107690f4 131,135
+  s_588cc1fed2532b::t_212f051187a094 41,54,66,79,94,108,119,126,130,134
+src/main/resources/db/migration/V4__drop_transactions.sql
+  s_588cc1fed2532b::t_b34e42140933a5 1-2
+src/main/java/com/fraudfinder/messaging/TransactionConsumer.java
+  s_588cc1fed2532b::t_e2dc479f5b66d0 4-5,19,21,23,34-37
+src/main/java/com/fraudfinder/dto/TransactionInput.java
+  s_588cc1fed2532b::t_5705f8ac748afb 1-12
+src/test/java/com/fraudfinder/service/FraudDetectionServiceTest.java
+  s_588cc1fed2532b::t_35222cb6592643 13,20-21,23,37,46-48,57,60-61,71-72,75-76,83-85,87-88,90-91,97-98,101-102,115-116,118-119
+src/main/java/com/fraudfinder/service/FraudDetectionService.java
+  s_588cc1fed2532b::t_eca06c7ddf5ede 4,13,19,48-58,64,74-76,79,81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "8261fd43e7036bbb2f908046c0cc36eb483b726e",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
