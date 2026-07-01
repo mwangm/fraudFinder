@@ -18,17 +18,17 @@ fraud:
   rules:
     threshold: 70
     list:
-      - name: "大额交易"
+      - name: "amount-threshold"
         condition: "amount > 100000"
         score: 40
         alertMessage: "Large amount transaction detected"
         enabled: true
-      - name: "付款方黑名单"
+      - name: "suspicious-account"
         condition: "{'ACC-BAD','ACC-FRAUD','ACC-SCAM'}.contains(accountId)"
         score: 80
         alertMessage: "Payer account is blacklisted"
         enabled: true
-      - name: "收款方高风险"
+      - name: "high-risk-payee"
         condition: "{'PE-HIGH','PE-RISK'}.contains(payeeId)"
         score: 60
         alertMessage: "Payee is high risk"
