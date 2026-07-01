@@ -1,0 +1,21 @@
+src/main/java/com/fraudfinder/message/AlertPayload.java
+  s_588cc1fed2532b::t_d0c09b75d9d23b 23-46
+src/test/java/com/fraudfinder/message/AlertPayloadTest.java
+  s_588cc1fed2532b::t_d0c09b75d9d23b 15,26-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "74fcbce7bb6920acfff0f5932b2be12a01de25dd",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
