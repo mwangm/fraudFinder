@@ -1,0 +1,32 @@
+doc/api-contract.md
+  s_588cc1fed2532b::t_15d5389ac59d65 3,10,51,100,249,274
+doc/architecture.md
+  s_588cc1fed2532b::t_c61d7bf3ae21ad 12
+  s_588cc1fed2532b::t_f17ae3193f1df4 71,169
+  s_588cc1fed2532b::t_7dd94113bbd5d0 9
+  s_588cc1fed2532b::t_15d5389ac59d65 42,53,61-62,68,74-75,88,129,253,262,336,338,343,346-347,370-371,375,448,455,461,494,496,532,543-544
+doc/ci-cd.md
+  s_588cc1fed2532b::t_15d5389ac59d65 3,24,52,129-130,219-222
+doc/testing-strategy.md
+  s_588cc1fed2532b::t_15d5389ac59d65 13,126,164,171-172,188,208,238,307,413
+CLAUDE.md
+  s_588cc1fed2532b::t_adf9d23a294d88 7,15,23,28,30-47
+doc/tech-decisions.md
+  s_588cc1fed2532b::t_15d5389ac59d65 10-14,19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "39c8fb7d8f1870f2d8ebeaabed74d1e5fdea5509",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
