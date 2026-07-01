@@ -1,0 +1,161 @@
+.gitignore
+  s_588cc1fed2532b::t_76ea367b5b8580 1-30
+CLAUDE.md
+  s_588cc1fed2532b::t_4c78ce93bebc8b 1-47
+charts/fraud-detection/Chart.yaml
+  s_588cc1fed2532b::t_f3e7e8f1081157 1-6
+charts/fraud-detection/templates/_helpers.tpl
+  s_588cc1fed2532b::t_fad3287b03a1b0 1-17
+charts/fraud-detection/templates/deployment.yaml
+  s_588cc1fed2532b::t_31f8b8cff2865d 1-60
+charts/fraud-detection/templates/hpa.yaml
+  s_588cc1fed2532b::t_663ff7699a5d7b 1-26
+charts/fraud-detection/templates/pdb.yaml
+  s_588cc1fed2532b::t_b0682523753533 1-11
+charts/fraud-detection/templates/secret.yaml
+  s_588cc1fed2532b::t_e97647abaad799 1-10
+charts/fraud-detection/templates/service.yaml
+  s_588cc1fed2532b::t_d1e3fb5d8ce353 1-15
+charts/fraud-detection/values.yaml
+  s_588cc1fed2532b::t_7462b4e47dbf21 1-77
+doc/assignment.md
+  s_588cc1fed2532b::t_7ef41d86688787 1-39
+doc/task-plan.md
+  s_588cc1fed2532b::t_4262ee01bbd7b5 1-58
+gradlew
+  s_cceaaef18fc9de::t_6c536a70f0a82e 1-251
+scripts/send-test-transaction.sh
+  s_588cc1fed2532b::t_6815a1350ea31d 1-29
+src/main/java/com/fraudfinder/FraudFinderApplication.java
+  s_588cc1fed2532b::t_c912e7f04e7eb4 1-16
+src/main/java/com/fraudfinder/message/AlertPayload.java
+  s_588cc1fed2532b::t_9d098da7b390c3 1-52
+src/main/java/com/fraudfinder/message/EvaluationResult.java
+  s_588cc1fed2532b::t_fd222b74bf95e0 1-6
+src/main/java/com/fraudfinder/message/RuleEvaluationResult.java
+  s_588cc1fed2532b::t_b21b4c3527adf4 1-12
+src/main/java/com/fraudfinder/message/TransactionMessage.java
+  s_588cc1fed2532b::t_dea5464bd806e9 1-12
+src/main/java/com/fraudfinder/model/FraudRecord.java
+  s_588cc1fed2532b::t_b7f92d484f411b 1-76
+src/main/java/com/fraudfinder/model/FraudRecordDetail.java
+  s_588cc1fed2532b::t_5ca42e6a64f051 1-55
+src/main/java/com/fraudfinder/model/PayeeRisk.java
+  s_588cc1fed2532b::t_ba72dca07ec8a4 1-55
+src/main/java/com/fraudfinder/model/SuspiciousAccount.java
+  s_588cc1fed2532b::t_57b858d49eb0ee 1-47
+src/main/java/com/fraudfinder/repository/FraudRecordRepository.java
+  s_588cc1fed2532b::t_115014abedf45f 1-10
+src/main/java/com/fraudfinder/repository/PayeeRiskRepository.java
+  s_588cc1fed2532b::t_2aea487c644183 1-6
+src/main/java/com/fraudfinder/repository/SuspiciousAccountRepository.java
+  s_588cc1fed2532b::t_084546e020a2ad 1-6
+src/main/java/com/fraudfinder/rule/FraudDetectionRule.java
+  s_588cc1fed2532b::t_3030da97606006 1-14
+src/main/java/com/fraudfinder/rule/RuleEngine.java
+  s_588cc1fed2532b::t_7f56c1786bb137 1-63
+src/main/java/com/fraudfinder/rule/RulesConfig.java
+  s_588cc1fed2532b::t_37636808f30bcd 1-22
+src/main/java/com/fraudfinder/service/AlertService.java
+  s_588cc1fed2532b::t_171b7f822a19b2 1-69
+src/main/java/com/fraudfinder/service/FraudDetectionService.java
+  s_588cc1fed2532b::t_d4d01c8e9b9e54 1-77
+src/main/java/com/fraudfinder/service/FraudRecorderService.java
+  s_588cc1fed2532b::t_529d233f8c5374 1-45
+src/main/java/com/fraudfinder/service/RiskCacheService.java
+  s_588cc1fed2532b::t_9648a88dbed316 1-61
+src/test/java/com/fraudfinder/detection/repository/DetectionResultRepositoryTest.java
+  s_588cc1fed2532b::t_a71b0188d6e7f4 1-38
+src/test/java/com/fraudfinder/detection/rule/RuleResultTest.java
+  s_588cc1fed2532b::t_6520bbd294e0f1 1-31
+src/test/java/com/fraudfinder/detection/service/rule/RuleEngineTest.java
+  s_588cc1fed2532b::t_3b54c8dd8b00a0 1-141
+src/test/java/com/fraudfinder/message/AlertPayloadTest.java
+  s_588cc1fed2532b::t_ecc6de39fd5e72 1-42
+src/test/java/com/fraudfinder/service/FraudDetectionServiceTest.java
+  s_588cc1fed2532b::t_838b99e09d1a53 1-106
+src/test/java/com/fraudfinder/service/RiskCacheServiceTest.java
+  s_588cc1fed2532b::t_d3ad1edfd08f1b 1-85
+src/test/resources/application-test.yml
+  s_588cc1fed2532b::t_6cfa674835ba70 1-32
+src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker
+  s_cceaaef18fc9de::t_42fc2e5dfa0292 1
+.github/workflows/ci.yml
+  s_588cc1fed2532b::t_6626ec05a8e728 1-59
+.github/workflows/deploy.yml
+  s_588cc1fed2532b::t_4f78c6854e30b9 1-59
+.github/workflows/nightly.yml
+  s_588cc1fed2532b::t_d5885cc1eb0708 1-33
+.sdkmanrc
+  s_cceaaef18fc9de::t_ae9cbc49c38653 1
+Dockerfile
+  s_588cc1fed2532b::t_547bc8cf0ce098 1-10
+build.gradle.kts
+  s_588cc1fed2532b::t_9887c4ff47fc2c 1-75
+charts/fraud-detection/templates/configmap.yaml
+  s_588cc1fed2532b::t_9e13e55b9da1af 1-15
+charts/fraud-detection/values-prod.yaml
+  s_588cc1fed2532b::t_9ea6392f3fa026 1-55
+doc/architecture.md
+  s_588cc1fed2532b::t_b254a88b33e36c 1-94
+doc/rule-engine.md
+  s_588cc1fed2532b::t_79ace2c7e6c622 1-72
+doc/tech-decisions.md
+  s_588cc1fed2532b::t_977806e5f6c13d 1-18
+gradle.properties
+  s_cceaaef18fc9de::t_1c4cbf5343cd0b 1-6
+infra/terraform/.gitignore
+  s_588cc1fed2532b::t_96ac85bd4ac3ac 1-5
+infra/terraform/cloudwatch.tf
+  s_588cc1fed2532b::t_a614e3b0140ca1 1-30
+infra/terraform/eks.tf
+  s_588cc1fed2532b::t_78984c95dfc2dd 1-52
+infra/terraform/iam.tf
+  s_588cc1fed2532b::t_efc965ba101eee 1-154
+infra/terraform/main.tf
+  s_588cc1fed2532b::t_264ec14debd2e5 1-21
+infra/terraform/outputs.tf
+  s_588cc1fed2532b::t_04301dcf614264 1-35
+infra/terraform/rds.tf
+  s_588cc1fed2532b::t_48c3b4148a58f1 1-78
+infra/terraform/sns.tf
+  s_588cc1fed2532b::t_a45ba6209681c4 1-39
+infra/terraform/sqs.tf
+  s_588cc1fed2532b::t_8b91c1a0468267 1-32
+infra/terraform/terraform.tfvars.example
+  s_588cc1fed2532b::t_40b19e974a51e2 1-26
+infra/terraform/variables.tf
+  s_588cc1fed2532b::t_5442c573c4954c 1-117
+scripts/local-deploy.sh.example
+  s_588cc1fed2532b::t_a2e90a43addea0 1-14
+src/main/resources/application.yml
+  s_588cc1fed2532b::t_9b67982bee39ce 1-79
+src/main/resources/db/migration/V1__create_tables.sql
+  s_588cc1fed2532b::t_8d9771b008516b 1-40
+src/main/resources/logback-spring.xml
+  s_cceaaef18fc9de::t_61d097ff7890c2 1-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "1739e359241ae5fcdd9b0c5f2196abf61173527a",
+  "prompts": {},
+  "sessions": {
+    "s_588cc1fed2532b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "75f30e79-ddfb-4995-a9dc-6ca8b8b69e52",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    },
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
