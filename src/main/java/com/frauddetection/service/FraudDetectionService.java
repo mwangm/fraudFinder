@@ -1,18 +1,19 @@
 package com.frauddetection.service;
 
+import lombok.extern.slf4j.Slf4j;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.rule.RuleEngine;
 import io.awspring.cloud.sqs.annotation.SqsListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
+
+@Slf4j
 public class FraudDetectionService {
 
-  private static final Logger log = LoggerFactory.getLogger(FraudDetectionService.class);
 
   private final ObjectMapper objectMapper;
   private final RuleEngine ruleEngine;

@@ -1,19 +1,20 @@
 package com.frauddetection.rule;
 
+import lombok.extern.slf4j.Slf4j;
+
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;
 import java.util.List;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Service;
 
 @Service
+
+@Slf4j
 public class RuleEngine {
-  private static final Logger log = LoggerFactory.getLogger(RuleEngine.class);
 
   private final SpelExpressionParser parser = new SpelExpressionParser();
   private final RulesConfig rulesConfig;
