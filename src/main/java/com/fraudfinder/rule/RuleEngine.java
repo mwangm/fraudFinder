@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
@@ -21,43 +20,38 @@ public class RuleEngine {
   private final SpelExpressionParser parser = new SpelExpressionParser();
   private final RulesConfig rulesConfig;
   private final RiskCacheService riskCache;
-  private final int threshold;
 
-  public RuleEngine(
-      RulesConfig rulesConfig,
-      RiskCacheService riskCache,
-      @Value("${fraud.detection.threshold:70}") int threshold) {
+  public RuleEngine(RulesConfig rulesConfig, RiskCacheService riskCache) {
     this.rulesConfig = rulesConfig;
     this.riskCache = riskCache;
-    this.threshold = threshold;
   }
-
   public Optional<EvaluationResult> evaluate(TransactionMessage message) {
-    List<RuleEvaluationResult> results =
-        rulesConfig.getList().stream()
-            .filter(FraudDetectionRule::enabled)
-            .map(rule -> evaluateRule(rule, message))
-            .toList();
+    EvaluationContext ctx = new StandardEvaluationContext(message);
+    ctx.setVariable("riskCache", riskCache);
 
-    int totalScore = results.stream().mapToInt(RuleEvaluationResult::score).sum();
+    List<RuleEvaluationResult> triggered = rulesConfig.getList().stream()
+        .filter(FraudDetectionRule::enabled)
+        .flatMap(rule -> evaluateRule(rule, ctx).stream())
+        .toList();
 
+    int totalScore = triggered.stream().mapToInt(RuleEvaluationResult::score).sum();
+
+    int threshold = rulesConfig.getThreshold();
     return totalScore >= threshold
-        ? Optional.of(new EvaluationResult(results, totalScore, threshold))
+        ? Optional.of(new EvaluationResult(triggered, totalScore, threshold))
         : Optional.empty();
   }
 
-  private RuleEvaluationResult evaluateRule(FraudDetectionRule rule, TransactionMessage message) {
+  private Optional<RuleEvaluationResult> evaluateRule(FraudDetectionRule rule,
+                                                       EvaluationContext ctx) {
     try {
-      EvaluationContext ctx = new StandardEvaluationContext(message);
-      ctx.setVariable("riskCache", riskCache);
       return Boolean.TRUE.equals(
               parser.parseExpression(rule.condition()).getValue(ctx, Boolean.class))
-          ? RuleEvaluationResult.triggered(rule.name(), rule.score(), rule.reason())
-          : RuleEvaluationResult.notTriggered(rule.name());
+          ? Optional.of(RuleEvaluationResult.triggered(rule.name(), rule.score(), rule.reason()))
+          : Optional.empty();
     } catch (Exception e) {
-      log.error(
-          "Rule '{}' failed for txn {}: {}", rule.name(), message.transactionId(), e.getMessage());
-      return RuleEvaluationResult.notTriggered(rule.name());
+      log.error("Rule '{}' failed: {}", rule.name(), e.getMessage());
+      return Optional.empty();
     }
   }
 }

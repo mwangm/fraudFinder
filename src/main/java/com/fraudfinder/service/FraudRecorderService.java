@@ -31,19 +31,14 @@ public class FraudRecorderService {
   public FraudRecord save(TransactionMessage message, EvaluationResult evaluation) {
     FraudRecord result =
         new FraudRecord(
-            message.transactionId(),
-            true,
-            evaluation.totalScore(),
-            evaluation.threshold(),
-            Instant.now());
+            message.transactionId(), evaluation.totalScore(), evaluation.threshold(), Instant.now());
 
     evaluation
         .ruleResults()
         .forEach(
             rr ->
                 result.addDetail(
-                    new FraudRecordDetail(
-                        result, rr.ruleName(), rr.triggered(), rr.score(), rr.reason())));
+                    new FraudRecordDetail(result, rr.ruleName(), rr.score(), rr.reason())));
 
     log.warn("FRAUD RECORDED: txnId={} score={}", message.transactionId(), evaluation.totalScore());
     return resultRepo.save(result);

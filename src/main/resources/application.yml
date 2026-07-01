@@ -37,10 +37,8 @@ sns:
 
 # ── Fraud Detection ──
 fraud:
-  detection:
-    threshold: 70
-
   rules:
+    threshold: 70
     list:
       - name: "amount-threshold"
         condition: "amount > 100000"

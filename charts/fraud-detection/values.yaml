@@ -64,7 +64,6 @@ database:
 
 # ── API Auth ──
 fraud:
-  detectionThreshold: 70
 
 # ── Service ──
 service:

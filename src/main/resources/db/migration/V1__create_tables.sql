@@ -3,7 +3,6 @@
 CREATE TABLE fraud_records (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     transaction_id VARCHAR(64) NOT NULL,
-    fraudulent BOOLEAN NOT NULL,
     total_score INT NOT NULL,
     threshold INT NOT NULL,
     detected_at TIMESTAMP NOT NULL,
@@ -14,7 +13,6 @@ CREATE TABLE fraud_record_details (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     fraud_record_id BIGINT NOT NULL,
     rule_name VARCHAR(64) NOT NULL,
-    triggered BOOLEAN NOT NULL,
     score INT NOT NULL,
     reason VARCHAR(500)
 );

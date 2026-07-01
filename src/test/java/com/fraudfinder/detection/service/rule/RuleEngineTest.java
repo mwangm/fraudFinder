@@ -31,7 +31,8 @@ class RuleEngineTest {
   @BeforeEach
   void setUp() {
     properties = new RulesConfig();
-    engine = new RuleEngine(properties, riskCache, 1);
+    properties.setThreshold(1);
+    engine = new RuleEngine(properties, riskCache);
   }
 
   @Test
@@ -41,7 +42,6 @@ class RuleEngineTest {
     Optional<EvaluationResult> eval = engine.evaluate(txn(10000));
 
     assertThat(eval).isPresent();
-    assertThat(eval.get().ruleResults().get(0).triggered()).isTrue();
     assertThat(eval.get().ruleResults().get(0).score()).isEqualTo(40);
   }
 
@@ -76,7 +76,6 @@ class RuleEngineTest {
     Optional<EvaluationResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 500));
 
     assertThat(eval).isPresent();
-    assertThat(eval.get().ruleResults().get(0).triggered()).isTrue();
   }
 
   @Test
@@ -96,7 +95,6 @@ class RuleEngineTest {
     Optional<EvaluationResult> eval = engine.evaluate(txnWithPayee("PE-HIGH", 500));
 
     assertThat(eval).isPresent();
-    assertThat(eval.get().ruleResults().get(0).triggered()).isTrue();
   }
 
   @Test

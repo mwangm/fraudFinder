@@ -16,9 +16,6 @@ public class FraudRecord {
   @Column(nullable = false, unique = true, length = 64)
   private String transactionId;
 
-  @Column(name = "fraudulent", nullable = false)
-  private boolean isFraud;
-
   @Column(nullable = false)
   private int totalScore;
 
@@ -33,42 +30,19 @@ public class FraudRecord {
 
   protected FraudRecord() {}
 
-  public FraudRecord(
-      String transactionId, boolean isFraud, int totalScore, int threshold, Instant detectedAt) {
+  public FraudRecord(String transactionId, int totalScore, int threshold, Instant detectedAt) {
     this.transactionId = transactionId;
-    this.isFraud = isFraud;
     this.totalScore = totalScore;
     this.threshold = threshold;
     this.detectedAt = detectedAt;
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public String getTransactionId() {
-    return transactionId;
-  }
-
-  public boolean isFraud() {
-    return isFraud;
-  }
-
-  public int getTotalScore() {
-    return totalScore;
-  }
-
-  public int getThreshold() {
-    return threshold;
-  }
-
-  public Instant getDetectedAt() {
-    return detectedAt;
-  }
-
-  public List<FraudRecordDetail> getDetails() {
-    return details;
-  }
+  public Long getId() { return id; }
+  public String getTransactionId() { return transactionId; }
+  public int getTotalScore() { return totalScore; }
+  public int getThreshold() { return threshold; }
+  public Instant getDetectedAt() { return detectedAt; }
+  public List<FraudRecordDetail> getDetails() { return details; }
 
   public void addDetail(FraudRecordDetail detail) {
     details.add(detail);

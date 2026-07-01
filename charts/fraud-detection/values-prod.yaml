@@ -42,7 +42,6 @@ database:
   password: ""  # Set via: --set database.password=xxx
 
 fraud:
-  detectionThreshold: 70
 
 probes:
   readiness:

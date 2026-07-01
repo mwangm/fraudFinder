@@ -18,9 +18,6 @@ public class FraudRecordDetail {
   private String ruleName;
 
   @Column(nullable = false)
-  private boolean triggered;
-
-  @Column(nullable = false)
   private int score;
 
   @Column(length = 500)
@@ -28,28 +25,15 @@ public class FraudRecordDetail {
 
   protected FraudRecordDetail() {}
 
-  public FraudRecordDetail(
-      FraudRecord result, String ruleName, boolean triggered, int score, String reason) {
+  public FraudRecordDetail(FraudRecord result, String ruleName, int score, String reason) {
     this.result = result;
     this.ruleName = ruleName;
-    this.triggered = triggered;
     this.score = score;
     this.reason = reason;
   }
 
-  public String getRuleName() {
-    return ruleName;
-  }
-
-  public boolean isTriggered() {
-    return triggered;
-  }
-
-  public int getScore() {
-    return score;
-  }
-
-  public String getReason() {
-    return reason;
-  }
+  public String getRuleName() { return ruleName; }
+  public boolean isTriggered() { return true; }
+  public int getScore() { return score; }
+  public String getReason() { return reason; }
 }

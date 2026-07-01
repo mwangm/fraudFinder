@@ -2,21 +2,17 @@ package com.fraudfinder.rule;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "fraud.rules")
 public class RulesConfig {
-  private static final Logger log = LoggerFactory.getLogger(RulesConfig.class);
 
+  private int threshold = 70;
   private List<FraudDetectionRule> list = new ArrayList<>();
 
-  public List<FraudDetectionRule> getList() {
-    return list;
-  }
+  public int getThreshold() { return threshold; }
+  public void setThreshold(int threshold) { this.threshold = threshold; }
 
-  public void setList(List<FraudDetectionRule> list) {
-    this.list = list;
-  }
+  public List<FraudDetectionRule> getList() { return list; }
+  public void setList(List<FraudDetectionRule> list) { this.list = list; }
 }

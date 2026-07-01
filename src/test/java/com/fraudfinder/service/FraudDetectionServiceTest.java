@@ -40,7 +40,7 @@ class FraudDetectionServiceTest {
   void shouldDetectFraudWhenScoreExceedsThreshold() {
     var evaluation =
         new EvaluationResult(
-            List.of(RuleEvaluationResult.triggered("a", 40, ""), RuleEvaluationResult.triggered("b", 40, "")),
+            List.of(new RuleEvaluationResult("a", 40, ""), new RuleEvaluationResult("b", 40, "")),
             80, 70);
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
     when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
@@ -64,7 +64,7 @@ class FraudDetectionServiceTest {
 
   @Test
   void shouldSkipDuplicateTransaction() {
-    FraudRecord existing = new FraudRecord("TXN-1", false, 30, 70, Instant.now());
+    FraudRecord existing = new FraudRecord("TXN-1",  30, 70, Instant.now());
     when(fraudRecorder.findExisting("TXN-1")).thenReturn(Optional.of(existing));
 
     service.detect(msg(5000));
@@ -75,7 +75,7 @@ class FraudDetectionServiceTest {
 
   @Test
   void shouldPublishAlertForFraud() {
-    var evaluation = new EvaluationResult(List.of(RuleEvaluationResult.triggered("a", 120, "")), 120, 70);
+    var evaluation = new EvaluationResult(List.of(new RuleEvaluationResult("a", 120, "")), 120, 70);
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
     when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
 
