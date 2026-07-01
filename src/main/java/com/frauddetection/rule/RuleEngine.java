@@ -47,7 +47,7 @@ public class RuleEngine {
     try {
       return Boolean.TRUE.equals(
               parser.parseExpression(rule.condition()).getValue(ctx, Boolean.class))
-          ? Optional.of(RuleEvaluationResult.triggered(rule.name(), rule.score(), rule.reason()))
+          ? Optional.of(RuleEvaluationResult.triggered(rule.name(), rule.score(), rule.alertMessage()))
           : Optional.empty();
     } catch (Exception e) {
       log.error("Rule '{}' failed: {}", rule.name(), e.getMessage());

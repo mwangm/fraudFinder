@@ -33,7 +33,6 @@ public class FraudRecordDetail {
   }
 
   public String getRuleName() { return ruleName; }
-  public boolean isTriggered() { return true; }
   public int getScore() { return score; }
   public String getReason() { return reason; }
 }

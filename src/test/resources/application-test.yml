@@ -18,8 +18,6 @@ spring:
     aws:
       sqs:
         enabled: false
-      sns:
-        enabled: false
 
 fraud:
   detection:

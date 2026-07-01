@@ -38,7 +38,8 @@ public class FraudRecorderService {
         .forEach(
             rr ->
                 result.addDetail(
-                    new FraudRecordDetail(result, rr.ruleName(), rr.score(), rr.reason())));
+                    new FraudRecordDetail(
+                        result, rr.ruleName(), rr.score(), rr.reason())));
 
     log.warn("FRAUD RECORDED: txnId={} score={}", message.transactionId(), evaluation.totalScore());
     return resultRepo.save(result);

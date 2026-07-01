@@ -32,7 +32,6 @@ CREATE TABLE payee_risks (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     payee_id VARCHAR(64) NOT NULL,
     risk_level VARCHAR(20) NOT NULL,
-    reason VARCHAR(500),
     updated_at TIMESTAMP NOT NULL,
     CONSTRAINT uq_pr_payee_id UNIQUE (payee_id)
 );

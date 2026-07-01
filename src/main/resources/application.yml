@@ -28,28 +28,16 @@ spring:
       sqs:
         enabled: true
         auto-create-queue: false
-      sns:
-        enabled: true
 
 # ── SNS ──
-sns:
-  topic-arn: ${SNS_TOPIC_ARN:}
-
-# ── Fraud Detection ──
-fraud:
-  rules:
-    threshold: 70
-    list:
-      - name: "amount-threshold"
-        condition: "amount > 100000"
-        score: 40
-        enabled: true
       - name: "suspicious-account"
         condition: "#riskCache.isSuspicious(accountId)"
+        alertMessage: "Payer account is blacklisted"
         score: 80
         enabled: true
       - name: "high-risk-payee"
         condition: "#riskCache.getPayeeRisk(payeeId)?.riskLevel == 'HIGH'"
+        alertMessage: "Payee is high risk"
         score: 60
         enabled: true
 
