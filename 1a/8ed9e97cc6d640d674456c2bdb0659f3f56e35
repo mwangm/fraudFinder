@@ -1,0 +1,97 @@
+src/main/java/com/fraudfinder/transaction/TransactionService.java
+  s_cceaaef18fc9de::t_8708460c7334a8 3
+  s_cceaaef18fc9de::t_dc9a6d300c3c8f 33,47,59-63,68-69,77-80,101-114,119-124
+  s_cceaaef18fc9de::t_f1aec09b9c55d1 1-2,6-21,23-26,28-29,31-32,34-37,39-46,48-51,53-57,64-67,70-75,81-85,90-100,115-118,125-130
+  s_cceaaef18fc9de::t_da38284b3d5bef 22,27,30,58,76
+  s_cceaaef18fc9de::t_549a03d4733c73 5
+  s_cceaaef18fc9de::t_9a3ab14895c22e 52
+  s_cceaaef18fc9de::t_851f70db37929d 38
+  s_cceaaef18fc9de::t_bfdc299f806780 86-89
+  s_cceaaef18fc9de::t_3ed468774a7527 4
+src/main/java/com/fraudfinder/transaction/TransactionRequest.java
+  s_cceaaef18fc9de::t_088987e70ebbb8 1-22
+src/main/java/com/fraudfinder/shared/config/AuthProperties.java
+  s_cceaaef18fc9de::t_9df79ffa8bc079 1-6
+src/main/java/com/fraudfinder/transaction/TransactionResponse.java
+  s_cceaaef18fc9de::t_3d9a443476cb11 1-2,4-13
+  s_cceaaef18fc9de::t_b6685420f2ab72 3
+src/main/java/com/fraudfinder/shared/security/ApiKeyFilter.java
+  s_cceaaef18fc9de::t_b7ac8e66297eb1 1-29,34-44
+  s_cceaaef18fc9de::t_dc9a6d300c3c8f 30-33
+src/test/java/com/fraudfinder/detection/engine/FraudEvaluatorTest.java
+  s_cceaaef18fc9de::t_348986d84b8419 1-15,19-148
+  s_cceaaef18fc9de::t_0da75d40447d33 16-18
+src/main/java/com/fraudfinder/detection/repository/DetectionResultRepository.java
+  s_cceaaef18fc9de::t_1862b37bb8e305 1-13
+src/main/java/com/fraudfinder/alert/AlertController.java
+  s_cceaaef18fc9de::t_577c60a98d9053 1-2,5-11,13,16-24,26,28-31,33-34
+  s_cceaaef18fc9de::t_642856b68a6e72 12,14-15,25,27,32
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 3-4
+src/main/java/com/fraudfinder/shared/util/GeoUtils.java
+  s_cceaaef18fc9de::t_249924d0296edb 1-57
+src/main/java/com/fraudfinder/shared/dto/ApiError.java
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 1-3
+src/main/java/com/fraudfinder/risk/RiskCacheService.java
+  s_cceaaef18fc9de::t_47cecdc70f7e7d 83
+  s_cceaaef18fc9de::t_abc9fd5db20e88 84
+  s_cceaaef18fc9de::t_d029a7f3aafad7 77
+  s_cceaaef18fc9de::t_b73d2d0c6dd774 22
+src/main/java/com/fraudfinder/transaction/TransactionConsumer.java
+  s_cceaaef18fc9de::t_500a10804d2497 4
+  s_cceaaef18fc9de::t_b1f800dffe7b2e 41
+  s_cceaaef18fc9de::t_86585e80f6b40a 1-3,5-31,33-40,42-49,52-54
+  s_cceaaef18fc9de::t_0314eed50396d5 50-51
+  s_cceaaef18fc9de::t_5978420c5f7c53 32
+src/main/java/com/fraudfinder/alert/AlertResponse.java
+  s_cceaaef18fc9de::t_e92eabdd3f6844 1-24
+src/main/java/com/fraudfinder/transaction/TransactionController.java
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 3
+  s_cceaaef18fc9de::t_dc9a6d300c3c8f 27,31-35
+  s_cceaaef18fc9de::t_dbc26387457bbf 1-2,4-26,28-30,36-37
+src/main/java/com/fraudfinder/detection/api/DetectionController.java
+  s_cceaaef18fc9de::t_1862b37bb8e305 1-30
+src/main/java/com/fraudfinder/detection/model/FraudDetectionRuleResult.java
+  s_cceaaef18fc9de::t_1862b37bb8e305 1-62
+src/main/java/com/fraudfinder/shared/dto/ApiResponse.java
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 1-16
+src/main/java/com/fraudfinder/detection/dto/DetectionResultResponse.java
+  s_cceaaef18fc9de::t_b0ebbfd8f83a16 1-12
+src/main/java/com/fraudfinder/shared/web/GlobalExceptionHandler.java
+  s_cceaaef18fc9de::t_b36c238eb1f2ce 22,34,41
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 1-2,4-21,23-33,35-40,42-51
+  s_cceaaef18fc9de::t_a1b037661bac7e 3
+src/main/java/com/fraudfinder/detection/model/FraudDetectionResult.java
+  s_cceaaef18fc9de::t_1862b37bb8e305 1-65
+src/main/java/com/fraudfinder/alert/AlertService.java
+  s_cceaaef18fc9de::t_8b844ece710a2b 45-48
+  s_cceaaef18fc9de::t_54e6776cc3f27c 22-23,28-29,31,33-39,41
+  s_cceaaef18fc9de::t_0103f087e9dc00 1-12,15-21,24-27,42-44,49-53
+  s_cceaaef18fc9de::t_ca045e718c7a7d 13-14
+  s_cceaaef18fc9de::t_dcb5c63a1cdb2b 30,32,40
+src/test/java/com/fraudfinder/shared/util/GeoUtilsTest.java
+  s_cceaaef18fc9de::t_249924d0296edb 1-39
+src/main/java/com/fraudfinder/shared/dto/PageMeta.java
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 1-3
+src/main/java/com/fraudfinder/shared/tracing/MdcTraceId.java
+  s_cceaaef18fc9de::t_6f39b9f5446a7a 1-9
+src/main/java/com/fraudfinder/FraudFinderApplication.java
+  s_cceaaef18fc9de::t_300e62a09aef33 7,12
+src/main/java/com/fraudfinder/detection/repository/RuleResultRepository.java
+  s_cceaaef18fc9de::t_1862b37bb8e305 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "1a8ed9e97cc6d640d674456c2bdb0659f3f56e35",
+  "prompts": {},
+  "sessions": {
+    "s_cceaaef18fc9de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "65a4b5ff-6944-4fa0-a9e2-e264a76f23ae",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
