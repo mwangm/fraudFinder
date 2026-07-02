@@ -42,7 +42,7 @@ class FraudDetectionIntegrationTest {
   static LocalStackContainer localstack =
       new LocalStackContainer(DockerImageName.parse("localstack/localstack:4.3"))
           .withServices(LocalStackContainer.Service.SQS)
-          .withReuse(true);
+          .withStartupTimeout(Duration.ofSeconds(90));
 
   static SqsClient sqsClient;
 
