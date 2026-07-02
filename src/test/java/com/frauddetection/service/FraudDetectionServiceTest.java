@@ -10,6 +10,8 @@ import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.rule.RuleEngine;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +28,14 @@ class FraudDetectionServiceTest {
   @Mock AlertService alertService;
 
   ObjectMapper objectMapper;
+  Validator validator;
   FraudDetectionService service;
 
   @BeforeEach
   void setUp() {
     objectMapper = new ObjectMapper();
-    service = new FraudDetectionService(objectMapper, ruleEngine, alertService);
+    validator = Validation.buildDefaultValidatorFactory().getValidator();
+    service = new FraudDetectionService(objectMapper, ruleEngine, alertService, validator);
   }
 
   @Test
@@ -74,6 +78,20 @@ class FraudDetectionServiceTest {
   @Test
   void givenInvalidJson_whenOnMessage_thenSkipsProcessing() {
     service.onMessage("not valid json {{{");
+
+    verify(ruleEngine, never()).evaluate(any());
+  }
+
+  @Test
+  void givenMissingFields_whenOnMessage_thenThrowsAndTriggersRetry() {
+    // amount is null → @NotNull violation
+    String json = "{\"transactionId\":\"TXN-1\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\"}";
+
+    try {
+      service.onMessage(json);
+    } catch (IllegalArgumentException e) {
+      // Expected — SQS will retry
+    }
 
     verify(ruleEngine, never()).evaluate(any());
   }

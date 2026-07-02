@@ -21,16 +21,22 @@ public class AlertService {
   }
 
   public void publish(DetectionResult e) {
-    if (topicArn.isBlank()) return;
+    if (topicArn.isBlank()) {
+      log.warn("SNS topic ARN not configured, skipping alert: txnId={}", e.transactionId());
+      return;
+    }
 
-    snsClient.publish(
-        PublishRequest.builder()
-            .topicArn(topicArn)
-            .subject("Fraud Alert: " + e.transactionId())
-            .message(buildMessage(e))
-            .build());
-
-    log.info("Alert published to SNS: txnId={}", e.transactionId());
+    try {
+      snsClient.publish(
+          PublishRequest.builder()
+              .topicArn(topicArn)
+              .subject("Fraud Alert: " + e.transactionId())
+              .message(buildMessage(e))
+              .build());
+      log.info("Alert published to SNS: txnId={}", e.transactionId());
+    } catch (Exception ex) {
+      log.error("Failed to publish SNS alert: txnId={}", e.transactionId(), ex);
+    }
   }
 
   private String buildMessage(DetectionResult e) {
