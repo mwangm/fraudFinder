@@ -13,17 +13,18 @@ graph LR
 
         subgraph EKS[Fraud Detection Service - EKS]
             RC[(RulesConfig<br/>application.yml)] -->|"Load"| RE
-            FDS[FraudDetectionService<br/>@SqsListener] -->|"3. Evaluate"| RE[RuleEngine<br/>∑ scores ≥ threshold]
-            FDS -->|"5. Alert"| AL[AlertService<br/>publish to SNS]
-            FDS -->|"4. Persist"| FR[FraudRecorderService<br/>write result]
+            TCS[TransactionConsumerService<br/>@SqsListener] -->|"3. Delegate"| FDS
+            FDS[FraudDetectionService] -->|"4. Evaluate"| RE[RuleEngine<br/>∑ scores ≥ threshold]
+            FDS -->|"5. Persist"| FR[FraudRecorderService]
+            FDS -->|"6. Alert"| AL[AlertService]
         end
     end
 
-    SQS -->|"2. Poll"| FDS
-    RE -->|"4. Result"| FDS
-    FR -->|"6. Save"| RDS
-    AL -->|"7. Publish"| SNS
-    SNS -->|"8. Notify"| AS[("Alert<br/>Subscribers")]
+    SQS -->|"2. Poll"| TCS
+    RE -->|"Result"| FDS
+    FR -->|"7. Save"| RDS
+    AL -->|"8. Publish"| SNS
+    SNS -->|"9. Notify"| AS[("Alert<br/>Subscribers")]
 ```
 
 ## 数据流向
@@ -32,8 +33,8 @@ graph LR
 SQS Message { transactionId, accountId, payeeId, amount }
   │
   ▼
-FraudDetectionService.onMessage()
-  │ JSON → TransactionMessage
+TransactionConsumerService.onMessage()
+  │ @Payload @Valid → TransactionMessage
   │
   ▼
 RuleEngine.evaluate()
