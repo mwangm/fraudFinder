@@ -170,8 +170,9 @@ terraform apply
 
 Build and deploy via GitHub Actions pipeline with Helm.
 
+#### Send Test Transaction
+
 ```bash
-# Send test transaction
 # Fraud scenario (triggers alert):
 ./scripts/send-test-transaction.sh fraud
 
