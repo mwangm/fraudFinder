@@ -32,6 +32,13 @@ jobs:
       - uses: gradle/actions/setup-gradle@v3
       - run: ./gradlew compileJava check --no-daemon
 
+      - name: Upload JaCoCo coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-coverage
+          path: build/reports/jacoco/test/html/
+
   push:
     needs: [build]
     runs-on: ubuntu-latest
