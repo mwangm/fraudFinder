@@ -1,0 +1,19 @@
+src/main/java/com/frauddetection/service/RiskCacheService.java
+  s_9f702fe3c151e5::t_81139ea677337b 36-39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "a6eb2b93119a485aee62ac4b2ebd2cb7ad9e02a7",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
