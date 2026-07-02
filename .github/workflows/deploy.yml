@@ -4,13 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       image_tag:
-        description: 'Docker image tag to deploy'
+        description: 'Docker image tag to deploy (defaults to last successful CI SHA)'
         required: false
-        default: 'latest'
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
-    branches: [main]
+        default: ''
 
 env:
   AWS_REGION: 'ap-northeast-1'
@@ -22,13 +18,26 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_sha == github.sha) }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
+      actions: read
     steps:
       - uses: actions/checkout@v4
+
+      - name: Resolve image tag
+        id: resolve
+        run: |
+          if [ -n "${{ github.event.inputs.image_tag }}" ]; then
+            echo "tag=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
+          else
+            LAST_SHA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/actions/workflows/ci.yml/runs?status=success&per_page=1&branch=main" \
+              | jq -r '.workflow_runs[0].head_sha')
+            echo "tag=${LAST_SHA}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -46,14 +55,12 @@ jobs:
           aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
       - name: Deploy with Helm
-        env:
-          IMAGE_TAG: ${{ github.event.inputs.image_tag || github.event.workflow_run.head_sha || github.sha }}
         run: |
           helm upgrade --install fraud-detection ./charts/fraud-detection \
             -f ./charts/fraud-detection/values-prod.yaml \
             --namespace fraud-detection --create-namespace \
             --set image.repository=${{ env.DOCKER_IMAGE }} \
-            --set image.tag=$IMAGE_TAG \
+            --set image.tag=${{ steps.resolve.outputs.tag }} \
             --set imagePullSecrets[0].name=dockerhub-secret \
             --set database.password=${{ secrets.DB_PASSWORD }} \
             --wait --timeout 10m
