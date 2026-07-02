@@ -1,0 +1,27 @@
+src/main/java/com/frauddetection/service/FraudDetectionService.java
+  s_9f702fe3c151e5::t_a38cc624027998 35-39
+src/main/java/com/frauddetection/service/TransactionConsumerService.java
+  s_9f702fe3c151e5::t_7776db4e0ad73e 20-23
+src/main/java/com/frauddetection/service/AlertService.java
+  s_9f702fe3c151e5::t_b9a55c13a172e6 26,32
+src/main/java/com/frauddetection/service/FraudRecorderService.java
+  s_9f702fe3c151e5::t_96423627b61068 23-27
+src/main/java/com/frauddetection/rule/RuleEngine.java
+  s_9f702fe3c151e5::t_5214a3a3d47382 27-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "09ee25f9bf489721f90211f15ae695b22e6e9c31",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
