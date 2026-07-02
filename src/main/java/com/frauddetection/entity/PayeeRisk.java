@@ -3,7 +3,7 @@ package com.frauddetection.entity;
 import jakarta.persistence.*;
 import java.time.Instant;
 
-/** 收款方风险等级 。 */
+/** Payee risk level — reference data loaded into RiskCacheService. */
 @Entity
 @Table(name = "payee_risks")
 public class PayeeRisk {

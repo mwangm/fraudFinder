@@ -3,7 +3,7 @@ package com.frauddetection.entity;
 import jakarta.persistence.*;
 import java.time.Instant;
 
-/** 黑名单账户 */
+/** Blacklisted payer account — reference data loaded into RiskCacheService. */
 @Entity
 @Table(name = "suspicious_accounts")
 public class SuspiciousAccount {
