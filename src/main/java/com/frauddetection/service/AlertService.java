@@ -31,11 +31,6 @@ public class AlertService {
 
   /** Formats and publishes a fraud alert to SNS. Failures are logged but not rethrown. */
   public void publish(FraudRecord result) {
-    if (topicArn.isBlank()) {
-      log.warn("SNS topic ARN not configured, skipping alert: txnId={}", result.getTransactionId());
-      return;
-    }
-
     var msg =
         new StringBuilder()
             .append("FRAUD DETECTED!\n")
@@ -55,16 +50,21 @@ public class AlertService {
       msg.append("- ").append(d.getRuleName()).append(": ").append(d.getReason()).append("\n");
     }
 
+    send("Fraud Alert: " + result.getTransactionId(), msg.toString());
+  }
+
+  /** Sends an arbitrary alert message to the SNS topic. */
+  public void send(String subject, String message) {
+    if (topicArn.isBlank()) {
+      log.warn("SNS topic ARN not configured, skipping alert: {}", subject);
+      return;
+    }
     try {
       snsClient.publish(
-          PublishRequest.builder()
-              .topicArn(topicArn)
-              .subject("Fraud Alert: " + result.getTransactionId())
-              .message(msg.toString())
-              .build());
-      log.info("Alert published to SNS: txnId={}", result.getTransactionId());
+          PublishRequest.builder().topicArn(topicArn).subject(subject).message(message).build());
+      log.info("Alert published to SNS: {}", subject);
     } catch (Exception ex) {
-      log.error("Failed to publish SNS alert: txnId={}", result.getTransactionId(), ex);
+      log.error("Failed to publish SNS alert: {}", subject, ex);
     }
   }
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class RiskCacheService {
   private final SuspiciousAccountRepository suspiciousAccountRepository;
   private final PayeeRiskRepository payeeRiskRepository;
+  private final AlertService alertService;
 
   private volatile Set<String> suspiciousAccountIds = Set.of();
   private volatile Map<String, PayeeRisk> payeeRiskMap = Map.of();
@@ -25,9 +26,11 @@ public class RiskCacheService {
 
   public RiskCacheService(
       SuspiciousAccountRepository suspiciousAccountRepository,
-      PayeeRiskRepository payeeRiskRepository) {
+      PayeeRiskRepository payeeRiskRepository,
+      AlertService alertService) {
     this.suspiciousAccountRepository = suspiciousAccountRepository;
     this.payeeRiskRepository = payeeRiskRepository;
+    this.alertService = alertService;
   }
 
   @PostConstruct
@@ -60,6 +63,11 @@ public class RiskCacheService {
           initialized ? "stale" : "empty",
           initialized,
           e);
+      if (initialized) {
+        alertService.send(
+            "FRAUD-DETECTION: Risk cache refresh failed",
+            "Risk cache refresh failed, using stale data. Error: " + e.getMessage());
+      }
     }
   }
 

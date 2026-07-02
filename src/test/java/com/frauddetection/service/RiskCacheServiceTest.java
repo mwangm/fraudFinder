@@ -20,12 +20,13 @@ class RiskCacheServiceTest {
 
   @Mock SuspiciousAccountRepository suspiciousRepo;
   @Mock PayeeRiskRepository payeeRiskRepo;
+  @Mock AlertService alertService;
 
   RiskCacheService service;
 
   @BeforeEach
   void setUp() {
-    service = new RiskCacheService(suspiciousRepo, payeeRiskRepo);
+    service = new RiskCacheService(suspiciousRepo, payeeRiskRepo, alertService);
   }
 
   @Test
