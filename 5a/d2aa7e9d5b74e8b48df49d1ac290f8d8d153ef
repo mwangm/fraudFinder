@@ -1,0 +1,40 @@
+src/test/java/com/frauddetection/integration/FraudDetectionIntegrationTest.java
+  s_c3d009e1ad54bf::t_b6df4e31fdacf2 85
+  s_c3d009e1ad54bf::t_139388fc68eb13 1-6,8,10-19,24-28,30-43,47-52,56-59,63-83,87-106,108-110
+  s_c3d009e1ad54bf::t_834b615147d7a7 9
+  s_c3d009e1ad54bf::t_a7e4e53575b952 44
+  s_c3d009e1ad54bf::t_cff97f41b83d04 45
+  s_c3d009e1ad54bf::t_1f0416de080955 20-22
+  s_c3d009e1ad54bf::t_2e93b2f570459b 53-55
+  s_c3d009e1ad54bf::t_30e624d7604ea7 29
+  s_c3d009e1ad54bf::t_d6d18659ad6689 7,46,60-62,84,86,107
+  s_c3d009e1ad54bf::t_2228073c282f63 23
+src/test/java/com/frauddetection/integration/TestAlertService.java
+  s_c3d009e1ad54bf::t_e39c86914005fc 1-32,34-47
+  s_c3d009e1ad54bf::t_3c99732b92a332 33
+.github/workflows/ci.yml
+  s_c3d009e1ad54bf::t_f95a996935d3b9 35-46
+src/test/resources/application-test.yml
+  s_c3d009e1ad54bf::t_84573342008691 4-9,11,15-34
+  s_c3d009e1ad54bf::t_beaa83d2552661 35
+build.gradle.kts
+  s_c3d009e1ad54bf::t_69fee4cfec479c 39,42-43
+  s_c3d009e1ad54bf::t_940def9d8e120d 60-62,66-72
+  s_c3d009e1ad54bf::t_4ee29be8ae922f 73-74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "5ad2aa7e9d5b74e8b48df49d1ac290f8d8d153ef",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
