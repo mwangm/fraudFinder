@@ -45,7 +45,7 @@ jobs:
       - run: ./gradlew integrationTest --no-daemon
 
   push:
-    needs: build
+    needs: [build, integration-test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
