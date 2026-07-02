@@ -1,0 +1,21 @@
+README.md
+  s_c3d009e1ad54bf::t_281c869d8a762c 88
+  s_c3d009e1ad54bf::t_e5781e7af45686 34
+  s_c3d009e1ad54bf::t_0d84b09a6a8b39 95-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "2a83418a80eb09a397a0d50b27ff38aa46e51ffa",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
