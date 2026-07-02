@@ -1,0 +1,20 @@
+doc/architecture.md
+  s_ebe5b1f82c1fb5::t_d66735895d56e9 58,76
+  s_ebe5b1f82c1fb5::t_548a6c7cb92d08 59-75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "8c5a3e7d14e84abe1b7d2376834875460df0e363",
+  "prompts": {},
+  "sessions": {
+    "s_ebe5b1f82c1fb5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f9a46207-e789-45f0-bfd9-d4f686ce1b45",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
