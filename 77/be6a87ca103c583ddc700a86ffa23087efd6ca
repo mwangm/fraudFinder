@@ -1,0 +1,31 @@
+src/main/java/com/frauddetection/entity/FraudRecord.java
+  s_9f702fe3c151e5::t_2e832a54fc78ab 3-10
+src/main/java/com/frauddetection/repository/SuspiciousAccountRepository.java
+  s_9f702fe3c151e5::t_402f69eb284fcd 3
+src/main/java/com/frauddetection/entity/Transaction.java
+  s_9f702fe3c151e5::t_ed2a6f47467daa 3-6
+src/main/java/com/frauddetection/entity/PayeeRisk.java
+  s_9f702fe3c151e5::t_106f943bbbdd05 3-8
+src/main/java/com/frauddetection/entity/FraudRecordDetail.java
+  s_9f702fe3c151e5::t_908bba2a6ef815 3-11
+src/main/java/com/frauddetection/repository/PayeeRiskRepository.java
+  s_9f702fe3c151e5::t_afad29a5a59e57 3
+src/main/java/com/frauddetection/entity/SuspiciousAccount.java
+  s_9f702fe3c151e5::t_0891eece3a4a2c 3-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "77be6a87ca103c583ddc700a86ffa23087efd6ca",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
