@@ -57,7 +57,7 @@ public class RuleEngine {
               DetectionResultDetail.triggered(rule.name(), rule.score(), rule.alertMessage()))
           : Optional.empty();
     } catch (Exception e) {
-      log.error("Rule '{}' failed: {}", rule.name(), e.getMessage());
+      log.error("Rule '{}' evaluation failed — treating as not triggered", rule.name(), e);
       return Optional.empty();
     }
   }
