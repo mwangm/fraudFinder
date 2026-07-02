@@ -10,8 +10,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.testcontainers.containers.localstack.LocalStackContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -34,12 +35,22 @@ class FraudDetectionIntegrationTest {
 
   private static final String QUEUE_NAME = "fraud-transactions-test";
 
-  @Container @ServiceConnection
+  @Container
   static LocalStackContainer localstack =
       new LocalStackContainer(DockerImageName.parse("localstack/localstack:4.3"))
           .withServices(LocalStackContainer.Service.SQS);
 
   static SqsClient sqsClient;
+
+  @DynamicPropertySource
+  static void overrideProperties(DynamicPropertyRegistry registry) {
+    registry.add(
+        "spring.cloud.aws.endpoint",
+        () -> localstack.getEndpointOverride(LocalStackContainer.Service.SQS));
+    registry.add("spring.cloud.aws.region.static", localstack::getRegion);
+    registry.add("spring.cloud.aws.credentials.access-key", () -> "test");
+    registry.add("spring.cloud.aws.credentials.secret-key", () -> "test");
+  }
 
   @MockitoBean SnsClient snsClient;
 
