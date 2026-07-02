@@ -45,7 +45,7 @@ Real-time fraud detection system that processes financial transactions from Amaz
        │                 ▼                     │
        │  ┌──────────────────────────────┐     │
        │  │   Fraud Detection Service    │     │
-       │  │   (EKS, 2-8 replicas)        │     │
+       │  │   (EKS, auto-scaled)         │     │
        │  │   ┌──────────────────────┐   │     │
        │  │   │    Rule Engine        │   │     │
        │  │   │  YAML + SpEL rules    │   │     │
