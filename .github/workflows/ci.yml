@@ -30,7 +30,7 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: temurin
       - uses: gradle/actions/setup-gradle@v3
-      - run: ./gradlew compileJava test jacocoTestReport --no-daemon
+      - run: ./gradlew compileJava check --no-daemon
 
   push:
     needs: build
