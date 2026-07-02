@@ -1,0 +1,23 @@
+src/test/java/com/frauddetection/rule/RuleEngineTest.java
+  s_c3d009e1ad54bf::t_60fa618f9b2bcd 106
+  s_c3d009e1ad54bf::t_826fff77af4dfd 91-105,107-114
+src/test/java/com/frauddetection/service/FraudDetectionServiceTest.java
+  s_c3d009e1ad54bf::t_ec25a55daf8449 28,33
+  s_c3d009e1ad54bf::t_1199633fd1ffab 62-80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "11792f7746d9960974dffc9085d1451ec44e8edf",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
