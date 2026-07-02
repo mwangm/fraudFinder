@@ -1,0 +1,19 @@
+src/main/resources/application.yml
+  s_c3d009e1ad54bf::t_d0cbc34ca68eeb 35-49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "c3d1ac4fa51344fdd688a455ff74dd6de53134aa",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
