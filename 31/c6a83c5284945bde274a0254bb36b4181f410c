@@ -1,0 +1,21 @@
+doc/perf-test-results.md
+  s_9f702fe3c151e5::t_154841a83182ab 1-99
+README.md
+  s_9f702fe3c151e5::t_553f53b51b0e2b 129
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "31c6a83c5284945bde274a0254bb36b4181f410c",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
