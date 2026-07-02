@@ -1,0 +1,19 @@
+src/main/java/com/frauddetection/service/TransactionConsumerService.java
+  s_9f702fe3c151e5::t_851ccfe63a273e 9,13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "9491bb6b16f58753ea623a75b38d104115962d94",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
