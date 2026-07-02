@@ -2,13 +2,15 @@ package com.frauddetection.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.ArgumentCaptor;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -22,6 +24,7 @@ import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sns.SnsClient;
+import software.amazon.awssdk.services.sns.model.PublishRequest;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.CreateQueueRequest;
 import software.amazon.awssdk.services.sqs.model.PurgeQueueRequest;
@@ -42,6 +45,8 @@ class FraudDetectionIntegrationTest {
 
   static SqsClient sqsClient;
 
+  @MockitoBean SnsClient snsClient;
+
   @DynamicPropertySource
   static void overrideProperties(DynamicPropertyRegistry registry) {
     registry.add(
@@ -51,10 +56,6 @@ class FraudDetectionIntegrationTest {
     registry.add("spring.cloud.aws.credentials.access-key", () -> "test");
     registry.add("spring.cloud.aws.credentials.secret-key", () -> "test");
   }
-
-  @MockitoBean SnsClient snsClient;
-
-  @Autowired TestAlertService alertService;
 
   @BeforeAll
   static void createQueue() {
@@ -75,13 +76,12 @@ class FraudDetectionIntegrationTest {
 
   @AfterEach
   void tearDown() {
-    alertService.reset();
     var queueUrl = sqsClient.getQueueUrl(r -> r.queueName(QUEUE_NAME)).queueUrl();
     sqsClient.purgeQueue(PurgeQueueRequest.builder().queueUrl(queueUrl).build());
   }
 
   @Test
-  void givenFraudulentTransaction_whenSentToSqs_thenTriggersAlert() {
+  void givenFraudulentTransaction_whenSentToSqs_thenPublishesToSns() {
     var queueUrl = sqsClient.getQueueUrl(r -> r.queueName(QUEUE_NAME)).queueUrl();
 
     sqsClient.sendMessage(
@@ -93,18 +93,19 @@ class FraudDetectionIntegrationTest {
                 """)
             .build());
 
+    var captor = ArgumentCaptor.forClass(PublishRequest.class);
     await()
         .atMost(Duration.ofSeconds(15))
         .untilAsserted(
             () -> {
-              assertThat(alertService.getTriggeredRules()).isNotEmpty();
-              assertThat(alertService.getTriggeredRules().get(0).ruleName())
-                  .isEqualTo("suspicious-payer-account");
+              verify(snsClient).publish(captor.capture());
+              assertThat(captor.getValue().message()).contains("FRAUD DETECTED!");
+              assertThat(captor.getValue().subject()).contains("ITX-001");
             });
   }
 
   @Test
-  void givenNormalTransaction_whenSentToSqs_thenNoAlerts() {
+  void givenNormalTransaction_whenSentToSqs_thenNoSnsPublished() {
     var queueUrl = sqsClient.getQueueUrl(r -> r.queueName(QUEUE_NAME)).queueUrl();
 
     sqsClient.sendMessage(
@@ -120,7 +121,8 @@ class FraudDetectionIntegrationTest {
         .pollDelay(Duration.ofSeconds(5))
         .untilAsserted(
             () -> {
-              assertThat(alertService.getAlerts()).isEmpty();
+              verify(snsClient, never())
+                  .publish((PublishRequest) org.mockito.ArgumentMatchers.any());
             });
   }
 }
