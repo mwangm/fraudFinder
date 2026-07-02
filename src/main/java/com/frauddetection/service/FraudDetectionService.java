@@ -15,18 +15,22 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class FraudDetectionService {
+
   private final ObjectMapper objectMapper;
   private final RuleEngine ruleEngine;
+  private final FraudRecorderService fraudRecorder;
   private final AlertService alertService;
   private final Validator validator;
 
   public FraudDetectionService(
       ObjectMapper objectMapper,
       RuleEngine ruleEngine,
+      FraudRecorderService fraudRecorder,
       AlertService alertService,
       Validator validator) {
     this.objectMapper = objectMapper;
     this.ruleEngine = ruleEngine;
+    this.fraudRecorder = fraudRecorder;
     this.alertService = alertService;
     this.validator = validator;
   }
@@ -57,6 +61,16 @@ public class FraudDetectionService {
   }
 
   void detect(TransactionMessage message) {
-    ruleEngine.evaluate(message).ifPresent(alertService::publish);
+    if (fraudRecorder.findExisting(message.transactionId()).isPresent()) {
+      log.info("Already processed, skipping duplicate: txnId={}", message.transactionId());
+      return;
+    }
+
+    ruleEngine
+        .evaluate(message)
+        .ifPresent(
+            evaluation -> {
+              alertService.publish(fraudRecorder.save(message, evaluation));
+            });
   }
 }

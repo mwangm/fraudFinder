@@ -1,16 +1,25 @@
 package com.frauddetection.rule;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.TransactionMessage;
+import com.frauddetection.service.RiskCacheService;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 class RuleEngineTest {
+
+  @Mock RiskCacheService riskCache;
 
   RulesConfig properties;
   RuleEngine engine;
@@ -19,7 +28,7 @@ class RuleEngineTest {
   void setUp() {
     properties = new RulesConfig();
     properties.setThreshold(1);
-    engine = new RuleEngine(properties);
+    engine = new RuleEngine(properties, riskCache);
   }
 
   @Test
@@ -53,8 +62,8 @@ class RuleEngineTest {
 
   @Test
   void givenBlacklistedAccount_whenEvaluate_thenReturnsTriggered() {
-    properties.setList(
-        List.of(rule("blacklist", "{'ACC-BAD','ACC-FRAUD'}.contains(accountId)", 80)));
+    when(riskCache.isSuspiciousAccount("ACC-BAD")).thenReturn(true);
+    properties.setList(List.of(rule("blacklist", "#riskCache.isSuspiciousAccount(accountId)", 80)));
 
     Optional<DetectionResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 500));
 
@@ -63,7 +72,8 @@ class RuleEngineTest {
 
   @Test
   void givenHighRiskPayee_whenEvaluate_thenReturnsTriggered() {
-    properties.setList(List.of(rule("high-payee", "{'PE-HIGH'}.contains(payeeId)", 60)));
+    when(riskCache.isHighRiskPayee("PE-HIGH")).thenReturn(true);
+    properties.setList(List.of(rule("high-payee", "#riskCache.isHighRiskPayee(payeeId)", 60)));
 
     Optional<DetectionResult> eval = engine.evaluate(txnWithPayee("PE-HIGH", 500));
 
@@ -72,7 +82,8 @@ class RuleEngineTest {
 
   @Test
   void givenLowRiskPayee_whenEvaluate_thenReturnsEmpty() {
-    properties.setList(List.of(rule("high-payee", "{'PE-HIGH'}.contains(payeeId)", 60)));
+    when(riskCache.isHighRiskPayee(anyString())).thenReturn(false);
+    properties.setList(List.of(rule("high-payee", "#riskCache.isHighRiskPayee(payeeId)", 60)));
 
     Optional<DetectionResult> eval = engine.evaluate(txnWithPayee("PE-NORMAL", 500));
 
@@ -101,9 +112,12 @@ class RuleEngineTest {
 
   @Test
   void givenMultipleRules_whenEvaluate_thenAccumulatesScore() {
+    when(riskCache.isSuspiciousAccount("ACC-BAD")).thenReturn(true);
     properties.setThreshold(70);
     properties.setList(
-        List.of(rule("r1", "amount > 100", 40), rule("r2", "accountId == 'ACC-BAD'", 40)));
+        List.of(
+            rule("r1", "amount > 100", 40),
+            rule("r2", "#riskCache.isSuspiciousAccount(accountId)", 40)));
 
     Optional<DetectionResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 200));
 

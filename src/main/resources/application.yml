@@ -5,6 +5,20 @@ spring:
   application:
     name: fraud-detection
 
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:frauddetection;DB_CLOSE_DELAY=-1}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
   cloud:
     aws:
       region:
@@ -13,36 +27,21 @@ spring:
         enabled: true
         auto-create-queue: false
 
-# ── Rule Engine ──
+# Rule Engine
 fraud:
   rules:
     threshold: 70
     list:
-      - name: "amount-threshold"
-        condition: "amount > 100000"
-        score: 40
-        alertMessage: "Large amount transaction detected"
-        enabled: true
-      - name: "suspicious-payer-account"
-        condition: "{'ACC-BAD','ACC-FRAUD','ACC-SCAM'}.contains(accountId)"
-        score: 80
-        alertMessage: "Payer account is blacklisted"
-        enabled: true
-      - name: "high-risk-payee"
-        condition: "{'PE-HIGH','PE-RISK'}.contains(payeeId)"
-        score: 60
-        alertMessage: "Payee is high risk"
-        enabled: true
 
-# ── SNS ──
+# SNS
 sns:
   topic-arn: ${SNS_TOPIC_ARN:}
 
-# ── AWS SQS ──
+# AWS SQS
 sqs:
   queue-name: ${SQS_QUEUE_NAME:fraud-transactions}
 
-# ── Actuator ──
+# Actuator
 management:
   endpoints:
     web:

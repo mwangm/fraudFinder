@@ -3,6 +3,7 @@ package com.frauddetection.rule;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;
+import com.frauddetection.service.RiskCacheService;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -16,13 +17,16 @@ public class RuleEngine {
 
   private final SpelExpressionParser parser = new SpelExpressionParser();
   private final RulesConfig rulesConfig;
+  private final RiskCacheService riskCache;
 
-  public RuleEngine(RulesConfig rulesConfig) {
+  public RuleEngine(RulesConfig rulesConfig, RiskCacheService riskCache) {
     this.rulesConfig = rulesConfig;
+    this.riskCache = riskCache;
   }
 
   public Optional<DetectionResult> evaluate(TransactionMessage message) {
     var ctx = new StandardEvaluationContext(message);
+    ctx.setVariable("riskCache", riskCache);
 
     List<DetectionResultDetail> triggered =
         rulesConfig.getList().stream()

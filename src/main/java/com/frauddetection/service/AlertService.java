@@ -1,7 +1,7 @@
 package com.frauddetection.service;
 
-import com.frauddetection.model.DetectionResult;
-import java.util.stream.Collectors;
+import com.frauddetection.model.FraudRecord;
+import com.frauddetection.model.FraudRecordDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -20,43 +20,41 @@ public class AlertService {
     this.topicArn = topicArn;
   }
 
-  public void publish(DetectionResult e) {
+  public void publish(FraudRecord result) {
     if (topicArn.isBlank()) {
-      log.warn("SNS topic ARN not configured, skipping alert: txnId={}", e.transactionId());
+      log.warn("SNS topic ARN not configured, skipping alert: txnId={}", result.getTransactionId());
       return;
+    }
+
+    var msg =
+        new StringBuilder()
+            .append("FRAUD DETECTED!\n")
+            .append("Transaction ID: ")
+            .append(result.getTransactionId())
+            .append("\n")
+            .append("Score: ")
+            .append(result.getTotalScore())
+            .append("/")
+            .append(result.getThreshold())
+            .append("\n")
+            .append("Detected At: ")
+            .append(result.getDetectedAt())
+            .append("\n");
+
+    for (FraudRecordDetail d : result.getDetails()) {
+      msg.append("- ").append(d.getRuleName()).append(": ").append(d.getReason()).append("\n");
     }
 
     try {
       snsClient.publish(
           PublishRequest.builder()
               .topicArn(topicArn)
-              .subject("Fraud Alert: " + e.transactionId())
-              .message(buildMessage(e))
+              .subject("Fraud Alert: " + result.getTransactionId())
+              .message(msg.toString())
               .build());
-      log.info("Alert published to SNS: txnId={}", e.transactionId());
+      log.info("Alert published to SNS: txnId={}", result.getTransactionId());
     } catch (Exception ex) {
-      log.error("Failed to publish SNS alert: txnId={}", e.transactionId(), ex);
+      log.error("Failed to publish SNS alert: txnId={}", result.getTransactionId(), ex);
     }
-  }
-
-  private String buildMessage(DetectionResult e) {
-    var triggered =
-        e.ruleResults().stream()
-            .map(r -> r.ruleName() + "(" + r.score() + ")")
-            .collect(Collectors.joining(", "));
-
-    var details =
-        e.ruleResults().stream().map(r -> "- " + r.reason()).collect(Collectors.joining("\n"));
-
-    return """
-        FRAUD ALERT!
-        Transaction ID: %s
-        Score: %d/%d
-        Detected At: %s
-        Triggered Rules: %s
-        Details:
-        %s"""
-        .formatted(
-            e.transactionId(), e.totalScore(), e.threshold(), e.detectedAt(), triggered, details);
   }
 }

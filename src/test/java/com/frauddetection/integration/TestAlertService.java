@@ -1,7 +1,7 @@
 package com.frauddetection.integration;
 
-import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
+import com.frauddetection.model.FraudRecord;
 import com.frauddetection.service.AlertService;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +21,18 @@ public class TestAlertService extends AlertService {
   }
 
   @Override
-  public void publish(DetectionResult result) {
-    triggeredRules.addAll(result.ruleResults());
+  public void publish(FraudRecord record) {
+    triggeredRules.addAll(
+        record.getDetails().stream()
+            .map(d -> new DetectionResultDetail(d.getRuleName(), d.getScore(), d.getReason()))
+            .toList());
     alerts.add(
         String.format(
             "ALERT: txnId=%s score=%d/%d rules=%s",
-            result.transactionId(),
-            result.totalScore(),
-            result.threshold(),
-            result.ruleResults().stream().map(DetectionResultDetail::ruleName).toList()));
+            record.getTransactionId(),
+            record.getTotalScore(),
+            record.getThreshold(),
+            record.getDetails().stream().map(d -> d.getRuleName()).toList()));
   }
 
   public List<DetectionResultDetail> getTriggeredRules() {

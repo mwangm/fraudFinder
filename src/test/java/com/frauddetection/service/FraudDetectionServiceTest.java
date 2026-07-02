@@ -8,11 +8,13 @@ import static org.mockito.Mockito.when;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
+import com.frauddetection.model.FraudRecord;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.rule.RuleEngine;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +28,7 @@ class FraudDetectionServiceTest {
 
   @Mock RuleEngine ruleEngine;
   @Mock AlertService alertService;
+  @Mock FraudRecorderService fraudRecorder;
 
   ObjectMapper objectMapper;
   Validator validator;
@@ -35,11 +38,13 @@ class FraudDetectionServiceTest {
   void setUp() {
     objectMapper = new ObjectMapper();
     validator = Validation.buildDefaultValidatorFactory().getValidator();
-    service = new FraudDetectionService(objectMapper, ruleEngine, alertService, validator);
+    service =
+        new FraudDetectionService(objectMapper, ruleEngine, fraudRecorder, alertService, validator);
   }
 
   @Test
   void givenFraudScore_whenDetect_thenPublishesAlert() {
+    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
     var evaluation =
         new DetectionResult(
             "TXN-1",
@@ -48,14 +53,17 @@ class FraudDetectionServiceTest {
             70,
             "2026-07-01T12:00:00Z");
     when(ruleEngine.evaluate(any())).thenReturn(Optional.of(evaluation));
+    var saved = new FraudRecord("TXN-1", 80, 70, Instant.now());
+    when(fraudRecorder.save(any(), any())).thenReturn(saved);
 
     service.detect(msg(5000));
 
-    verify(alertService).publish(evaluation);
+    verify(alertService).publish(saved);
   }
 
   @Test
   void givenNormalScore_whenDetect_thenNoAction() {
+    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
 
     service.detect(msg(500));
@@ -64,7 +72,18 @@ class FraudDetectionServiceTest {
   }
 
   @Test
+  void givenDuplicateMessage_whenDetect_thenSkipsProcessing() {
+    when(fraudRecorder.findExisting("TXN-1"))
+        .thenReturn(Optional.of(new FraudRecord("TXN-1", 0, 0, Instant.now())));
+
+    service.detect(msg(500));
+
+    verify(ruleEngine, never()).evaluate(any());
+  }
+
+  @Test
   void givenValidJson_whenOnMessage_thenDeserializesAndDetects() {
+    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
     String json =
         "{\"transactionId\":\"TXN-1\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\",\"amount\":500}";
@@ -84,7 +103,6 @@ class FraudDetectionServiceTest {
 
   @Test
   void givenMissingFields_whenOnMessage_thenThrowsAndTriggersRetry() {
-    // amount is null → @NotNull violation
     String json = "{\"transactionId\":\"TXN-1\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\"}";
 
     try {
