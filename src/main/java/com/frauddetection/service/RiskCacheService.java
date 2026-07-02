@@ -20,9 +20,7 @@ public class RiskCacheService {
   private final PayeeRiskRepository payeeRiskRepository;
   private final AlertService alertService;
 
-  private volatile Set<String> suspiciousAccountIds = Set.of();
-  private volatile Map<String, PayeeRisk> payeeRiskMap = Map.of();
-  private volatile boolean initialized = false;
+  private volatile CacheState state = CacheState.EMPTY;
 
   public RiskCacheService(
       SuspiciousAccountRepository suspiciousAccountRepository,
@@ -36,7 +34,7 @@ public class RiskCacheService {
   @PostConstruct
   void init() {
     refresh();
-    if (!initialized) {
+    if (!state.initialized) {
       throw new IllegalStateException(
           "Risk cache failed to initialize — check database connectivity");
     }
@@ -45,25 +43,28 @@ public class RiskCacheService {
   @Scheduled(fixedDelayString = "${fraud.cache.refresh-interval-seconds:60}000")
   void refresh() {
     try {
-      suspiciousAccountIds =
+      Set<String> accounts =
           suspiciousAccountRepository.findAll().stream()
               .map(SuspiciousAccount::getAccountId)
               .collect(Collectors.toUnmodifiableSet());
-      payeeRiskMap =
+      Map<String, PayeeRisk> payees =
           payeeRiskRepository.findAll().stream()
               .collect(Collectors.toUnmodifiableMap(PayeeRisk::getPayeeId, r -> r));
-      initialized = true;
+
+      // Atomic replacement — readers see either full old or full new state, never a mix
+      state = new CacheState(accounts, payees, true);
+
       log.info(
           "Risk cache refreshed: {} suspicious accounts, {} payee risks",
-          suspiciousAccountIds.size(),
-          payeeRiskMap.size());
+          accounts.size(),
+          payees.size());
     } catch (Exception e) {
       log.error(
           "Risk cache refresh failed — using {} cache (initialized={})",
-          initialized ? "stale" : "empty",
-          initialized,
+          state.initialized ? "stale" : "empty",
+          state.initialized,
           e);
-      if (initialized) {
+      if (state.initialized) {
         alertService.send(
             "FRAUD-DETECTION: Risk cache refresh failed",
             "Risk cache refresh failed, using stale data. Error: " + e.getMessage());
@@ -72,11 +73,11 @@ public class RiskCacheService {
   }
 
   public boolean isSuspicious(String accountId) {
-    return suspiciousAccountIds.contains(accountId);
+    return state.suspiciousAccounts.contains(accountId);
   }
 
   public PayeeRisk getPayeeRisk(String payeeId) {
-    return payeeRiskMap.get(payeeId);
+    return state.payeeRisks.get(payeeId);
   }
 
   /** SpEL-friendly alias: {@code riskCache.isSuspiciousAccount(accountId)}. */
@@ -87,5 +88,11 @@ public class RiskCacheService {
   /** SpEL-friendly alias: {@code riskCache.isHighRiskPayee(payeeId)}. */
   public boolean isHighRiskPayee(String payeeId) {
     return getPayeeRisk(payeeId) != null;
+  }
+
+  private record CacheState(
+      Set<String> suspiciousAccounts, Map<String, PayeeRisk> payeeRisks, boolean initialized) {
+
+    static final CacheState EMPTY = new CacheState(Set.of(), Map.of(), false);
   }
 }
