@@ -33,7 +33,10 @@ public class RiskCacheService {
   @PostConstruct
   void init() {
     refresh();
-    initialized = true;
+    if (!initialized) {
+      throw new IllegalStateException(
+          "Risk cache failed to initialize — check database connectivity");
+    }
   }
 
   @Scheduled(fixedDelayString = "${fraud.cache.refresh-interval-seconds:60}000")
