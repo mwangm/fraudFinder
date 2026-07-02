@@ -1,0 +1,41 @@
+doc/rule-engine.md
+  s_9f702fe3c151e5::t_feaaa08ddbeeb2 19-20,25
+  s_9f702fe3c151e5::t_c27a137bdf6f8e 41
+  s_9f702fe3c151e5::t_f1af1731d79c3d 48,50-51
+CLAUDE.md
+  s_9f702fe3c151e5::t_4dcc6cf8f10523 13
+  s_9f702fe3c151e5::t_c1d9ff8839fc8c 15-37
+  s_9f702fe3c151e5::t_d6bc78b40834da 14
+.github/workflows/ci.yml
+  s_9f702fe3c151e5::t_7cdd2f83874206 38
+src/test/resources/application-test.yml
+  s_9f702fe3c151e5::t_040b3ec08a959f 38
+src/test/java/com/frauddetection/integration/FraudDetectionIntegrationTest.java
+  s_9f702fe3c151e5::t_1ff5c50e0015dd 122-123
+  s_9f702fe3c151e5::t_50a1e3d144a676 99
+  s_9f702fe3c151e5::t_58472759964975 44-45
+doc/architecture.md
+  s_9f702fe3c151e5::t_def5161f563707 44-50
+  s_9f702fe3c151e5::t_faedfd1571175d 40
+  s_9f702fe3c151e5::t_88c92cf3609de8 12,18,24-26
+README.md
+  s_9f702fe3c151e5::t_af04ad6af937d3 58-70
+  s_9f702fe3c151e5::t_f8d06cf2933046 26
+  s_9f702fe3c151e5::t_170cdf28a4650e 55-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "20be1f74181be91b267bab79af4b7f0ceca5a78b",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
