@@ -1,10 +1,37 @@
 spring:
   cloud:
     aws:
+      endpoint: http://localhost:4566
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
       sqs:
-        enabled: false
+        enabled: true
       sns:
         enabled: false
+
+fraud:
+  rules:
+    threshold: 70
+    list:
+      - name: "amount-threshold"
+        condition: "amount > 100000"
+        score: 40
+        alertMessage: "Large amount transaction detected"
+        enabled: true
+      - name: "suspicious-payer-account"
+        condition: "{'ACC-BAD','ACC-FRAUD'}.contains(accountId)"
+        score: 80
+        alertMessage: "Payer account is blacklisted"
+        enabled: true
+
+sqs:
+  queue-name: fraud-transactions-test
+
+sns:
+  topic-arn: ""
 
 logging:
   level:
