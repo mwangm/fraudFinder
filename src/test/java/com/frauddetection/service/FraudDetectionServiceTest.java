@@ -5,15 +5,12 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.repository.TransactionRepository;
 import com.frauddetection.rule.RuleEngine;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
@@ -32,17 +29,11 @@ class FraudDetectionServiceTest {
   @Mock FraudRecorderService fraudRecorder;
   @Mock TransactionRepository transactionRepo;
 
-  ObjectMapper objectMapper;
-  Validator validator;
   FraudDetectionService service;
 
   @BeforeEach
   void setUp() {
-    objectMapper = new ObjectMapper();
-    validator = Validation.buildDefaultValidatorFactory().getValidator();
-    service =
-        new FraudDetectionService(
-            objectMapper, ruleEngine, fraudRecorder, alertService, validator, transactionRepo);
+    service = new FraudDetectionService(ruleEngine, fraudRecorder, alertService, transactionRepo);
   }
 
   @Test
@@ -80,39 +71,6 @@ class FraudDetectionServiceTest {
         .thenReturn(Optional.of(new FraudRecord("TXN-1", 0, 0, Instant.now())));
 
     service.detect(msg(500));
-
-    verify(ruleEngine, never()).evaluate(any());
-  }
-
-  @Test
-  void givenValidJson_whenOnMessage_thenDeserializesAndDetects() {
-    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
-    when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
-    String json =
-        "{\"transactionId\":\"TXN-1\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\",\"amount\":500}";
-
-    service.onMessage(json);
-
-    verify(ruleEngine)
-        .evaluate(new TransactionMessage("TXN-1", "ACC-1", "PE-1", BigDecimal.valueOf(500)));
-  }
-
-  @Test
-  void givenInvalidJson_whenOnMessage_thenSkipsProcessing() {
-    service.onMessage("not valid json {{{");
-
-    verify(ruleEngine, never()).evaluate(any());
-  }
-
-  @Test
-  void givenMissingFields_whenOnMessage_thenThrowsAndTriggersRetry() {
-    String json = "{\"transactionId\":\"TXN-1\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\"}";
-
-    try {
-      service.onMessage(json);
-    } catch (IllegalArgumentException e) {
-      // Expected — SQS will retry
-    }
 
     verify(ruleEngine, never()).evaluate(any());
   }

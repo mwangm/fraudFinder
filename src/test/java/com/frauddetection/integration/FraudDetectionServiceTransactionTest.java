@@ -1,10 +1,11 @@
-package com.frauddetection.service;
+package com.frauddetection.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.frauddetection.entity.Transaction;
 import com.frauddetection.repository.TransactionRepository;
+import com.frauddetection.service.TransactionConsumerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +23,7 @@ class FraudDetectionServiceTransactionTest {
 
   @MockitoBean SnsClient snsClient;
 
-  @Autowired FraudDetectionService service;
+  @Autowired TransactionConsumerService consumer;
 
   @Autowired TransactionRepository transactionRepo;
 
@@ -31,7 +32,7 @@ class FraudDetectionServiceTransactionTest {
     String json =
         "{\"transactionId\":\"TXN-001\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\",\"amount\":500}";
 
-    service.onMessage(json);
+    consumer.onMessage(json);
 
     Transaction txn = transactionRepo.findById("TXN-001").orElseThrow();
     assertThat(txn.getAccountId()).isEqualTo("ACC-1");
@@ -40,12 +41,10 @@ class FraudDetectionServiceTransactionTest {
 
   @Test
   void givenInvalidAmount_whenOnMessage_thenValidationFailsAndNoSave() {
-    // amount is null — should fail validation and not save anything
     String json = "{\"transactionId\":\"TXN-002\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\"}";
 
-    assertThatThrownBy(() -> service.onMessage(json)).isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> consumer.onMessage(json)).isInstanceOf(IllegalArgumentException.class);
 
-    // Should be rolled back — nothing persisted
     assertThat(transactionRepo.findById("TXN-002")).isEmpty();
   }
 }
