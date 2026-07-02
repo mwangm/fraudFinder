@@ -31,6 +31,7 @@ Real-time fraud detection system that processes financial transactions from Amaz
 - **Container Orchestration**: Helm
 - **CI/CD**: GitHub Actions (build → test → deploy pipeline)
 - **Log and Metrics**:  CloudWatch
+- **Test Coverage**: JaCoCo with 80% minimum threshold
 
 ## System Architecture
 
@@ -84,12 +85,22 @@ Project documentation
 
 ### `.github/workflows/`
 GitHub Actions workflow definitions for:
-- Continuous Integration
+- Continuous Integration (spotless, test, coverage gate)
 - Build artifacts
 - Deployment to EKS
 
 ### `scripts/`
 - `send-test-transaction.sh` — Send test SQS messages for verification
+
+## Testing
+
+```bash
+# Run all tests with coverage verification (80% minimum)
+./gradlew check
+
+# View coverage report
+open build/reports/jacoco/test/html/index.html
+```
 
 ## Getting Started
 
