@@ -31,6 +31,10 @@ public class AlertService {
 
   /** Formats and publishes a fraud alert to SNS. Failures are logged but not rethrown. */
   public void publish(FraudRecord result) {
+    send("Fraud Alert: " + result.getTransactionId(), formatMessage(result));
+  }
+
+  private String formatMessage(FraudRecord result) {
     var msg =
         new StringBuilder()
             .append("FRAUD DETECTED!\n")
@@ -50,7 +54,7 @@ public class AlertService {
       msg.append("- ").append(d.getRuleName()).append(": ").append(d.getReason()).append("\n");
     }
 
-    send("Fraud Alert: " + result.getTransactionId(), msg.toString());
+    return msg.toString();
   }
 
   /** Sends an arbitrary alert message to the SNS topic. */
