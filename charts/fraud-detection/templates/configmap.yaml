@@ -10,4 +10,7 @@ data:
   SQS_QUEUE_NAME: "{{ .Values.sqs.queueName }}"
   SNS_TOPIC_ARN: "{{ .Values.sns.topicArn }}"
   SPRING_DATASOURCE_URL: "jdbc:mysql://{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+  SPRING_DATASOURCE_DRIVER: "com.mysql.cj.jdbc.Driver"
+  SPRING_DATASOURCE_USERNAME: "{{ .Values.database.username }}"
+  SPRING_DATASOURCE_PASSWORD: "{{ .Values.database.password }}"
   SPRING_PROFILES_ACTIVE: "prod"
