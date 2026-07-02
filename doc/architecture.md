@@ -37,6 +37,11 @@ TransactionConsumerService.onMessage()
   │ @Payload @Valid → TransactionMessage
   │
   ▼
+FraudDetectionService.detect()
+  │ Idempotency check (unique constraint on transaction_id)
+  │ Insert Transaction record
+  │
+  ▼
 RuleEngine.evaluate()
   │ Evaluates rules via SpEL expressions
   │ Total score ≥ threshold → DetectionResult
