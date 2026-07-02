@@ -14,7 +14,6 @@ import com.frauddetection.repository.FraudRecordRepository;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,26 +31,6 @@ class FraudRecorderServiceTest {
   @BeforeEach
   void setUp() {
     service = new FraudRecorderService(repo);
-  }
-
-  @Test
-  void givenNoExistingRecord_whenFindExisting_thenReturnsEmpty() {
-    when(repo.findByTransactionId("TXN-1")).thenReturn(Optional.empty());
-
-    Optional<FraudRecord> result = service.findExisting("TXN-1");
-
-    assertThat(result).isEmpty();
-  }
-
-  @Test
-  void givenExistingRecord_whenFindExisting_thenReturnsRecord() {
-    var existing = new FraudRecord("TXN-1", 80, 70, Instant.now());
-    when(repo.findByTransactionId("TXN-1")).thenReturn(Optional.of(existing));
-
-    Optional<FraudRecord> result = service.findExisting("TXN-1");
-
-    assertThat(result).isPresent();
-    assertThat(result.get().getTransactionId()).isEqualTo("TXN-1");
   }
 
   @Test

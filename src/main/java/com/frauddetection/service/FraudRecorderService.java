@@ -6,7 +6,6 @@ import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.repository.FraudRecordRepository;
 import java.time.Instant;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,10 +18,6 @@ public class FraudRecorderService {
 
   public FraudRecorderService(FraudRecordRepository resultRepo) {
     this.resultRepo = resultRepo;
-  }
-
-  public Optional<FraudRecord> findExisting(String transactionId) {
-    return resultRepo.findByTransactionId(transactionId);
   }
 
   @Transactional
