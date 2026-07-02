@@ -19,10 +19,10 @@ public class RulesConfig {
   }
 
   public List<FraudDetectionRule> getList() {
-    return List.copyOf(list);
+    return list;
   }
 
   public void setList(List<FraudDetectionRule> list) {
-    this.list = List.copyOf(list);
+    this.list = list;
   }
 }
