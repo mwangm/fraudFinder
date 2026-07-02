@@ -37,7 +37,7 @@ public class RiskCacheService {
     initialized = true;
   }
 
-  @Scheduled(fixedRateString = "${fraud.cache.refresh-interval-seconds:60}000")
+  @Scheduled(fixedDelayString = "${fraud.cache.refresh-interval-seconds:60}000")
   void refresh() {
     try {
       suspiciousAccountIds =
