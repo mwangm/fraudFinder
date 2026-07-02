@@ -1,7 +1,7 @@
 package com.frauddetection.integration;
 
+import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.model.DetectionResultDetail;
-import com.frauddetection.model.FraudRecord;
 import com.frauddetection.service.AlertService;
 import java.util.ArrayList;
 import java.util.List;

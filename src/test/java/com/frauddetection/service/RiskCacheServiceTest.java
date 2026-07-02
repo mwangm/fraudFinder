@@ -3,8 +3,8 @@ package com.frauddetection.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import com.frauddetection.model.PayeeRisk;
-import com.frauddetection.model.SuspiciousAccount;
+import com.frauddetection.entity.PayeeRisk;
+import com.frauddetection.entity.SuspiciousAccount;
 import com.frauddetection.repository.PayeeRiskRepository;
 import com.frauddetection.repository.SuspiciousAccountRepository;
 import java.time.Instant;

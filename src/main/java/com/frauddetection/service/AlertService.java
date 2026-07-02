@@ -1,7 +1,7 @@
 package com.frauddetection.service;
 
-import com.frauddetection.model.FraudRecord;
-import com.frauddetection.model.FraudRecordDetail;
+import com.frauddetection.entity.FraudRecord;
+import com.frauddetection.entity.FraudRecordDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

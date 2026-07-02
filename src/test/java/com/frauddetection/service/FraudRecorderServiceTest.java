@@ -5,10 +5,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.frauddetection.entity.FraudRecord;
+import com.frauddetection.entity.FraudRecordDetail;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
-import com.frauddetection.model.FraudRecord;
-import com.frauddetection.model.FraudRecordDetail;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.repository.FraudRecordRepository;
 import java.math.BigDecimal;

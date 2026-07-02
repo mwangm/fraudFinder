@@ -1,6 +1,6 @@
 package com.frauddetection.repository;
 
-import com.frauddetection.model.FraudRecord;
+import com.frauddetection.entity.FraudRecord;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,7 +1,7 @@
 package com.frauddetection.service;
 
-import com.frauddetection.model.PayeeRisk;
-import com.frauddetection.model.SuspiciousAccount;
+import com.frauddetection.entity.PayeeRisk;
+import com.frauddetection.entity.SuspiciousAccount;
 import com.frauddetection.repository.PayeeRiskRepository;
 import com.frauddetection.repository.SuspiciousAccountRepository;
 import jakarta.annotation.PostConstruct;

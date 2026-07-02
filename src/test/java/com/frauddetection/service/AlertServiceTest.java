@@ -3,8 +3,8 @@ package com.frauddetection.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
-import com.frauddetection.model.FraudRecord;
-import com.frauddetection.model.FraudRecordDetail;
+import com.frauddetection.entity.FraudRecord;
+import com.frauddetection.entity.FraudRecordDetail;
 import java.time.Instant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

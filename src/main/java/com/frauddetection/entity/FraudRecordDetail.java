@@ -1,4 +1,4 @@
-package com.frauddetection.model;
+package com.frauddetection.entity;
 
 import jakarta.persistence.*;
 
