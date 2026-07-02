@@ -1,0 +1,23 @@
+src/test/java/com/frauddetection/service/TransactionConsumerServiceTest.java
+  s_9f702fe3c151e5::t_bf696bf97b08c0 18-20,22
+src/main/java/com/frauddetection/service/TransactionConsumerService.java
+  s_9f702fe3c151e5::t_fc471d3c836d4d 5,7,9,16,21
+src/main/java/com/frauddetection/entity/SuspiciousAccount.java
+  s_9f702fe3c151e5::t_2c1677c39581cc 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "de80ef3d81f3705f6719a596281e0351a3989bd4",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
