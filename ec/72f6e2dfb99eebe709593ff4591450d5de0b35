@@ -1,0 +1,47 @@
+src/main/java/com/frauddetection/entity/FraudRecordDetail.java
+  s_c3d009e1ad54bf::t_646e8ae921c2ae 1-46
+src/main/java/com/frauddetection/entity/FraudRecord.java
+  s_c3d009e1ad54bf::t_646e8ae921c2ae 1-67
+src/main/java/com/frauddetection/service/RiskCacheService.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 3-4
+src/main/java/com/frauddetection/service/AlertService.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 3-4
+src/main/java/com/frauddetection/repository/SuspiciousAccountRepository.java
+  s_c3d009e1ad54bf::t_8a35e6ea2f5adf 3
+src/main/java/com/frauddetection/entity/PayeeRisk.java
+  s_c3d009e1ad54bf::t_646e8ae921c2ae 1-55
+src/test/java/com/frauddetection/integration/TestAlertService.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 3
+src/main/java/com/frauddetection/entity/SuspiciousAccount.java
+  s_c3d009e1ad54bf::t_646e8ae921c2ae 1-47
+src/test/java/com/frauddetection/service/AlertServiceTest.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 6-7
+src/test/java/com/frauddetection/service/FraudRecorderServiceTest.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 8-9
+src/main/java/com/frauddetection/repository/FraudRecordRepository.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 3
+src/test/java/com/frauddetection/service/RiskCacheServiceTest.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 6-7
+src/main/java/com/frauddetection/repository/PayeeRiskRepository.java
+  s_c3d009e1ad54bf::t_8a35e6ea2f5adf 3
+src/main/java/com/frauddetection/service/FraudRecorderService.java
+  s_c3d009e1ad54bf::t_8fb06473cca0f3 3-4
+src/test/java/com/frauddetection/service/FraudDetectionServiceTest.java
+  s_c3d009e1ad54bf::t_b0d7a80295b4a1 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "ec72f6e2dfb99eebe709593ff4591450d5de0b35",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
