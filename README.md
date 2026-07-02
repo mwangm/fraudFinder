@@ -30,8 +30,8 @@ Real-time fraud detection system that processes financial transactions from Amaz
 ### DevOps & Deployment
 - **Infrastructure as Code**: Terraform
 - **Container Orchestration**: Helm
-- **CI/CD**: GitHub Actions (build → unit test -integration test → deploy pipeline)
-- **Log and Metrics**:  CloudWatch
+- **CI/CD**: GitHub Actions (build → unit test → integration test → deploy pipeline)
+- **Logging & Metrics**: CloudWatch
 - **Test Coverage**: JaCoCo with 80% minimum threshold
 
 ## System Architecture
@@ -87,7 +87,7 @@ Spring Boot application source code.
 Project documentation
 - System architecture doc
 - AWS configurations 
-- Alert notification simples
+- Alert notification samples
 
 ### `.github/workflows/`
 GitHub Actions workflow definitions for:
@@ -149,7 +149,7 @@ Measures throughput (msg/s) and latency per worker via concurrent SQS senders.
 # Run tests with coverage verification
 ./gradlew check
 
-# Run integration tests，make sure docker running as the precondition
+# Run integration tests (Docker required)
 ```
 
 
@@ -168,10 +168,10 @@ terraform apply
 
 ### Application Deployment
 
-# Build and Deploy using GitHub Actions pipeline by Helm
+Build and deploy via GitHub Actions pipeline with Helm.
 
-# Send test transaction
 ```bash
+# Send test transaction
 # Fraud scenario (triggers alert):
 ./scripts/send-test-transaction.sh fraud
 
