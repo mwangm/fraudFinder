@@ -172,6 +172,8 @@ Build and deploy via GitHub Actions pipeline with Helm.
 
 #### Send Test Transaction
 
+> **Prerequisite**: AWS credentials must be configured (`aws configure` or environment variables with SQS write permission).
+
 ```bash
 # Fraud scenario (triggers alert):
 ./scripts/send-test-transaction.sh fraud
