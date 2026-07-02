@@ -10,6 +10,7 @@ import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;
+import com.frauddetection.repository.TransactionRepository;
 import com.frauddetection.rule.RuleEngine;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -29,6 +30,7 @@ class FraudDetectionServiceTest {
   @Mock RuleEngine ruleEngine;
   @Mock AlertService alertService;
   @Mock FraudRecorderService fraudRecorder;
+  @Mock TransactionRepository transactionRepo;
 
   ObjectMapper objectMapper;
   Validator validator;
@@ -39,7 +41,8 @@ class FraudDetectionServiceTest {
     objectMapper = new ObjectMapper();
     validator = Validation.buildDefaultValidatorFactory().getValidator();
     service =
-        new FraudDetectionService(objectMapper, ruleEngine, fraudRecorder, alertService, validator);
+        new FraudDetectionService(
+            objectMapper, ruleEngine, fraudRecorder, alertService, validator, transactionRepo);
   }
 
   @Test

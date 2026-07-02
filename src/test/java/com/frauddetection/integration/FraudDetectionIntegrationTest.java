@@ -65,7 +65,12 @@ class FraudDetectionIntegrationTest {
             .credentialsProvider(
                 StaticCredentialsProvider.create(AwsBasicCredentials.create("test", "test")))
             .build();
-    sqsClient.createQueue(CreateQueueRequest.builder().queueName(QUEUE_NAME).build());
+    await()
+        .atMost(Duration.ofSeconds(30))
+        .ignoreExceptions()
+        .untilAsserted(
+            () ->
+                sqsClient.createQueue(CreateQueueRequest.builder().queueName(QUEUE_NAME).build()));
   }
 
   @AfterEach
