@@ -100,6 +100,21 @@ GitHub Actions workflow definitions for:
 
 ## Testing
 
+```bash
+# Run unit tests (excludes integration tests)
+./gradlew test
+
+# Run all checks (spotless + tests + coverage verification)
+./gradlew check
+
+# Run integration tests (requires Docker)
+./gradlew integrationTest
+```
+
+- **Test framework**: JUnit 5, Mockito, AssertJ, Awaitility
+- **Coverage**: JaCoCo with 80% minimum threshold, enforced by `check`
+- **Integration tests**: LocalStack Testcontainers for SQS, `@MockitoBean` for SNS
+
 ## Getting Started
 
 ### Prerequisites
