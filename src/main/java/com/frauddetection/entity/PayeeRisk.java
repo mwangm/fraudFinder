@@ -3,7 +3,7 @@ package com.frauddetection.entity;
 import jakarta.persistence.*;
 import java.time.Instant;
 
-/** 收款方风险等级 — 参考数据，通过 RiskCacheService 每 60 秒从 DB 全量刷新到本地缓存。 */
+/** 收款方风险等级 。 */
 @Entity
 @Table(name = "payee_risks")
 public class PayeeRisk {

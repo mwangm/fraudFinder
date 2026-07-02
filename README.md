@@ -23,6 +23,7 @@ Real-time fraud detection system that processes financial transactions from Amaz
 - **Compute**: Amazon EKS (Kubernetes 1.32)
 - **Message Queue**: Amazon SQS (standard queue + DLQ)
 - **Notification**: Amazon SNS
+- **Database**: Amazon RDS MySQL 8.0
 - **Container Registry**: Docker Hub (`menyu168/fraud-detection`)
 - **Monitoring**: Amazon CloudWatch (logs, metrics, alarms)
 
@@ -51,17 +52,22 @@ Real-time fraud detection system that processes financial transactions from Amaz
        │  │   │  YAML + SpEL rules    │   │     │
        │  │   │  Score >= threshold   │   │     │
        │  │   │  → trigger alert      │   │     │
-       │  │   └──────────┬───────────┘   │     │
-       │  └──────────────┼───────────────┘     │
-       │                 │                     │
-       │    ┌────────────▼──────────────┐      │
-       │    │     Amazon SNS            │      │
-       │    │  fraud-detection-alerts   │      │
-       │    └────────────┬──────────────┘      │
-       │                 │                     │
-       │    ┌────────────▼──────────────┐      │
-       │    │   Email / Notification    │      │
-       │    └───────────────────────────┘      │
+       │  │   └──────┬───────┬────────┘   │     │
+       │  └──────────┼───────┼────────────┘     │
+       │             │       │                  │
+       │    ┌────────▼──┐    │                  │
+       │    │ Amazon RDS │    │                  │
+       │    │  MySQL 8.0 │    │                  │
+       │    └────────────┘    │                  │
+       │                      │                  │
+       │    ┌──────────────────▼──────────┐      │
+       │    │         Amazon SNS          │      │
+       │    │   fraud-detection-alerts    │      │
+       │    └──────────────┬──────────────┘      │
+       │                   │                     │
+       │    ┌──────────────▼──────────────┐      │
+       │    │    Email / Notification     │      │
+       │    └─────────────────────────────┘      │
        │                                       │
        └───────────────────────────────────────┘
 ```

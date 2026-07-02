@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.entity.Transaction;
+import com.frauddetection.model.AlertEvent;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;

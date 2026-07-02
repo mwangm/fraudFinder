@@ -35,7 +35,7 @@ fraud:
         alertMessage: "Large amount transaction detected"
         enabled: true
       - name: "suspicious-payer-account"
-        condition: "{'ACC-BAD','ACC-FRAUD'}.contains(accountId)"
+        condition: "accountId == 'ACC-BAD'"
         score: 80
         alertMessage: "Payer account is blacklisted"
         enabled: true

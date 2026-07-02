@@ -1,4 +1,4 @@
-package com.frauddetection.service;
+package com.frauddetection.model;
 
 import com.frauddetection.entity.FraudRecord;
 

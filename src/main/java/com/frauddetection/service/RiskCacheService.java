@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class RiskCacheService {
-
   private final SuspiciousAccountRepository suspiciousAccountRepository;
   private final PayeeRiskRepository payeeRiskRepository;
 

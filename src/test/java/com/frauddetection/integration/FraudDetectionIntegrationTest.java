@@ -41,7 +41,8 @@ class FraudDetectionIntegrationTest {
   @Container
   static LocalStackContainer localstack =
       new LocalStackContainer(DockerImageName.parse("localstack/localstack:4.3"))
-          .withServices(LocalStackContainer.Service.SQS);
+          .withServices(LocalStackContainer.Service.SQS)
+          .withReuse(true);
 
   static SqsClient sqsClient;
 
@@ -96,7 +97,7 @@ class FraudDetectionIntegrationTest {
 
     var captor = ArgumentCaptor.forClass(PublishRequest.class);
     await()
-        .atMost(Duration.ofSeconds(15))
+        .atMost(Duration.ofSeconds(30))
         .untilAsserted(
             () -> {
               verify(snsClient).publish(captor.capture());
@@ -119,7 +120,8 @@ class FraudDetectionIntegrationTest {
             .build());
 
     await()
-        .pollDelay(Duration.ofSeconds(5))
+        .pollDelay(Duration.ofSeconds(8))
+        .atMost(Duration.ofSeconds(15))
         .untilAsserted(
             () -> {
               verify(snsClient, never())

@@ -2,6 +2,7 @@ package com.frauddetection.service;
 
 import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.entity.Transaction;
+import com.frauddetection.model.AlertEvent;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.repository.TransactionRepository;
 import com.frauddetection.rule.RuleEngine;
