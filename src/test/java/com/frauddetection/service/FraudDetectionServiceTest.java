@@ -24,6 +24,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @ExtendWith(MockitoExtension.class)
 class FraudDetectionServiceTest {
@@ -79,6 +80,18 @@ class FraudDetectionServiceTest {
     service.detect(msg(500));
 
     verify(ruleEngine, never()).evaluate(any());
+  }
+
+  @Test
+  void givenConcurrentDuplicate_whenSaveFails_thenSkipsProcessing() {
+    when(transactionRepo.findById("TXN-1")).thenReturn(Optional.empty());
+    when(transactionRepo.save(any(Transaction.class)))
+        .thenThrow(new DataIntegrityViolationException("duplicate"));
+
+    service.detect(msg(500));
+
+    verify(ruleEngine, never()).evaluate(any());
+    verify(eventPublisher, never()).publishEvent(any());
   }
 
   private static TransactionMessage msg(int amount) {
