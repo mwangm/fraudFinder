@@ -97,8 +97,6 @@ GitHub Actions workflow definitions for:
 
 ### `scripts/`
 - `send-test-transaction.sh` — Send test SQS messages (fraud/normal/custom scenarios, `--help` for details)
-- `perf-test.sh` — Performance benchmark (concurrent SQS senders, throughput measurement, `-h` for options)
-- `resilience-test.sh` — Pod kill / node failure recovery tests
 
 ## Testing
 
@@ -116,6 +114,18 @@ GitHub Actions workflow definitions for:
 - **Test framework**: JUnit 5, Mockito, AssertJ, Awaitility
 - **Coverage**: JaCoCo with 80% minimum threshold, enforced by `check`
 - **Integration tests**: LocalStack Testcontainers for SQS, `@MockitoBean` for SNS
+
+### Performance Testing
+
+```bash
+# 500 messages, 10 concurrent senders, 30% fraud
+scripts/perf-test.sh -n 500 -c 10 -f 30
+
+# 1000 messages, 50% fraud
+scripts/perf-test.sh -n 1000 -f 50
+```
+
+Measures throughput (msg/s) and latency per worker via concurrent SQS senders.
 
 ## Getting Started
 
