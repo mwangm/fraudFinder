@@ -1,0 +1,20 @@
+src/main/java/com/frauddetection/service/FraudRecorderService.java
+  s_9f702fe3c151e5::t_ceae4b5e925906 30-37
+  s_9f702fe3c151e5::t_93e7b335df5fd6 38-39,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "bbac38acbbf1e38f5af415e205ffb75470e439cd",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
