@@ -1,0 +1,21 @@
+src/main/java/com/frauddetection/entity/SuspiciousAccount.java
+  s_9f702fe3c151e5::t_0882d7d91bc064 6
+src/main/java/com/frauddetection/entity/PayeeRisk.java
+  s_9f702fe3c151e5::t_c16799b67e9471 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "456fe1d80240d73e730b71bf28795bb3a4110676",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
