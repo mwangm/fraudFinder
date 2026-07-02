@@ -126,7 +126,6 @@ scripts/perf-test.sh -n 1000 -f 50
 ```
 
 Measures throughput (msg/s) and latency per worker via concurrent SQS senders.
-See [Performance Test Results](doc/perf-test-results.md) for sample data.
 
 ## Getting Started
 
