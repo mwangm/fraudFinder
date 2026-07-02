@@ -32,6 +32,21 @@ fraud:
   rules:
     threshold: 70
     list:
+      - name: "amount-threshold"
+        condition: "amount > 100000"
+        score: 40
+        alertMessage: "Large amount transaction detected"
+        enabled: true
+      - name: "suspicious-payer-account"
+        condition: "#riskCache.isSuspiciousAccount(accountId)"
+        score: 80
+        alertMessage: "Payer account is blacklisted"
+        enabled: true
+      - name: "high-risk-payee"
+        condition: "#riskCache.isHighRiskPayee(payeeId)"
+        score: 60
+        alertMessage: "Payee is high risk"
+        enabled: true
 
 # SNS
 sns:
