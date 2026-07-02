@@ -55,3 +55,22 @@ FraudRecorderService      AlertService.publish()
 Amazon RDS MySQL 8.0         ▼
                           Alert Subscribers
 ```
+
+## Technology Stack
+
+| Component | Choice | Why |
+|-----------|--------|-----|
+| Language | Java 21 | Long-term support, Spring Boot ecosystem, strong typing for financial transactions |
+| Framework | Spring Boot 3.4 | Mature DI, JPA, validation, Actuator — reduces boilerplate for REST + messaging apps |
+| Rule Engine | SpEL (YAML-configured) | Spring built-in, zero extra dependencies, readable condition expressions without a DSL |
+| Message Queue | Amazon SQS | Fully managed, no cluster overhead, native IAM + SNS integration |
+| Database | Amazon RDS MySQL 8.0 | ACID unique constraints guarantee idempotency; relational model fits transaction–fraud record relationships |
+| Compute | Amazon EKS | Always-warm JVM with custom tuning (ZGC); HPA auto-scaling by queue depth |
+| Notifications | Amazon SNS | Managed pub/sub, email subscription, native SQS integration |
+| Container Registry | Docker Hub | Simple, CI-friendly, no AWS-specific lock-in |
+| Monitoring | Amazon CloudWatch | Unified AWS observability — logs (Fluent Bit), metrics, alarms |
+| IaC | Terraform | Declarative, reproducible AWS infrastructure; modules for EKS, RDS, IAM |
+| CI/CD | GitHub Actions + Helm | OIDC-based auth (no long-lived secrets), `helm upgrade --install` with `--wait` |
+| Test Coverage | JaCoCo | 80% minimum enforced in CI, HTML + XML reports |
+| Formatting | Spotless (google-java-format) | Consistent code style, enforced at CI check step |
+
