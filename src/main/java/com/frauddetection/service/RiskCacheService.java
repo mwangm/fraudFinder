@@ -22,6 +22,7 @@ public class RiskCacheService {
 
   private volatile Set<String> suspiciousAccountIds = Set.of();
   private volatile Map<String, PayeeRisk> payeeRiskMap = Map.of();
+  private volatile boolean initialized = false;
 
   public RiskCacheService(
       SuspiciousAccountRepository suspiciousAccountRepository,
@@ -33,21 +34,31 @@ public class RiskCacheService {
   @PostConstruct
   void init() {
     refresh();
+    initialized = true;
   }
 
   @Scheduled(fixedRateString = "${fraud.cache.refresh-interval-seconds:60}000")
   void refresh() {
-    suspiciousAccountIds =
-        suspiciousAccountRepository.findAll().stream()
-            .map(SuspiciousAccount::getAccountId)
-            .collect(Collectors.toUnmodifiableSet());
-    payeeRiskMap =
-        payeeRiskRepository.findAll().stream()
-            .collect(Collectors.toUnmodifiableMap(PayeeRisk::getPayeeId, r -> r));
-    log.info(
-        "Risk cache refreshed: {} suspicious accounts, {} payee risks",
-        suspiciousAccountIds.size(),
-        payeeRiskMap.size());
+    try {
+      suspiciousAccountIds =
+          suspiciousAccountRepository.findAll().stream()
+              .map(SuspiciousAccount::getAccountId)
+              .collect(Collectors.toUnmodifiableSet());
+      payeeRiskMap =
+          payeeRiskRepository.findAll().stream()
+              .collect(Collectors.toUnmodifiableMap(PayeeRisk::getPayeeId, r -> r));
+      initialized = true;
+      log.info(
+          "Risk cache refreshed: {} suspicious accounts, {} payee risks",
+          suspiciousAccountIds.size(),
+          payeeRiskMap.size());
+    } catch (Exception e) {
+      log.error(
+          "Risk cache refresh failed — using {} cache (initialized={})",
+          initialized ? "stale" : "empty",
+          initialized,
+          e);
+    }
   }
 
   public boolean isSuspicious(String accountId) {

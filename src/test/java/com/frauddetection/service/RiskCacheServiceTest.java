@@ -71,4 +71,13 @@ class RiskCacheServiceTest {
     assertThat(service.getPayeeRisk("PE-HIGH")).isEqualTo(risk);
     assertThat(service.getPayeeRisk("PE-NORMAL")).isNull();
   }
+
+  @Test
+  void givenRefreshFailure_whenIsSuspicious_thenStillReturnsFalseSafely() {
+    when(suspiciousRepo.findAll()).thenThrow(new RuntimeException("DB down"));
+    service.refresh();
+
+    // Should not throw — cache is stale/empty but service keeps running
+    assertThat(service.isSuspicious("ACC-BAD")).isFalse();
+  }
 }
