@@ -1,0 +1,23 @@
+src/test/java/com/frauddetection/controller/TransactionControllerTest.java
+  s_c3d009e1ad54bf::t_0d8d11f1136ebc 32-33,59-60
+  s_c3d009e1ad54bf::t_df0ab6ba44e04b 1-31,34-58,61-70
+src/main/java/com/frauddetection/controller/TransactionController.java
+  s_c3d009e1ad54bf::t_0d8d11f1136ebc 28,59
+  s_c3d009e1ad54bf::t_8be59499acbc64 1-27,29-58,60-67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "6e33a269786f33ed92ea30bcfe1e7cff596b220f",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
