@@ -27,12 +27,19 @@ public class FraudRecorderService {
    */
   @Transactional
   public FraudRecord save(TransactionMessage message, DetectionResult evaluation) {
+    Instant detectedAt;
+    try {
+      detectedAt = Instant.parse(evaluation.detectedAt());
+    } catch (Exception e) {
+      log.warn(
+          "Failed to parse detectedAt '{}', falling back to Instant.now()",
+          evaluation.detectedAt());
+      detectedAt = Instant.now();
+    }
+
     FraudRecord result =
         new FraudRecord(
-            message.transactionId(),
-            evaluation.totalScore(),
-            evaluation.threshold(),
-            Instant.parse(evaluation.detectedAt()));
+            message.transactionId(), evaluation.totalScore(), evaluation.threshold(), detectedAt);
 
     evaluation
         .ruleResults()
