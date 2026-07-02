@@ -3,7 +3,7 @@ package com.frauddetection.entity;
 import jakarta.persistence.*;
 import java.time.Instant;
 
-/** 黑名单账户  */
+/** 黑名单账户 */
 @Entity
 @Table(name = "suspicious_accounts")
 public class SuspiciousAccount {
