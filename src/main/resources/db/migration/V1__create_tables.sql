@@ -18,7 +18,7 @@ CREATE TABLE fraud_record_details (
 );
 CREATE INDEX idx_frd_record_id ON fraud_record_details(fraud_record_id);
 
--- 付款方黑名单
+-- Payer account blacklist — reference data for RiskCacheService
 CREATE TABLE suspicious_accounts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     account_id VARCHAR(64) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE suspicious_accounts (
     CONSTRAINT uq_sa_account_id UNIQUE (account_id)
 );
 
--- 收款方风险等级
+-- Payee risk levels — reference data for RiskCacheService
 CREATE TABLE payee_risks (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     payee_id VARCHAR(64) NOT NULL,
