@@ -1,0 +1,41 @@
+src/main/java/com/frauddetection/service/FraudDetectionService.java
+  s_c3d009e1ad54bf::t_7be15de4b5277f 5-7,82-85
+  s_c3d009e1ad54bf::t_1c2b9435498e70 79,81
+  s_c3d009e1ad54bf::t_a9a789b37ae59b 80
+  s_c3d009e1ad54bf::t_4e879f5a44cce8 86-88
+src/main/resources/db/migration/V2__create_transactions.sql
+  s_c3d009e1ad54bf::t_cbfe08cbbb5504 1-7
+src/test/java/com/frauddetection/integration/FraudDetectionServiceTransactionTest.java
+  s_c3d009e1ad54bf::t_5f4e4a304bebd0 1-51
+src/main/java/com/frauddetection/entity/Transaction.java
+  s_c3d009e1ad54bf::t_b82283ee38fa64 1-28,30-56
+  s_c3d009e1ad54bf::t_a9a789b37ae59b 29
+src/test/java/com/frauddetection/integration/FraudDetectionIntegrationTest.java
+  s_c3d009e1ad54bf::t_7a7d68cdab327f 68-73
+src/main/java/com/frauddetection/repository/TransactionRepository.java
+  s_c3d009e1ad54bf::t_2e49fb63681ab3 1-6
+src/test/java/com/frauddetection/service/FraudDetectionServiceTest.java
+  s_c3d009e1ad54bf::t_268bc816efa3ee 13,33,44-45
+src/test/java/com/frauddetection/repository/FraudRecordRepositoryTest.java
+  s_c3d009e1ad54bf::t_b04ce06260afe4 11,13
+  s_c3d009e1ad54bf::t_b02a8996961818 1-10,12,14-36
+src/test/java/com/frauddetection/repository/TransactionRepositoryTest.java
+  s_c3d009e1ad54bf::t_6d40c453f6f2c6 1-10,12,14-30
+  s_c3d009e1ad54bf::t_b86a1bb0f478e3 11,13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "a74a42ef3338d3c2105a5046b8cd252cde2cb565",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
