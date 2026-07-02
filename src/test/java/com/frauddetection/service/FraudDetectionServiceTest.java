@@ -22,14 +22,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class FraudDetectionServiceTest {
 
-  @Mock ObjectMapper objectMapper;
   @Mock RuleEngine ruleEngine;
   @Mock AlertService alertService;
 
+  ObjectMapper objectMapper;
   FraudDetectionService service;
 
   @BeforeEach
   void setUp() {
+    objectMapper = new ObjectMapper();
     service = new FraudDetectionService(objectMapper, ruleEngine, alertService);
   }
 
@@ -56,6 +57,25 @@ class FraudDetectionServiceTest {
     service.detect(msg(500));
 
     verify(alertService, never()).publish(any());
+  }
+
+  @Test
+  void givenValidJson_whenOnMessage_thenDeserializesAndDetects() {
+    when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
+    String json =
+        "{\"transactionId\":\"TXN-1\",\"accountId\":\"ACC-1\",\"payeeId\":\"PE-1\",\"amount\":500}";
+
+    service.onMessage(json);
+
+    verify(ruleEngine)
+        .evaluate(new TransactionMessage("TXN-1", "ACC-1", "PE-1", BigDecimal.valueOf(500)));
+  }
+
+  @Test
+  void givenInvalidJson_whenOnMessage_thenSkipsProcessing() {
+    service.onMessage("not valid json {{{");
+
+    verify(ruleEngine, never()).evaluate(any());
   }
 
   private static TransactionMessage msg(int amount) {

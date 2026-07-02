@@ -88,6 +88,30 @@ class RuleEngineTest {
     assertThat(eval).isEmpty();
   }
 
+  @Test
+  void givenScoreExactlyAtThreshold_whenEvaluate_thenReturnsTriggered() {
+    properties.setThreshold(70);
+    properties.setList(List.of(rule("r1", "amount > 100", 70)));
+
+    Optional<DetectionResult> eval = engine.evaluate(txn(200));
+
+    assertThat(eval).isPresent();
+    assertThat(eval.get().totalScore()).isEqualTo(70);
+  }
+
+  @Test
+  void givenMultipleRules_whenEvaluate_thenAccumulatesScore() {
+    properties.setThreshold(70);
+    properties.setList(
+        List.of(rule("r1", "amount > 100", 40), rule("r2", "accountId == 'ACC-BAD'", 40)));
+
+    Optional<DetectionResult> eval = engine.evaluate(txnWithAccount("ACC-BAD", 200));
+
+    assertThat(eval).isPresent();
+    assertThat(eval.get().totalScore()).isEqualTo(80);
+    assertThat(eval.get().ruleResults()).hasSize(2);
+  }
+
   private static FraudDetectionRule rule(String name, String condition, int score) {
     return new FraudDetectionRule(name, condition, score, "", true);
   }
