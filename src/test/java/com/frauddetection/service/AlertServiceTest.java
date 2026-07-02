@@ -2,6 +2,7 @@ package com.frauddetection.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.entity.FraudRecordDetail;
@@ -50,6 +51,26 @@ class AlertServiceTest {
     var record = new FraudRecord("TXN-001", 80, 70, Instant.now());
 
     alertService.publish(record);
+
+    verify(snsClient, org.mockito.Mockito.never())
+        .publish((PublishRequest) org.mockito.ArgumentMatchers.any());
+  }
+
+  @Test
+  void givenSnsPublishFails_whenPublish_thenDoesNotThrow() {
+    var record = new FraudRecord("TXN-001", 80, 70, Instant.now());
+    when(snsClient.publish((PublishRequest) org.mockito.ArgumentMatchers.any()))
+        .thenThrow(new RuntimeException("SNS unavailable"));
+
+    // Should not throw — failures are logged and swallowed
+    alertService.publish(record);
+  }
+
+  @Test
+  void givenSendWithoutTopicArn_whenSend_thenDoesNotPublish() {
+    alertService = new AlertService(snsClient, "");
+
+    alertService.send("subject", "message");
 
     verify(snsClient, org.mockito.Mockito.never())
         .publish((PublishRequest) org.mockito.ArgumentMatchers.any());

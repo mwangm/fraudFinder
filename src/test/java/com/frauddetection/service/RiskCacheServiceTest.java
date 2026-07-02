@@ -1,6 +1,8 @@
 package com.frauddetection.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.frauddetection.entity.PayeeRisk;
@@ -74,11 +76,32 @@ class RiskCacheServiceTest {
   }
 
   @Test
-  void givenRefreshFailure_whenIsSuspicious_thenStillReturnsFalseSafely() {
+  void givenRefreshFailureBeforeInit_whenIsSuspicious_thenStillReturnsFalseSafely() {
     when(suspiciousRepo.findAll()).thenThrow(new RuntimeException("DB down"));
     service.refresh();
 
-    // Should not throw — cache is stale/empty but service keeps running
+    // Not initialized yet — no alert sent, cache stays empty
     assertThat(service.isSuspicious("ACC-BAD")).isFalse();
+    verify(alertService, never())
+        .send(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+  }
+
+  @Test
+  void givenRefreshFailureAfterInit_whenRefreshFails_thenSendsAlert() {
+    // First: successful refresh → initialization
+    when(suspiciousRepo.findAll())
+        .thenReturn(List.of(new SuspiciousAccount("ACC-BAD", "bad", Instant.now())));
+    service.refresh();
+
+    // Second: refresh fails
+    when(suspiciousRepo.findAll()).thenThrow(new RuntimeException("DB down"));
+    service.refresh();
+
+    // Stale data still usable, alert sent
+    assertThat(service.isSuspicious("ACC-BAD")).isTrue();
+    verify(alertService)
+        .send(
+            "FRAUD-DETECTION: Risk cache refresh failed",
+            "Risk cache refresh failed, using stale data. Error: DB down");
   }
 }
