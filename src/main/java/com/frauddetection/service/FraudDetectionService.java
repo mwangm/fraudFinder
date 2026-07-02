@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -78,9 +79,14 @@ public class FraudDetectionService {
 
     Optional<DetectionResult> evaluation = ruleEngine.evaluate(message);
 
-    transactionRepo.save(
-        new Transaction(
-            message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
+    try {
+      transactionRepo.save(
+          new Transaction(
+              message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
+    } catch (DataIntegrityViolationException e) {
+      log.warn("Duplicate transaction ignored: txnId={}", message.transactionId());
+      return;
+    }
 
     if (evaluation.isPresent()) {
       FraudRecord save = fraudRecorder.save(message, evaluation.get());

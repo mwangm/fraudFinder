@@ -33,9 +33,6 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
 
-    // Cache
-    implementation("com.github.ben-manes.caffeine:caffeine")
-
     // AWS SQS + SNS
     implementation(platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.3.0"))
     implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
