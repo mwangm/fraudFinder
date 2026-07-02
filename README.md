@@ -94,14 +94,6 @@ GitHub Actions workflow definitions for:
 
 ## Testing
 
-```bash
-# Run all tests with coverage verification (80% minimum)
-./gradlew check
-
-# View coverage report
-open build/reports/jacoco/test/html/index.html
-```
-
 ## Getting Started
 
 ### Prerequisites
@@ -120,7 +112,11 @@ open build/reports/jacoco/test/html/index.html
 
 # Run tests
 ./gradlew test
+
+# Run all tests with coverage verification
+./gradlew check
 ```
+
 
 ### Infrastructure Deployment
 
