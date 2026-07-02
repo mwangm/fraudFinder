@@ -97,6 +97,8 @@ GitHub Actions workflow definitions for:
 
 ### `scripts/`
 - `send-test-transaction.sh` — Send test SQS messages (fraud/normal/custom scenarios, `--help` for details)
+- `perf-test.sh` — Performance benchmark (concurrent SQS senders, throughput measurement, `-h` for options)
+- `resilience-test.sh` — Pod kill / node failure recovery tests
 
 ## Testing
 
