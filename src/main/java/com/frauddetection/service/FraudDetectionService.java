@@ -7,6 +7,7 @@ import com.frauddetection.repository.TransactionRepository;
 import com.frauddetection.rule.RuleEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,9 +38,14 @@ public class FraudDetectionService {
       return;
     }
 
-    transactionRepo.save(
-        new Transaction(
-            message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
+    try {
+      transactionRepo.save(
+          new Transaction(
+              message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
+    } catch (DataIntegrityViolationException e) {
+      log.warn("Duplicate transaction ignored: txnId={}", message.transactionId());
+      return;
+    }
 
     ruleEngine
         .evaluate(message)
