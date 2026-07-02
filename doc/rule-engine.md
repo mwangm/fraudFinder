@@ -1,10 +1,10 @@
-# 规则引擎
+# Rule Engine
 
-## 设计
+## Design
 
-SpEL（Spring Expression Language）表达式驱动，规则定义在 YAML 中，无需数据库、无需编写 Java 代码。
+SpEL (Spring Expression Language) driven — rules are defined in YAML, no database or Java code changes needed.
 
-## 规则定义示例
+## Rule Definition Example
 
 ```yaml
 fraud:
@@ -28,30 +28,30 @@ fraud:
         enabled: true
 ```
 
-## 可用变量
+## Available Variables
 
-SpEL 表达式中可直接访问 `TransactionMessage` 的所有字段：
+All `TransactionMessage` fields are accessible in SpEL expressions:
 
-| 变量 | 类型 | 说明 |
-|------|------|------|
-| `transactionId` | String | 交易唯一标识 |
-| `accountId` | String | 付款方账户 |
-| `payeeId` | String | 收款方 |
-| `amount` | BigDecimal | 交易金额 |
-| `#riskCache` | RiskCacheService | 风险数据缓存 (isSuspiciousAccount, isHighRiskPayee) |
+| Variable | Type | Description |
+|----------|------|-------------|
+| `transactionId` | String | Unique transaction identifier |
+| `accountId` | String | Payer account ID |
+| `payeeId` | String | Payee ID |
+| `amount` | BigDecimal | Transaction amount |
+| `#riskCache` | RiskCacheService | Risk data cache (isSuspiciousAccount, isHighRiskPayee) |
 
-## 评分与判定
+## Scoring & Judgment
 
-| 场景 | 触发规则 | 总分 | 判定 |
-|------|---------|------|------|
-| 大额转账 | amount-threshold | 40 | 正常 |
-| 付款方黑名单 | suspicious-payer-account | 80 | 欺诈 |
-| 高风险收款方 | high-risk-payee | 60 | 正常 |
-| 大额 + 高风险收款方 | amount-threshold + high-risk-payee | 100 | 欺诈 |
-| 全触发 | 全部规则 | 180 | 欺诈 |
+| Scenario | Triggered Rules | Total Score | Verdict |
+|----------|----------------|-------------|---------|
+| Large transfer | amount-threshold | 40 | Normal |
+| Blacklisted payer | suspicious-payer-account | 80 | Fraud |
+| High-risk payee | high-risk-payee | 60 | Normal |
+| Large + high-risk payee | amount-threshold + high-risk-payee | 100 | Fraud |
+| All rules triggered | All rules | 180 | Fraud |
 
-## 扩展指南
+## Extension Guide
 
-**新增规则**: 在 YAML 中加一条配置，重启生效。
-**禁用规则**: 设置 `enabled: false`。
-**调阈值**: 修改 `fraud.rules.threshold`。
+**Add a rule**: Add a new entry to the YAML list and restart the service.
+**Disable a rule**: Set `enabled: false`.
+**Adjust threshold**: Modify `fraud.rules.threshold`.

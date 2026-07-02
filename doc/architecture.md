@@ -1,6 +1,6 @@
-# 系统架构
+# System Architecture
 
-## 架构图
+## Architecture Diagram
 
 ```mermaid
 graph LR
@@ -27,7 +27,7 @@ graph LR
     SNS -->|"9. Notify"| AS[("Alert<br/>Subscribers")]
 ```
 
-## 数据流向
+## Data Flow
 
 ```
 SQS Message { transactionId, accountId, payeeId, amount }
@@ -38,15 +38,15 @@ TransactionConsumerService.onMessage()
   │
   ▼
 RuleEngine.evaluate()
-  │ SpEL 表达式评估规则
-  │ 总分 ≥ threshold → DetectionResult
-  │ 总分 < threshold → 丢弃
+  │ Evaluates rules via SpEL expressions
+  │ Total score ≥ threshold → DetectionResult
+  │ Total score < threshold → discard
   │
   ├──────────────────────────┐
   ▼                          ▼
 FraudRecorderService      AlertService.publish()
-  │ write to RDS             │ 格式化告警文本
-  ▼                          │ SNS Topic → 邮件通知
+  │ Write to RDS             │ Format alert message
+  ▼                          │ SNS notification
 Amazon RDS MySQL 8.0         ▼
                           Alert Subscribers
 ```
