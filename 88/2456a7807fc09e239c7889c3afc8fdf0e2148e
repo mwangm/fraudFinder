@@ -1,0 +1,24 @@
+.github/workflows/ci.yml
+  s_c3d009e1ad54bf::t_23405b911607ba 35-46,48
+src/test/java/com/frauddetection/integration/FraudDetectionIntegrationTest.java
+  s_c3d009e1ad54bf::t_58329fab4f42d4 5-6,13,27,48-49,84,96,101-103,108
+  s_c3d009e1ad54bf::t_7994c0538f4297 124-125
+src/test/resources/application-test.yml
+  s_c3d009e1ad54bf::t_512224ff6b235a 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "882456a7807fc09e239c7889c3afc8fdf0e2148e",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
