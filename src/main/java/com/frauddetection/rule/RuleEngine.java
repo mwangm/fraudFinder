@@ -24,6 +24,12 @@ public class RuleEngine {
     this.riskCache = riskCache;
   }
 
+  /**
+   * Evaluates all enabled rules against the given transaction. A rule that throws during evaluation
+   * is logged and treated as not triggered — the remaining rules continue to execute.
+   *
+   * @return the detection result if total score ≥ threshold, otherwise empty
+   */
   public Optional<DetectionResult> evaluate(TransactionMessage message) {
     var ctx = new StandardEvaluationContext(message);
     ctx.setVariable("riskCache", riskCache);

@@ -20,6 +20,11 @@ public class FraudRecorderService {
     this.resultRepo = resultRepo;
   }
 
+  /**
+   * Persists a fraud detection result with all triggered rule details.
+   *
+   * @return the saved fraud record
+   */
   @Transactional
   public FraudRecord save(TransactionMessage message, DetectionResult evaluation) {
     FraudRecord result =

@@ -32,6 +32,11 @@ public class FraudDetectionService {
     this.eventPublisher = eventPublisher;
   }
 
+  /**
+   * Processes a transaction through the rule engine and records fraud results. Idempotency is
+   * guaranteed by the unique constraint on {@code transaction_id} — concurrent duplicates are
+   * caught via {@link DataIntegrityViolationException}.
+   */
   @Transactional
   public void detect(TransactionMessage message) {
     if (transactionRepo.findById(message.transactionId()).isPresent()) {

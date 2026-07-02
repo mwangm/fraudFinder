@@ -23,11 +23,13 @@ public class AlertService {
     this.topicArn = topicArn;
   }
 
+  /** Listens for fraud detection events — fires only after the transaction commits successfully. */
   @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
   public void onAlertEvent(AlertEvent event) {
     publish(event.fraudRecord());
   }
 
+  /** Formats and publishes a fraud alert to SNS. Failures are logged but not rethrown. */
   public void publish(FraudRecord result) {
     if (topicArn.isBlank()) {
       log.warn("SNS topic ARN not configured, skipping alert: txnId={}", result.getTransactionId());

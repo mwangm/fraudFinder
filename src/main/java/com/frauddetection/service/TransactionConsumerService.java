@@ -17,6 +17,10 @@ public class TransactionConsumerService {
     this.detectionService = detectionService;
   }
 
+  /**
+   * Receives a transaction from SQS. JSON deserialization and bean validation are handled by Spring
+   * Cloud AWS — failures trigger SQS retry and eventually dead-letter queue.
+   */
   @SqsListener("${sqs.queue-name:fraud-transactions}")
   public void onMessage(@Payload @Valid TransactionMessage input) {
     log.info("SQS message received: txnId={}", input.transactionId());
