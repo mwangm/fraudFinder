@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.frauddetection.entity.FraudRecord;
+import com.frauddetection.entity.Transaction;
 import com.frauddetection.model.DetectionResult;
 import com.frauddetection.model.DetectionResultDetail;
 import com.frauddetection.model.TransactionMessage;
@@ -18,27 +19,29 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
 @ExtendWith(MockitoExtension.class)
 class FraudDetectionServiceTest {
 
   @Mock RuleEngine ruleEngine;
-  @Mock AlertService alertService;
   @Mock FraudRecorderService fraudRecorder;
   @Mock TransactionRepository transactionRepo;
+  @Mock ApplicationEventPublisher eventPublisher;
 
   FraudDetectionService service;
 
   @BeforeEach
   void setUp() {
-    service = new FraudDetectionService(ruleEngine, fraudRecorder, alertService, transactionRepo);
+    service = new FraudDetectionService(ruleEngine, fraudRecorder, transactionRepo, eventPublisher);
   }
 
   @Test
-  void givenFraudScore_whenDetect_thenPublishesAlert() {
-    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
+  void givenFraudScore_whenDetect_thenPublishesAlertEvent() {
+    when(transactionRepo.findById(any())).thenReturn(Optional.empty());
     var evaluation =
         new DetectionResult(
             "TXN-1",
@@ -52,23 +55,25 @@ class FraudDetectionServiceTest {
 
     service.detect(msg(5000));
 
-    verify(alertService).publish(saved);
+    var captor = ArgumentCaptor.forClass(AlertEvent.class);
+    verify(eventPublisher).publishEvent(captor.capture());
+    verify(fraudRecorder).save(any(), any());
   }
 
   @Test
-  void givenNormalScore_whenDetect_thenNoAction() {
-    when(fraudRecorder.findExisting(any())).thenReturn(Optional.empty());
+  void givenNormalScore_whenDetect_thenNoEvent() {
+    when(transactionRepo.findById(any())).thenReturn(Optional.empty());
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
 
     service.detect(msg(500));
 
-    verify(alertService, never()).publish(any());
+    verify(eventPublisher, never()).publishEvent(any());
   }
 
   @Test
   void givenDuplicateMessage_whenDetect_thenSkipsProcessing() {
-    when(fraudRecorder.findExisting("TXN-1"))
-        .thenReturn(Optional.of(new FraudRecord("TXN-1", 0, 0, Instant.now())));
+    when(transactionRepo.findById("TXN-1"))
+        .thenReturn(Optional.of(new Transaction("TXN-1", "ACC-1", "PE-1", BigDecimal.ZERO)));
 
     service.detect(msg(500));
 

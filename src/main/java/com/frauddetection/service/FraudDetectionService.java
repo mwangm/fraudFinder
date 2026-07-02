@@ -1,11 +1,12 @@
 package com.frauddetection.service;
 
+import com.frauddetection.entity.FraudRecord;
 import com.frauddetection.entity.Transaction;
 import com.frauddetection.model.TransactionMessage;
 import com.frauddetection.repository.TransactionRepository;
 import com.frauddetection.rule.RuleEngine;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,41 +16,37 @@ public class FraudDetectionService {
 
   private final RuleEngine ruleEngine;
   private final FraudRecorderService fraudRecorder;
-  private final AlertService alertService;
   private final TransactionRepository transactionRepo;
+  private final ApplicationEventPublisher eventPublisher;
 
   public FraudDetectionService(
       RuleEngine ruleEngine,
       FraudRecorderService fraudRecorder,
-      AlertService alertService,
-      TransactionRepository transactionRepo) {
+      TransactionRepository transactionRepo,
+      ApplicationEventPublisher eventPublisher) {
     this.ruleEngine = ruleEngine;
     this.fraudRecorder = fraudRecorder;
-    this.alertService = alertService;
     this.transactionRepo = transactionRepo;
+    this.eventPublisher = eventPublisher;
   }
 
   @Transactional
   public void detect(TransactionMessage message) {
-    if (fraudRecorder.findExisting(message.transactionId()).isPresent()) {
+    if (transactionRepo.findById(message.transactionId()).isPresent()) {
       log.info("Already processed, skipping duplicate: txnId={}", message.transactionId());
       return;
     }
 
-    try {
-      transactionRepo.save(
-          new Transaction(
-              message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
-    } catch (DataIntegrityViolationException e) {
-      log.warn("Duplicate transaction ignored: txnId={}", message.transactionId());
-      return;
-    }
+    transactionRepo.save(
+        new Transaction(
+            message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
 
     ruleEngine
         .evaluate(message)
         .ifPresent(
             evaluation -> {
-              alertService.publish(fraudRecorder.save(message, evaluation));
+              FraudRecord saved = fraudRecorder.save(message, evaluation);
+              eventPublisher.publishEvent(new AlertEvent(saved));
             });
   }
 }

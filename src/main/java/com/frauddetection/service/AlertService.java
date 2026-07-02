@@ -5,6 +5,8 @@ import com.frauddetection.entity.FraudRecordDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
 import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sns.model.PublishRequest;
 
@@ -18,6 +20,11 @@ public class AlertService {
   public AlertService(SnsClient snsClient, @Value("${sns.topic-arn:}") String topicArn) {
     this.snsClient = snsClient;
     this.topicArn = topicArn;
+  }
+
+  @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+  public void onAlertEvent(AlertEvent event) {
+    publish(event.fraudRecord());
   }
 
   public void publish(FraudRecord result) {
