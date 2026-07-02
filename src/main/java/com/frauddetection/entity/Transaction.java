@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+/**
+ * Received transaction — serves as the idempotency guard via unique constraint on transaction_id.
+ */
 @Entity
 @Table(name = "transactions")
 public class Transaction {

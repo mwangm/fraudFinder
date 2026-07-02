@@ -2,6 +2,7 @@ package com.frauddetection.entity;
 
 import jakarta.persistence.*;
 
+/** Individual rule trigger detail — each FraudRecord can have multiple triggered rules. */
 @Entity
 @Table(name = "fraud_record_details")
 public class FraudRecordDetail {

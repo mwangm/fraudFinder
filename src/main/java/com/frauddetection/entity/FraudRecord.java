@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Fraud detection result — persisted when total score ≥ threshold. 1:1 with Transaction. */
 @Entity
 @Table(name = "fraud_records")
 public class FraudRecord {
