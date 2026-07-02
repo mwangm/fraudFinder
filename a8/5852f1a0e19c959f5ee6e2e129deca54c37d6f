@@ -1,0 +1,21 @@
+src/main/java/com/frauddetection/rule/RulesConfig.java
+  s_9f702fe3c151e5::t_a247346cd3e045 22,26
+README.md
+  s_9f702fe3c151e5::t_b9a6d8cd0529e3 129
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "a85852f1a0e19c959f5ee6e2e129deca54c37d6f",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
