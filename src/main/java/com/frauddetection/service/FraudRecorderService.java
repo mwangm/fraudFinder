@@ -32,7 +32,7 @@ public class FraudRecorderService {
             message.transactionId(),
             evaluation.totalScore(),
             evaluation.threshold(),
-            Instant.now());
+            Instant.parse(evaluation.detectedAt()));
 
     evaluation
         .ruleResults()
