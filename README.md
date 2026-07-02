@@ -90,7 +90,7 @@ GitHub Actions workflow definitions for:
 - Deployment to EKS
 
 ### `scripts/`
-- `send-test-transaction.sh` — Send test SQS messages for verification
+- `send-test-transaction.sh` — Send test SQS messages (fraud/normal/custom scenarios, `--help` for details)
 
 ## Testing
 
@@ -136,7 +136,12 @@ terraform apply
 # Deploy using GitHub Actions pipeline
 
 # Send test transaction
-1. Configure AWS credentials
-2. Send test message to SQS via tunnel
-./scripts/send-test-transaction.sh
+# Fraud scenario (triggers alert):
+./scripts/send-test-transaction.sh fraud
+
+# Normal scenario (no alert):
+./scripts/send-test-transaction.sh normal
+
+# See all options:
+./scripts/send-test-transaction.sh help
 ```
