@@ -17,7 +17,7 @@ Real-time fraud detection system that processes financial transactions from Amaz
 ### Application
 - **Language**: Java 21
 - **Framework**: Spring Boot 3.4.1
-- **Build Tool**: Gradle (single module)
+- **Build Tool**: Gradle
 
 ### AWS Services
 - **Compute**: Amazon EKS (Kubernetes 1.32)
@@ -29,7 +29,7 @@ Real-time fraud detection system that processes financial transactions from Amaz
 ### DevOps & Deployment
 - **Infrastructure as Code**: Terraform
 - **Container Orchestration**: Helm
-- **CI/CD**: GitHub Actions (build → test → deploy pipeline)
+- **CI/CD**: GitHub Actions (build → unit test -integration test → deploy pipeline)
 - **Log and Metrics**:  CloudWatch
 - **Test Coverage**: JaCoCo with 80% minimum threshold
 
@@ -113,8 +113,10 @@ GitHub Actions workflow definitions for:
 # Run tests
 ./gradlew test
 
-# Run all tests with coverage verification
+# Run tests with coverage verification
 ./gradlew check
+
+# Run integration tests，make sure docker running as the precondition
 ```
 
 
@@ -133,9 +135,10 @@ terraform apply
 
 ### Application Deployment
 
-# Deploy using GitHub Actions pipeline
+# Build and Deploy using GitHub Actions pipeline by Helm
 
 # Send test transaction
+```bash
 # Fraud scenario (triggers alert):
 ./scripts/send-test-transaction.sh fraud
 
