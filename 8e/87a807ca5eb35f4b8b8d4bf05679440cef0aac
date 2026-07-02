@@ -1,0 +1,21 @@
+src/main/java/com/frauddetection/service/FraudDetectionService.java
+  s_9f702fe3c151e5::t_b3e9de158d8594 42,48
+src/test/java/com/frauddetection/service/FraudDetectionServiceTest.java
+  s_9f702fe3c151e5::t_c251b07830d7f2 74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "8e87a807ca5eb35f4b8b8d4bf05679440cef0aac",
+  "prompts": {},
+  "sessions": {
+    "s_9f702fe3c151e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b063555b-0e18-427f-814a-38ad43ee397c",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
