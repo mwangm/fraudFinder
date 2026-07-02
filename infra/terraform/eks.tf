@@ -40,6 +40,22 @@ module "eks" {
     }
   }
 
+  node_security_group_additional_rules = {
+    metrics-server = {
+      type                          = "ingress"
+      protocol                      = "tcp"
+      from_port                     = 10251
+      to_port                       = 10251
+      source_cluster_security_group = true
+    }
+  }
+
+  cluster_addons = {
+    metrics-server = {
+      most_recent = true
+    }
+  }
+
   tags = {
     Environment = var.environment
   }
