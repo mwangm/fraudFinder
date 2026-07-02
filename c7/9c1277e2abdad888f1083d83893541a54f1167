@@ -1,0 +1,21 @@
+.github/workflows/ci.yml
+  s_c3d009e1ad54bf::t_de40df115012d2 36
+src/main/resources/db/migration/V1__create_tables.sql
+  s_c3d009e1ad54bf::t_c5f8b6aa79b014 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "c79c1277e2abdad888f1083d83893541a54f1167",
+  "prompts": {},
+  "sessions": {
+    "s_c3d009e1ad54bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15d35bae-22ac-4683-9472-b26ece125c57",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "mwang <menyu168@126.com>"
+    }
+  }
+}
