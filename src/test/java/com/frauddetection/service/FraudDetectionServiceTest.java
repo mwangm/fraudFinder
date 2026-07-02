@@ -43,7 +43,6 @@ class FraudDetectionServiceTest {
 
   @Test
   void givenFraudScore_whenDetect_thenPublishesAlertEvent() {
-    when(transactionRepo.findById(any())).thenReturn(Optional.empty());
     var evaluation =
         new DetectionResult(
             "TXN-1",
@@ -64,7 +63,6 @@ class FraudDetectionServiceTest {
 
   @Test
   void givenNormalScore_whenDetect_thenNoEvent() {
-    when(transactionRepo.findById(any())).thenReturn(Optional.empty());
     when(ruleEngine.evaluate(any())).thenReturn(Optional.empty());
 
     service.detect(msg(500));
@@ -73,18 +71,7 @@ class FraudDetectionServiceTest {
   }
 
   @Test
-  void givenDuplicateMessage_whenDetect_thenSkipsProcessing() {
-    when(transactionRepo.findById("TXN-1"))
-        .thenReturn(Optional.of(new Transaction("TXN-1", "ACC-1", "PE-1", BigDecimal.ZERO)));
-
-    service.detect(msg(500));
-
-    verify(ruleEngine, never()).evaluate(any());
-  }
-
-  @Test
-  void givenConcurrentDuplicate_whenSaveFails_thenSkipsProcessing() {
-    when(transactionRepo.findById("TXN-1")).thenReturn(Optional.empty());
+  void givenDuplicateTransaction_whenDetect_thenSkipsProcessing() {
     when(transactionRepo.save(any(Transaction.class)))
         .thenThrow(new DataIntegrityViolationException("duplicate"));
 

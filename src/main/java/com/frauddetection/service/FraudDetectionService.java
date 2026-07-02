@@ -39,17 +39,13 @@ public class FraudDetectionService {
    */
   @Transactional
   public void detect(TransactionMessage message) {
-    if (transactionRepo.findById(message.transactionId()).isPresent()) {
-      log.info("Already processed, skipping duplicate: txnId={}", message.transactionId());
-      return;
-    }
-
+    // Atomic idempotency guard: unique constraint on transaction_id catches concurrent duplicates
     try {
       transactionRepo.save(
           new Transaction(
               message.transactionId(), message.accountId(), message.payeeId(), message.amount()));
     } catch (DataIntegrityViolationException e) {
-      log.warn("Duplicate transaction ignored: txnId={}", message.transactionId());
+      log.info("Duplicate transaction skipped: txnId={}", message.transactionId());
       return;
     }
 
